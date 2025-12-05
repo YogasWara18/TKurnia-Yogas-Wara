@@ -137,7 +137,7 @@ export default function AboutSection() {
           <div ref={imageRef} className="relative">
             <div className="aspect-4/5 rounded-3xl overflow-hidden">
               <img
-                src="/minimalist-workspace-desk-setup-keyboard-mouse-dar.jpg"
+                src=""
                 alt="About Me"
                 className="w-full h-full object-cover"
               />
