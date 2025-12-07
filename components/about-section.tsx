@@ -155,10 +155,10 @@ export default function AboutSection() {
       className="w-full h-full"
     >
       {[
-        "/purwadhika.png",
-        "/image1.png",
-        "/image2.png",
-        "/image3.png",
+        "/CertificatePWD.jpg",
+        "/HTML-Sololearn.jpg",
+        "/CSS-Sololearn.jpg",
+        "/JavaScript-Sololearn.jpg",
         "/image4.png",
         "/image5.png",
       ].map((src, i) => (
