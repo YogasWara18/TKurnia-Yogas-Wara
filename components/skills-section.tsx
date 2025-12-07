@@ -118,8 +118,11 @@ export default function SkillsSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+    // Title animation
+    const titleLines = titleRef.current?.querySelectorAll(".title-line");
+    if (titleLines && titleLines.length > 0) {
       gsap.fromTo(
-        titleRef.current?.querySelectorAll(".title-line"),
+        titleLines,
         { y: 60, opacity: 0, clipPath: "inset(100% 0% 0% 0%)" },
         {
           y: 0,
@@ -132,10 +135,14 @@ export default function SkillsSection() {
             trigger: sectionRef.current,
             start: "top 75%",
           },
-        },
-      )
+        }
+      );
+    }
 
-      const skillItems = skillsRef.current?.querySelectorAll(".skill-item")
+
+      // Skills animation
+    const skillItems = skillsRef.current?.querySelectorAll(".skill-item");
+    if (skillItems && skillItems.length > 0) {
       gsap.fromTo(
         skillItems,
         {
@@ -154,9 +161,11 @@ export default function SkillsSection() {
             trigger: skillsRef.current,
             start: "top 80%",
           },
-        },
-      )
-    }, sectionRef)
+        }
+      );
+    }
+  }, sectionRef);
+
 
     return () => ctx.revert()
   }, [])

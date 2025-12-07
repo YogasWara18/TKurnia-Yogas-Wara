@@ -42,24 +42,29 @@ export default function ProjectsSection() {
   const cardsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        titleRef.current?.querySelectorAll(".title-line"),
-        { y: 100, opacity: 0, scale: 0.95, clipPath: "inset(100% 0% 0% 0%)" },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          clipPath: "inset(0% 0% 0% 0%)",
-          duration: 1.2,
-          stagger: 0.15,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-          },
-        },
-      )
+   const ctx = gsap.context(() => {
+      // Title animation
+      const titleLines = titleRef.current?.querySelectorAll(".title-line");
+      if (titleLines && titleLines.length > 0) {
+        gsap.fromTo(
+          titleLines,
+          { y: 100, opacity: 0, scale: 0.95, clipPath: "inset(100% 0% 0% 0%)" },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            clipPath: "inset(0% 0% 0% 0%)",
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+            },
+          }
+        );
+      }
+
 
       const cards = cardsRef.current?.querySelectorAll(".project-card")
       cards?.forEach((card, index) => {
@@ -185,7 +190,7 @@ export default function ProjectsSection() {
             <div key={project.title} className={`project-card grid md:grid-cols-2 gap-12 items-center perspective`}>
               {/* Image */}
               <div className={`relative overflow-hidden rounded-3xl bg-card ${index % 2 === 1 ? "md:order-2" : ""}`}>
-                <div className="image-container relative aspect-[4/3] overflow-hidden">
+                <div className="image-container relative aspect-4/3 overflow-hidden">
                   <img
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
