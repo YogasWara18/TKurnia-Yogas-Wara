@@ -190,7 +190,7 @@ export default function SkillsSection() {
               key={skill.name}
               className={`skill-item px-6 py-4 bg-card/50 backdrop-blur-sm rounded-full border ${skill.color} transition-all duration-500 cursor-default hover:scale-105 flex items-center gap-3`}
             >
-              <div className="flex-shrink-0">{skill.icon}</div>
+              <div className="shrink-0">{skill.icon}</div>
               <span className="font-medium text-foreground tracking-wide">{skill.name}</span>
             </div>
           ))}

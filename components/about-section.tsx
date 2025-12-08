@@ -186,7 +186,7 @@ export default function AboutSection() {
             <div ref={titleRef} className="mb-8">
               <div className="overflow-hidden">
                 <h2 className="title-line text-4xl md:text-5xl font-bold leading-[1.1]">
-                  Crafting Digital
+                  Frontend Web Developer
                 </h2>
               </div>
               <div className="overflow-hidden">
