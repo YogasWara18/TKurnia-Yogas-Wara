@@ -70,7 +70,10 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center px-6 pt-32 pb-20 overflow-hidden">
+    <section
+      ref={heroRef}
+      className="relative min-h-screen flex items-center px-6 pt-32 pb-20 overflow-hidden bg-checkerboard"
+    >
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
@@ -93,7 +96,7 @@ export default function HeroSection() {
                 </h1>
               </div>
               <div className="overflow-hidden">
-                <h1 className="hero-line text-5xl md:text-4xl lg:text-7xltracking-tight leading-[1.1] text-primary/60 italic font-light">
+                <h1 className="hero-line text-5xl md:text-4xl lg:text-7xl tracking-tight leading-[1.1] text-primary/60 italic font-light">
                   FRONTEND WEB DEVELOPER
                 </h1>
               </div>
