@@ -19,51 +19,93 @@ export default function HeroSection() {
       const tl = gsap.timeline({ defaults: { ease: "power4.out" } })
 
       // Label reveal
-      tl.fromTo(labelRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 0.2)
-
-      const lines = headingRef.current?.querySelectorAll(".hero-line")
-      if (lines) {
+      if (labelRef.current) {
         tl.fromTo(
-          lines,
-          { y: 100, clipPath: "inset(100% 0% 0% 0%)" },
-          {
-            y: 0,
-            clipPath: "inset(0% 0% 0% 0%)",
-            duration: 1.2,
-            stagger: 0.1,
-          },
-          0.4,
+          labelRef.current,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8 },
+          0.2
         )
       }
 
-      // Subtitle slide up
-      tl.fromTo(subtitleRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, 1)
+      // Heading lines (convert NodeList to HTMLElement[])
+      const lineEls =
+        headingRef.current
+          ? (Array.from(headingRef.current.querySelectorAll(".hero-line")) as HTMLElement[])
+          : []
 
-      // CTA fade in
-      tl.fromTo(ctaRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 1.2)
+      if (lineEls.length) {
+        tl.fromTo(
+          lineEls,
+          { y: 100, opacity: 0, letterSpacing: "0.2em", clipPath: "inset(100% 0% 0% 0%)" },
+          {
+            y: 0,
+            opacity: 1,
+            letterSpacing: "0em",
+            clipPath: "inset(0% 0% 0% 0%)",
+            duration: 1.2,
+            stagger: 0.15,
+          },
+          0.4
+        )
+      }
 
-      tl.fromTo(
-        imageRef.current,
-        { scale: 1.15, clipPath: "inset(100% 0% 0% 0%)" },
-        {
-          scale: 1,
-          clipPath: "inset(0% 0% 0% 0%)",
-          duration: 1.4,
-          ease: "power3.out",
-        },
-        0.6,
-      )
+      // Subtitle reveal
+      if (subtitleRef.current) {
+        tl.fromTo(
+          subtitleRef.current,
+          { y: 40, opacity: 0, filter: "blur(6px)" },
+          { y: 0, opacity: 1, filter: "blur(0px)", duration: 1.2 },
+          1
+        )
+      }
 
-      gsap.to(imageRef.current, {
-        y: 80,
-        ease: "none",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 1.5,
-        },
-      })
+      // CTA bounce-in (convert HTMLCollection to HTMLElement[])
+      const ctaEls =
+        ctaRef.current ? (Array.from(ctaRef.current.children) as HTMLElement[]) : []
+
+      if (ctaEls.length) {
+        tl.fromTo(
+          ctaEls,
+          { y: 30, opacity: 0, scale: 0.9 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "back.out(1.7)",
+          },
+          1.4
+        )
+      }
+
+      // Image reveal
+      if (imageRef.current) {
+        tl.fromTo(
+          imageRef.current,
+          { scale: 1.15, clipPath: "inset(100% 0% 0% 0%)" },
+          {
+            scale: 1,
+            clipPath: "inset(0% 0% 0% 0%)",
+            duration: 1.4,
+            ease: "power3.out",
+          },
+          0.6
+        )
+
+        // Parallax scroll effect on image
+        gsap.to(imageRef.current, {
+          y: 80,
+          ease: "none",
+          scrollTrigger: {
+            trigger: heroRef.current!,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1.5,
+          },
+        })
+      }
     }, heroRef)
 
     return () => ctx.revert()
@@ -93,14 +135,18 @@ export default function HeroSection() {
                 </h1>
               </div>
               <div className="overflow-hidden">
-                <h1 className="hero-line text-5xl md:text-4xl lg:text-7xltracking-tight leading-[1.1] text-primary/60 italic font-light">
+                {/* Perbaiki typo class: tambahkan spasi sebelum tracking-tight */}
+                <h1 className="hero-line text-5xl md:text-4xl lg:text-7xl tracking-tight leading-[1.1] text-primary/60 italic font-light">
                   FRONTEND WEB DEVELOPER
                 </h1>
               </div>
             </div>
 
             <p ref={subtitleRef} className="text-base text-muted-foreground max-w-md leading-relaxed mb-10">
-              With over a year of experience, I specialize in designing responsive, accessible, and innovative web interfaces. Driven by creativity, passion, and curiosity, I consistently deliver user‑focused solutions while maintaining high standards of performance and scalability. My relentless drive to explore new possibilities ensures continuous growth and the ability to adapt to emerging technologies.
+              With over a year of experience, I specialize in designing responsive, accessible, and innovative web interfaces.
+              Driven by creativity, passion, and curiosity, I consistently deliver user‑focused solutions while maintaining
+              high standards of performance and scalability. My relentless drive to explore new possibilities ensures
+              continuous growth and the ability to adapt to emerging technologies.
             </p>
 
             <div ref={ctaRef} className="flex items-center gap-4">
@@ -127,6 +173,7 @@ export default function HeroSection() {
                 alt="Developer Portrait"
                 className="w-full h-full object-cover hover:grayscale transition-all duration-700"
               />
+              {/* Perbaiki util kelas gradient (Tailwind): gunakan bg-gradient-to-t */}
               <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent" />
             </div>
           </div>
