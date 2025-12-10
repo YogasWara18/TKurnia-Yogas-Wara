@@ -142,6 +142,7 @@ export default function AboutSection() {
           <div ref={imageRef} className="relative">
             <div className="aspect-4/5 rounded-3xl overflow-hidden">
               <Swiper
+      
                 modules={[Navigation, Pagination]}
                 spaceBetween={20}
                 slidesPerView={1}
@@ -149,9 +150,9 @@ export default function AboutSection() {
                 navigation
                 pagination={{
                   clickable: true,
-                  bulletClass: "swiper-pagination-bullet custom-bullet", // custom class
+                  bulletClass: "swiper-pagination-bullet custom-bullet swiper-pagination-bullet", // custom class
                   bulletActiveClass:
-                    "swiper-pagination-bullet-active custom-bullet-active",
+                    "swiper-pagination-bullet-active custom-bullet-active swiper-pagination-bullet-active",
                 }}
                 className="w-full h-full"
               >

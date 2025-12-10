@@ -14,6 +14,18 @@
   background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
 }
 
+/* semua bullet */
+.swiper-pagination-bullet {
+  background-color: #ffffff34 !important; /* warna default bullet */
+  opacity: 0.5;
+}
+
+/* bullet aktif */
+.swiper-pagination-bullet-active {
+  background-color: #ffffff34 !important; /* warna bullet aktif */
+  opacity: 1;
+}
+
 /* Dark portfolio color scheme with proper oklch structure */
 :root {
   --background: oklch(1 0 0);
@@ -60,7 +72,7 @@
   --popover: oklch(0.16 0 0);
   --popover-foreground: oklch(0.98 0 0);
   /* Purple primary accent */
-  --primary: oklch(88.146% 0.18365 103.448);
+  --primary: oklch(99.751% 0.0016 66.197 / 0.471);
   --primary-foreground: oklch(0.12 0 0);
   --secondary: oklch(0.2 0 0);
   --secondary-foreground: oklch(0.98 0 0);
