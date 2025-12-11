@@ -141,7 +141,7 @@ export default function ProjectsSection() {
           gsap.to(videoContainer, {
             duration: 0.6,
             ease: "power2.out",
-            boxShadow: "0 0px 0px rgba(168, 85, 247, 0)",
+            boxShadow: "0 0px 0px rgba(168, 85, 247, 20)",
           })
           gsap.to(video, {
             duration: 0.6,
@@ -205,10 +205,10 @@ export default function ProjectsSection() {
                   index % 2 === 1 ? "md:order-2" : ""
                 }`}
               >
-                <div className="video-container relative aspect-4/3 overflow-hidden">
+                <div className="video-container relative aspect-4/3 overflow-hidden bg-black">
                   <video
                     src={project.video || "/placeholder.mp4"}
-                    className="project-video w-full h-full object-cover transition-transform duration-500"
+                    className="project-video w-full h-full object-contain transition-transform duration-500"
                     autoPlay
                     muted
                     loop
