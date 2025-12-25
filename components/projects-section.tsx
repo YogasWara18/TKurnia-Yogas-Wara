@@ -56,7 +56,7 @@ const projects = [
     title: "Design Nature – Full Frontend Experience in Harmony With Nature",
     description:
       "The Design Nature website is a professional portfolio platform showcasing natural themed interior and architectural design concepts, with the core philosophy of Living in Harmony With Nature. The site is designed to build a strong brand image through visual storytelling, international project showcases, sustainable design services, and testimonials that emphasize trust and quality. Technically, the website is developed using TypeScript for code security, Next.js as a React framework that supports SEO and high performance, and React as the foundation for UI components. The integration of React Icons and Swiper enriches the visual elements and interactivity, while TailwindCSS and CSS ensure a responsive and consistent appearance. Dynamic animations are delivered through Framer Motion, creating a smooth and modern user experience. The entire system is deployed using Vercel, providing optimal speed, stability, and scalability. With a combination of emotional branding and cutting edge technology, Design Nature has successfully delivered an aesthetically pleasing, interactive, and professional website that represents sustainable design that blends with nature.",
-    video: "/video-3.mp4",
+    video: "/video3.mp4",
     tags: [
       "Development",
       "React",
