@@ -126,7 +126,7 @@ export default function HeroSection() {
                 View My Work
               </a>
               <a
-                href="https://drive.google.com/file/d/1j25wuIEZZQx8WoyB4YBe8LtBrefb_d2a/view?usp=sharing"
+                href="https://drive.google.com/file/d/1tnnURwkEga636D844ebkHOzSwefQtqnH/view?usp=sharing"
                 className="w-full sm:w-auto px-8 py-4 border border-border rounded-full font-medium hover:bg-secondary transition-all duration-500 text-center"
               >
                 View My Resume

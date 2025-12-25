@@ -12,7 +12,7 @@ const projects = [
     title: "Jack Daniel’s - Modern Frontend Animation Build",
     description:
       "This website is built using Next.js for its fast and scalable React architecture, combined with GSAP for smooth, interactive animations. Styling is handled with TailwindCSS for responsiveness and consistency, while JavaScript and additional components deliver an elegant, modern, and extensible UI/UX experience.",
-    video: "/video.mp4",
+    video: "/Thumbnail-video-JackDaniel's.mp4",
     tags: [
       "Design", 
       "Animation", 
@@ -32,7 +32,7 @@ const projects = [
     title: "Palm Hotel – Modern Build with Next.js & Cloud Integration",
     description:
       "The Palm Hotel website was developed using Next.js for performance and scalability, combined with TailwindCSS for responsive and consistent styling. The authentication system is managed with Auth.js, while Google Cloud and Neon are used for the backend and database infrastructure. Payment integration is handled through Midtrans, and the entire project was smoothly deployed using Vercel. This combination of technologies results in a modern, secure, and user friendly website.",
-    video: "/video2.mp4",
+    video: "/Thumbnail-video-PalmHotel.mp4",
     tags: [
       "Branding",
       "Design",
@@ -56,7 +56,7 @@ const projects = [
     title: "Design Nature Interior - Full Frontend Build with Next.js",
     description:
       "This website is built using Next.js for its robust React framework, ensuring high performance and scalability. TailwindCSS is utilized for responsive and consistent styling across all devices. The site features smooth animations powered by GSAP, enhancing user engagement and interactivity. Deployed on Vercel, this project showcases a modern, elegant, and user-friendly interface for an interior design business.",    
-    video: "/video3.mp4",
+    video: "/Thumbnail-video-nature.mp4",
     tags: [
       "Design",
       "Animation",
@@ -68,7 +68,7 @@ const projects = [
       "TypeScript",
       "TailwindCSS",
     ],
-    liveUrl: "https://design-nature-interior.vercel.app/",
+    liveUrl: "https://design-nature.vercel.app/",
     githubUrl: "https://github.com/YogasWara18/nature",
   }
 ];
