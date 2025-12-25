@@ -14,17 +14,18 @@ const projects = [
       "This website is built using Next.js for its fast and scalable React architecture, combined with GSAP for smooth, interactive animations. Styling is handled with TailwindCSS for responsiveness and consistency, while JavaScript and additional components deliver an elegant, modern, and extensible UI/UX experience.",
     video: "/Thumbnail-video-JackDaniel's.mp4",
     tags: [
-      "Design", 
-      "Animation", 
-      "Development", 
-      "Branding", 
-      "Responsive", 
-      "Next.js", 
-      "React", 
-      "JavaScript", 
-      "TailwindCSS", 
+      "Design",
+      "Animation",
+      "Development",
+      "Branding",
+      "Responsive",
+      "Next.js",
+      "React",
+      "JavaScript",
+      "TailwindCSS",
       "GSAP",
-      "Vercel"],
+      "Vercel",
+    ],
     liveUrl: "https://jackdaniels-green.vercel.app/",
     githubUrl: "https://github.com/YogasWara18/jackDaniels",
   },
@@ -55,7 +56,7 @@ const projects = [
   {
     title: "Design Nature Interior - Full Frontend Build with Next.js",
     description:
-      "This website is built using Next.js for its robust React framework, ensuring high performance and scalability. TailwindCSS is utilized for responsive and consistent styling across all devices. The site features smooth animations powered by GSAP, enhancing user engagement and interactivity. Deployed on Vercel, this project showcases a modern, elegant, and user-friendly interface for an interior design business.",    
+      "The website design nature.vercel.app is a portfolio for interior design services inspired by nature, showcasing a philosophy of living in harmony with the environment through offerings such as biophilic space planning, natural material selection, and sensory wellness integration; it highlights international projects, service packages (Basic and Signature), design trend blogs, and client testimonials, while technically it is built with Next.js (a React framework) and deployed on Vercel, leveraging Next.js image optimization and likely modern styling tools such as Tailwind CSS to deliver a fast, responsive, and SEO-friendly experience.",
     video: "/Thumbnail-video-nature.mp4",
     tags: [
       "Design",
@@ -70,7 +71,7 @@ const projects = [
     ],
     liveUrl: "https://design-nature.vercel.app/",
     githubUrl: "https://github.com/YogasWara18/nature",
-  }
+  },
 ];
 
 export default function ProjectsSection() {
