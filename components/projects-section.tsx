@@ -60,7 +60,7 @@ const projects = [
   {
     title: "Design Nature Interior - Full Frontend Build with Next.js",
     description:
-      "The website design nature.vercel.app is a portfolio for interior design services inspired by nature, showcasing a philosophy of living in harmony with the environment through offerings such as biophilic space planning, natural material selection, and sensory wellness integration; it highlights international projects, service packages (Basic and Signature), design trend blogs, and client testimonials, while technically it is built with Next.js (a React framework) and deployed on Vercel, leveraging Next.js image optimization and likely modern styling tools such as Tailwind CSS to deliver a fast, responsive, and SEO-friendly experience.",
+      "The website design nature.vercel.app is a portfolio for interior design services inspired by nature, showcasing a philosophy of living in harmony with the environment through offerings such as biophilic space planning, natural material selection, and sensory wellness integration it highlights international projects, service packages (Basic and Signature), design trend blogs, and client testimonials, while technically it is built with Next.js (a React framework) and deployed on Vercel, leveraging Next.js image optimization and likely modern styling tools such as Tailwind CSS to deliver a fast, responsive, and SEO-friendly experience.",
     video: "/Thumbnail-video-nature.mp4",
     tags: [
       "Design",
