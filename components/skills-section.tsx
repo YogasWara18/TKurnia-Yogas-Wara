@@ -33,6 +33,11 @@ const skills = [
     icon: "/react.png",
   },
   {
+    name: "Vite",
+    color: "border-purple-500/30 hover:border-purple-500",
+    icon: "/vite.png",
+  },
+  {
     name: "Next.js",
     color: "border-zinc-500/30 hover:border-zinc-400",
     icon: "/next.js.png",

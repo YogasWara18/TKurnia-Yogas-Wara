@@ -114,21 +114,17 @@ export default function AboutSection() {
             <div ref={titleRef} className="mb-6 sm:mb-8">
               <div className="overflow-hidden">
                 <h2 className="title-line text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1]">
-                  Frontend Web Developer
+                  Education & Career Path
                 </h2>
               </div>
-              <div className="overflow-hidden">
-                <h2 className="title-line text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] text-primary/60 italic">
-                  Experiences
-                </h2>
-              </div>
+              
             </div>
 
             <p
               ref={textRef}
               className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed mb-8 sm:mb-10"
             >
-             I'm Yogas, a passionate Frontend Web Developer with a strong foundation in modern web technologies. I graduated from the Fullstack Web Development Bootcamp at Purwadhika Digital Technology School and continue to hone my skills through SoloLearn and FreeCodeCamp. My expertise includes building responsive, user-centric applications using React, Next.js, HTML, CSS, JavaScript, TypeScript, and TailwindCSS. I also integrate backend solutions with Node.js, REST APIs, and PostgreSQL, ensuring scalable and maintainable projects. Creativity is my forte: I love creating smooth animations with GSAP, interactive sliders with Swiper.js, and designing intuitive interfaces using Figma. Version control and collaboration are second nature to me, thanks to Git and GitHub. I thrive on blending technical rigor with aesthetic design, aiming to deliver web experiences that are not only functional but also visually appealing.
+             I'm Yogas, a passionate Frontend Web Developer with a strong foundation in modern web technologies. I graduated from the Fullstack Web Development Bootcamp at Purwadhika Digital Technology School and continue to hone my skills through SoloLearn and FreeCodeCamp. My expertise includes building responsive, user centric applications using React, Next.js, HTML, CSS, JavaScript, TypeScript, and TailwindCSS. I also integrate backend solutions with Node.js, REST APIs, and PostgreSQL, ensuring scalable and maintainable projects. Creativity is my forte: I love creating smooth animations with GSAP, interactive sliders with Swiper.js, and designing intuitive interfaces using Figma. Version control and collaboration are second nature to me, thanks to Git and GitHub. I thrive on blending technical rigor with aesthetic design, aiming to deliver web experiences that are not only functional but also visually appealing.
             </p>
 
             {/* Gallery images */}

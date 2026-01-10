@@ -28,6 +28,8 @@ const projects = [
     ],
     liveUrl: "https://jackdaniels-green.vercel.app/",
     githubUrl: "https://github.com/YogasWara18/jackDaniels",
+    date: "November 2025"
+
   },
   {
     title: "Palm Hotel – Modern Build with Next.js & Cloud Integration",
@@ -43,6 +45,7 @@ const projects = [
       "Database",
       "Responsive",
       "Cloud",
+      "Auth.js",
       "Authentication",
       "Next.js",
       "React",
@@ -52,6 +55,7 @@ const projects = [
     ],
     liveUrl: "https://palm-hotel-apss.vercel.app/",
     githubUrl: "https://github.com/YogasWara18/Palm-Hotel",
+    date: "November 2025",
   },
   {
     title: "Design Nature Interior - Full Frontend Build with Next.js",
@@ -71,6 +75,7 @@ const projects = [
     ],
     liveUrl: "https://design-nature.vercel.app/",
     githubUrl: "https://github.com/YogasWara18/nature",
+     date: "December 2025",
   },
 ];
 
@@ -225,7 +230,7 @@ export default function ProjectsSection() {
           </div>
           <div className="overflow-hidden">
             <h2 className="title-line text-5xl md:text-6xl lg:text-7xl font-bold text-primary/60 italic">
-              Showcase
+              Portfolio
             </h2>
           </div>
         </div>
@@ -271,6 +276,10 @@ export default function ProjectsSection() {
                 <h3 className="content-animate text-3xl md:text-4xl font-bold mb-4">
                   {project.title}
                 </h3>
+                <p className="content-animate text-sm text-muted-foreground mb-4">
+                  {project.date}
+                </p>
+
                 <p className="content-animate text-muted-foreground text-lg leading-relaxed mb-6">
                   {project.description}
                 </p>
