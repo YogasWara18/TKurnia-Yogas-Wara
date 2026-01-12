@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    title: "Jack Daniel’s - Modern Frontend Animation Build",
+    title: "Jack Daniel’s - Modern Frontend Animation Build with Next.js ",
     description:
       "This website is built using Next.js for its fast and scalable React architecture, combined with GSAP for smooth, interactive animations. Styling is handled with TailwindCSS for responsiveness and consistency, while JavaScript and additional components deliver an elegant, modern, and extensible UI/UX experience.",
     video: "/Thumbnail-video-JackDaniel's.mp4",
