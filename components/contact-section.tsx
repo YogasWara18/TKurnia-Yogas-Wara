@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Mail, MessageCircle, Linkedin, Github, Instagram, ArrowUpRight } from "lucide-react"
+import { Mail, MessageCircle, Linkedin, Github, Instagram, ArrowUpRight, Facebook } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -13,6 +13,7 @@ const socialLinks = [
   { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/t-kurnia-yogas-wara-604b64338" },
   { icon: Github, label: "GitHub", href: "https://github.com/YogasWara18" },
   { icon: Instagram, label: "Instagram", href: "https://instagram.com/yogaswara04/" },
+  { icon: Facebook, label: "Facebook", href: "https://web.facebook.com/Yogasswar"},
 ]
 
 export default function ContactSection() {
