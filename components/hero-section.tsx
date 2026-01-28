@@ -105,7 +105,7 @@ export default function HeroSection() {
                 </h1>
               </div>
               <div className="overflow-hidden">
-                <h1 className="hero-line text-2xl md:text-4xl lg:text-7xl tracking-tight leading-[1.1] text-primary/60 italic font-light">
+                <h1 className="hero-line text-2xl md:text-4xl lg:text-6xl tracking-tight leading-[1.1] text-primary/60 italic font-light">
                   FRONTEND WEB DEVELOPER
                 </h1>
               </div>

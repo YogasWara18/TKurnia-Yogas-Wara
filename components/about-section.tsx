@@ -93,6 +93,8 @@ export default function AboutSection() {
                   "/HTML-Sololearn.jpg",
                   "/CSS-Sololearn.jpg",
                   "/JavaScript-Sololearn.jpg",
+                  "/UI_UX-SpecialSkill.png",
+                  "/UI_UX-Utara.png",
                 ].map((src, i) => (
                   <SwiperSlide key={i}>
                     <img src={src} alt={`Slide ${i + 1}`} className="w-full h-full object-contain" />
@@ -124,7 +126,7 @@ export default function AboutSection() {
               ref={textRef}
               className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed mb-8 sm:mb-10"
             >
-             I'm Yogas, a passionate Frontend Web Developer with a strong foundation in modern web technologies. I graduated from the Fullstack Web Development Bootcamp at Purwadhika Digital Technology School and continue to hone my skills through SoloLearn and FreeCodeCamp. My expertise includes building responsive, user centric applications using React, Next.js, HTML, CSS, JavaScript, TypeScript, and TailwindCSS. I also integrate backend solutions with Node.js, REST APIs, and PostgreSQL, ensuring scalable and maintainable projects. Creativity is my forte: I love creating smooth animations with GSAP, interactive sliders with Swiper.js, and designing intuitive interfaces using Figma. Version control and collaboration are second nature to me, thanks to Git and GitHub. I thrive on blending technical rigor with aesthetic design, aiming to deliver web experiences that are not only functional but also visually appealing.
+             I'm Yogas, a passionate Frontend Web Developer with a strong foundation in modern web technologies. I graduated from the Fullstack Web Development Bootcamp at Purwadhika Digital Technology School and continue to hone my skills through SoloLearn and FreeCodeCamp. My expertise includes building responsive, user-centric applications using React, Next.js, HTML, CSS, JavaScript, TypeScript, and TailwindCSS and Bootstrap. I also integrate backend solutions with Node.js, REST APIs, and PostgreSQL, ensuring scalable and maintainable projects. Creativity is my forte, I love creating smooth animations with GSAP, interactive sliders with Swiper.js, and designing intuitive interfaces using Figma. Version control and collaboration are second nature to me, thanks to Git and GitHub. I thrive on blending technical rigor with aesthetic design, aiming to deliver web experiences that are not only functional but also visually appealing. In addition, I actively study and apply UI/UX principles focusing on user research, wireframing, prototyping, and usability testing to ensure that every project I build is not only technically sound but also provides a seamless and engaging user experience. I am also familiar with leveraging AI tools such as V0, Copilot, and Dreamina to accelerate development, enhance creativity, and explore innovative solutions in both design and coding workflows.
             </p>
 
             {/* Gallery images */}

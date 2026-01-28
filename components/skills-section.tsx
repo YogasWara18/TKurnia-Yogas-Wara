@@ -89,15 +89,30 @@ const skills = [
     color: "border-indigo-500/30 hover:border-indigo-500",
     icon: "/api.png",
   },
-   {
+  {
     name: "PosgreSQL",
     color: "border-indigo-500/30 hover:border-indigo-500",
     icon: "/posgressql.png",
   },
-   {
+  {
     name: "Vercel",
     color: "border-zinc-500/30 hover:border-zinc-400",
     icon: "/vercel.png",
+  },
+  {
+    name: "V0",
+    color: "border-zinc-800/30 hover:border-zinc-800",
+    icon: "/V0.png",
+  },
+  {
+    name: "Copilot",
+    color: "border-blue-500/30 hover:border-blue-500",
+    icon: "/Copilot.png",
+  },
+  {
+    name: "Dreamina",
+    color: "border-indigo-500/30 hover:border-indigo-500",
+    icon: "/Dreamina.png",
   },
 ];
 
@@ -125,7 +140,7 @@ export default function SkillsSection() {
               trigger: sectionRef.current,
               start: "top 75%",
             },
-          }
+          },
         );
       }
 
@@ -150,7 +165,7 @@ export default function SkillsSection() {
               trigger: skillsRef.current,
               start: "top 80%",
             },
-          }
+          },
         );
       }
     }, sectionRef);
@@ -175,7 +190,6 @@ export default function SkillsSection() {
           <div className="overflow-hidden">
             <h2 className="title-line text-4xl md:text-5xl lg:text-6xl font-bold">
               Skills & Expertise
-
             </h2>
           </div>
         </div>
