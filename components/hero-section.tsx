@@ -6,6 +6,36 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
 
+// Utility SplitText untuk animasi per kata
+function SplitText({ text, className }: { text: string; className?: string }) {
+  return (
+    <span className={className}>
+      {text.split(" ").map((word, i) => {
+        // Jika kata adalah "|", beri class khusus text-white
+        if (word === "|") {
+          return (
+            <span
+              key={i}
+              className="inline-block hero-word text-white mx-2"
+            >
+              {word}
+            </span>
+          )
+        }
+        // Kata biasa tetap pakai class hero-word untuk animasi GSAP
+        return (
+          <span
+            key={i}
+            className="inline-block hero-word mr-2"
+          >
+            {word}
+          </span>
+        )
+      })}
+    </span>
+  )
+}
+
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement>(null)
   const headingRef = useRef<HTMLDivElement>(null)
@@ -18,40 +48,52 @@ export default function HeroSection() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power4.out" } })
 
-      tl.fromTo(labelRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 0.2)
+      // Label
+      tl.fromTo(
+        labelRef.current,
+        { y: 20, opacity: 0, letterSpacing: "0.5em" },
+        { y: 0, opacity: 1, letterSpacing: "0.3em", duration: 1 },
+        0.2
+      )
 
-      const lines = headingRef.current?.querySelectorAll(".hero-line")
-      if (lines) {
+      // Animasi per kata
+      const words = headingRef.current?.querySelectorAll(".hero-word")
+      if (words) {
         tl.fromTo(
-          lines,
-          { y: 100, clipPath: "inset(100% 0% 0% 0%)" },
-          {
-            y: 0,
-            clipPath: "inset(0% 0% 0% 0%)",
-            duration: 1.2,
-            stagger: 0.1,
-          },
-          0.4,
+          words,
+          { y: 60, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1.2, stagger: 0.15 },
+          0.4
         )
       }
 
-      tl.fromTo(subtitleRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, 1)
-      tl.fromTo(ctaRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 1.2)
-
+      // Subtitle
       tl.fromTo(
-        imageRef.current,
-        { scale: 1.15, clipPath: "inset(100% 0% 0% 0%)" },
-        {
-          scale: 1,
-          clipPath: "inset(0% 0% 0% 0%)",
-          duration: 1.4,
-          ease: "power3.out",
-        },
-        0.6,
+        subtitleRef.current,
+        { y: 40, opacity: 0, filter: "blur(10px)" },
+        { y: 0, opacity: 1, filter: "blur(0px)", duration: 1.2 },
+        1
       )
 
+      // CTA
+      tl.fromTo(
+        ctaRef.current,
+        { y: 30, opacity: 0, scale: 0.9 },
+        { y: 0, opacity: 1, scale: 1, duration: 1 },
+        1.3
+      )
+
+      // Image
+      tl.fromTo(
+        imageRef.current,
+        { scale: 1.2, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 1.5, ease: "power3.out" },
+        0.6
+      )
+
+      // Parallax scroll untuk image
       gsap.to(imageRef.current, {
-        y: 80,
+        y: 100,
         ease: "none",
         scrollTrigger: {
           trigger: heroRef.current,
@@ -65,6 +107,8 @@ export default function HeroSection() {
     return () => ctx.revert()
   }, [])
 
+
+
   return (
     <section
       ref={heroRef}
@@ -72,7 +116,6 @@ export default function HeroSection() {
     >
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          
           {/* Mobile/Tablet Image */}
           <div className="relative block lg:hidden mb-10">
             <div className="relative aspect-3/4 w-full max-w-md mx-auto overflow-hidden rounded-2xl">
@@ -88,26 +131,32 @@ export default function HeroSection() {
           {/* Left content */}
           <div className="relative z-10">
             <div ref={labelRef} className="mb-6">
-              <span className="inline-block text-xs tracking-[0.3em] uppercase text-muted-foreground font-medium">
+              <span className="inline-block text-xs tracking-[0.3em] uppercase text-gray-400 font-semibold">
                 My Portfolio
               </span>
             </div>
 
-            <div ref={headingRef} className="mb-6 space-y-2">
+            <div ref={headingRef} className="mb-6 space-y-4">
               <div className="overflow-hidden">
-                <h1 className="hero-line text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
-                  HELLO! <span className="text-primary/70 italic font-light">I&apos;M </span>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1]">
+                  <SplitText
+                    text="Hello  I'm"
+                    className="text-white italic font-light"
+                  />
                 </h1>
               </div>
               <div className="overflow-hidden">
-                <h1 className="hero-line text-3xl md:text-5xl lg:text-5xl font-bold tracking-tight leading-[1.2]">
-                  T. KURNIA YOGAS WARA
+                <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold tracking-tight leading-[1.2]">
+                  <SplitText text="T. KURNIA YOGAS WARA" />
                 </h1>
               </div>
               <div className="overflow-hidden">
-                <h1 className="hero-line text-2xl md:text-4xl lg:text-6xl tracking-tight leading-[1.1] text-primary/60 italic font-light">
-                  FRONTEND WEB DEVELOPER
-                </h1>
+                <h2 className="text-2xl md:text-4xl lg:text-3xl tracking-tight leading-[1.2] text-gray-300 italic font-light">
+                  <SplitText
+                    text="FRONTEND WEB DEVELOPER | WEB DESIGN | WEB DEVELOPER"
+                    className="text-primary/70 italic font-light"
+                  />
+                </h2>
               </div>
             </div>
 
@@ -115,10 +164,17 @@ export default function HeroSection() {
               ref={subtitleRef}
               className="text-sm md:text-base text-muted-foreground max-w-md leading-relaxed mb-8"
             >
-              With over a year of experience, I specialize in designing responsive, accessible, and innovative web interfaces. Driven by creativity, passion, and curiosity, I consistently deliver user focused solutions while maintaining high standards of performance and scalability.
+              With over a year of experience, I specialize in designing
+              responsive, accessible, and innovative web interfaces. Driven by
+              creativity, passion, and curiosity, I consistently deliver user
+              focused solutions while maintaining high standards of performance
+              and scalability.
             </p>
 
-            <div ref={ctaRef} className="flex flex-col sm:flex-row items-center gap-4">
+            <div
+              ref={ctaRef}
+              className="flex flex-col sm:flex-row items-center gap-4"
+            >
               <a
                 href="#projects"
                 className="group w-full sm:w-auto px-8 py-4 bg-foreground text-background rounded-full font-medium transition-all duration-500 hover:bg-primary hover:scale-105 text-center"
@@ -155,5 +211,5 @@ export default function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
