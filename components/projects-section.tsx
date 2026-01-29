@@ -53,7 +53,7 @@ const projects = [
       "TailwindCSS",
       "Vercel",
     ],
-    liveUrl: "https://palm-hotel-apss.vercel.app/",
+    liveUrl: "https://palm-hotel.vercel.app/",
     githubUrl: "https://github.com/YogasWara18/Palm-Hotel",
     date: "November 2025",
   },
