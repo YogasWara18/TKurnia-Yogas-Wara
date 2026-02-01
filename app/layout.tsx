@@ -24,13 +24,14 @@ export const metadata: Metadata = {
     "UI/UX",
     "Portfolio",
     "Web Design",
+    "WordPress",
     "Indonesia Developer",
   ],
   openGraph: {
     title: "T. Kurnia Yogas Wara | Frontend Developer",
     description:
       "Modern portfolio showcasing premium UI, animations, and web projects.",
-    url: "https://yourdomain.com",
+    url: "https://t-kurnia-yogas-wara.vercel.app/",
     siteName: "T. Kurnia Yogas Wara",
     images: [
       {
