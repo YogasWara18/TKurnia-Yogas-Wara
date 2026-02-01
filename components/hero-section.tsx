@@ -153,7 +153,7 @@ export default function HeroSection() {
               <div className="overflow-hidden">
                 <h2 className="text-2xl md:text-4xl lg:text-3xl tracking-tight leading-[1.2] text-gray-300 italic font-light">
                   <SplitText
-                    text="FRONTEND WEB DEVELOPER | WEB DESIGN | WEB DEVELOPER"
+                    text="FRONTEND WEB DEVELOPER | WEB DESIGN | WORDPRESS"
                     className="text-primary/70 italic font-light"
                   />
                 </h2>
@@ -164,11 +164,7 @@ export default function HeroSection() {
               ref={subtitleRef}
               className="text-sm md:text-base text-muted-foreground max-w-md leading-relaxed mb-8"
             >
-              With over a year of experience, I specialize in designing
-              responsive, accessible, and innovative web interfaces. Driven by
-              creativity, passion, and curiosity, I consistently deliver user
-              focused solutions while maintaining high standards of performance
-              and scalability.
+             "With over a year of experience, I specialize in building responsive, accessible, and innovative web interfaces. I combine strong Frontend Development skills with modern Web Design aesthetics and expertise in custom WordPress development. Driven by creativity and curiosity, I focus on delivering user-centric solutions without sacrificing technical performance and scalability."
             </p>
 
             <div
@@ -182,7 +178,7 @@ export default function HeroSection() {
                 View My Work
               </a>
               <a
-                href="https://drive.google.com/file/d/1CFhR0Cx5x8e3SNkXW0b4OO-PO06okhQg/view?usp=sharing"
+                href="https://drive.google.com/file/d/1dsoR6o5D6Qi-UL25S2awiCifSRCOuH4y/view?usp=sharing"
                 className="w-full sm:w-auto px-8 py-4 border border-border rounded-full font-medium hover:bg-secondary transition-all duration-500 text-center"
               >
                 View My Resume

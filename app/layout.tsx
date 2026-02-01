@@ -1,25 +1,54 @@
-import type React from "react"
-import type { Metadata } from "next"
+import type React from "react";
+import type { Metadata } from "next";
 
-import { Analytics } from "@vercel/analytics/next"
-import "./globals.css"
+import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
 
-import { Inter, Libre_Baskerville as V0_Font_Libre_Baskerville, IBM_Plex_Mono as V0_Font_IBM_Plex_Mono, Lora as V0_Font_Lora } from 'next/font/google'
-
-// Initialize fonts
-const _libreBaskerville = V0_Font_Libre_Baskerville({ subsets: ['latin'], weight: ["400","700"] })
-const _ibmPlexMono = V0_Font_IBM_Plex_Mono({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700"] })
-const _lora = V0_Font_Lora({ subsets: ['latin'], weight: ["400","500","600","700"] })
+import { Inter } from "next/font/google";
+import ScrollReset from "../components/scrollReset"
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-})
+});
 
 export const metadata: Metadata = {
-  title: "T. Kurnia Yogas Wara",
-  description: "Creative Frontend Web Developer specializing in modern, interactive web experiences",
-  generator: "v0.app",
+  title: "T. Kurnia Yogas Wara | Frontend Developer",
+  description:
+    "Creative Frontend Web Developer specializing in modern, interactive web experiences with React, Next.js, GSAP, and TailwindCSS.",
+  keywords: [
+    "Frontend Developer",
+    "React",
+    "Next.js",
+    "GSAP",
+    "UI/UX",
+    "Portfolio",
+    "Web Design",
+    "Indonesia Developer",
+  ],
+  openGraph: {
+    title: "T. Kurnia Yogas Wara | Frontend Developer",
+    description:
+      "Modern portfolio showcasing premium UI, animations, and web projects.",
+    url: "https://yourdomain.com",
+    siteName: "T. Kurnia Yogas Wara",
+    images: [
+      {
+        url: "/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Portfolio Hero Image",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "T. Kurnia Yogas Wara | Frontend Developer",
+    description:
+      "Creative portfolio with modern UI and animations using React, Next.js, and GSAP.",
+    images: ["/hero.jpg"],
+  },
   icons: {
     icon: [
       {
@@ -37,19 +66,20 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-icon.png",
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
       <body className={`${inter.variable} font-sans antialiased`}>
+        <ScrollReset /> {/* client component jalan di sini */}
         {children}
         <Analytics />
       </body>
     </html>
-  )
+  );
 }
