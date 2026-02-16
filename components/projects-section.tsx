@@ -9,10 +9,35 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    title: "Jack Daniel’s - Modern Frontend Animation Build with Next.js JavaScript GSAP",
+    title:
+      "indoShop E-Commerce – Full Frontend build with Next.js TypeScript TailwindCss",
     description:
-      "This website is built using Next.js for its fast and scalable React architecture, combined with GSAP for smooth, interactive animations. Styling is handled with TailwindCSS for responsiveness and consistency, while JavaScript and additional components deliver an elegant, modern, and extensible UI/UX experience.",
-    video: "/Thumbnail-video-JackDaniel's.mp4",
+      "Indoshop Art Market is an e-commerce platform designed to help Indonesian artisans modernize artworks from every region through an elegant, responsive, and easily accessible digital display; this website is built using modern technologies such as React.js for interactive interfaces, Next.js for SEO optimization and fast rendering, TypeScript to maintain code consistency, TailwindCSS for responsive styling, Swiper.js for dynamic product sliders, and an authentication system that ensures user security and personalization, so that every piece of Indonesian art can be presented professionally and reach the global market.",
+    video: "/Thumbnail-indoShop.mp4",
+    tags: [
+      "Design",
+      "E-Commerce",
+      "Animation",
+      "Development",
+      "Branding",
+      "Responsive",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "TailwindCss",
+      "Swiper.js",
+      "RestAPI",
+      "Vercel",
+    ],
+    liveUrl: "https://indoshop.vercel.app/",
+    githubUrl: "https://github.com/YogasWara18/Indoshop",
+    date: "January 2026",
+  },
+  {
+    title: "Burger Café Bar – Build with Next.js TypeScript & Bootstrap",
+    description:
+      "The Burger Café Bar website is a professional frontend project showcasing culinary branding with a modern, interactive, and high performance approach. Built using Next.js as the primary framework and Bootstrap for its grid system and responsive components, the website delivers a clean and consistent appearance across multiple devices.",
+    video: "/Thumbnail-Burger.mp4",
     tags: [
       "Design",
       "Animation",
@@ -21,18 +46,39 @@ const projects = [
       "Responsive",
       "Next.js",
       "React",
-      "JavaScript",
-      "TailwindCSS",
-      "GSAP",
+      "TypeScript",
+      "Bootstrap",
+      "RestAPI",
       "Vercel",
     ],
-    liveUrl: "https://jackdaniels-green.vercel.app/",
-    githubUrl: "https://github.com/YogasWara18/jackDaniels",
-    date: "November 2025"
-
+    liveUrl: "https://burger-cafe-bar.vercel.app/",
+    githubUrl: "https://github.com/YogasWara18/Burger-Cafe-Bar",
+    date: "January 2026",
   },
   {
-    title: "Palm Hotel – Modern Build with Next.js TypeScript & Cloud Integration",
+    title:
+      "Design Nature Interior - Full Frontend Build with Next.js TypeScript TailwindCss Framer-Motion",
+    description:
+      "The website design nature.vercel.app is a portfolio for interior design services inspired by nature, showcasing a philosophy of living in harmony with the environment through offerings such as biophilic space planning, natural material selection, and sensory wellness integration it highlights international projects, service packages (Basic and Signature), design trend blogs, and client testimonials, while technically it is built with Next.js (a React framework) and deployed on Vercel, leveraging Next.js image optimization and likely modern styling tools such as Tailwind CSS to deliver a fast, responsive, and SEO-friendly experience.",
+    video: "/Thumbnail-nature.mp4",
+    tags: [
+      "Design",
+      "Animation",
+      "Development",
+      "Branding",
+      "Responsive",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "TailwindCSS",
+    ],
+    liveUrl: "https://design-nature.vercel.app/",
+    githubUrl: "https://github.com/YogasWara18/nature",
+    date: "December 2025",
+  },
+  {
+    title:
+      "Palm Hotel – Modern Build with Next.js TypeScript & Cloud Integration",
     description:
       "The Palm Hotel website was developed using Next.js for performance and scalability, combined with TailwindCSS for responsive and consistent styling. The authentication system is managed with Auth.js, while Google Cloud and Neon are used for the backend and database infrastructure. Payment integration is handled through Midtrans, and the entire project was smoothly deployed using Vercel. This combination of technologies results in a modern, secure, and user friendly website.",
     video: "/Thumbnail-video-PalmHotel.mp4",
@@ -58,10 +104,11 @@ const projects = [
     date: "November 2025",
   },
   {
-    title: "Design Nature Interior - Full Frontend Build with Next.js TypeScript TailwindCss Framer-Motion",
+    title:
+      "Jack Daniel’s - Modern Frontend Animation Build with Next.js JavaScript GSAP",
     description:
-      "The website design nature.vercel.app is a portfolio for interior design services inspired by nature, showcasing a philosophy of living in harmony with the environment through offerings such as biophilic space planning, natural material selection, and sensory wellness integration it highlights international projects, service packages (Basic and Signature), design trend blogs, and client testimonials, while technically it is built with Next.js (a React framework) and deployed on Vercel, leveraging Next.js image optimization and likely modern styling tools such as Tailwind CSS to deliver a fast, responsive, and SEO-friendly experience.",
-    video: "/Thumbnail-nature.mp4",
+      "This website is built using Next.js for its fast and scalable React architecture, combined with GSAP for smooth, interactive animations. Styling is handled with TailwindCSS for responsiveness and consistency, while JavaScript and additional components deliver an elegant, modern, and extensible UI/UX experience.",
+    video: "/Thumbnail-video-JackDaniel's.mp4",
     tags: [
       "Design",
       "Animation",
@@ -70,58 +117,14 @@ const projects = [
       "Responsive",
       "Next.js",
       "React",
-      "TypeScript",
+      "JavaScript",
       "TailwindCSS",
+      "GSAP",
+      "Vercel",
     ],
-    liveUrl: "https://design-nature.vercel.app/",
-    githubUrl: "https://github.com/YogasWara18/nature",
-     date: "December 2025",
-  },
-  {
-    title: "Burger Café Bar – Build with Next.js TypeScript & Bootstrap",
-    description:
-      "The Burger Café Bar website is a professional frontend project showcasing culinary branding with a modern, interactive, and high performance approach. Built using Next.js as the primary framework and Bootstrap for its grid system and responsive components, the website delivers a clean and consistent appearance across multiple devices.",
-    video: "/Thumbnail-Burger.mp4",
-    tags: [
-      "Design",
-      "Animation",
-      "Development",
-      "Branding",
-      "Responsive",
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Bootstrap",
-      "RestAPI",
-      "Vercel"
-    ],
-    liveUrl: "https://burger-cafe-bar.vercel.app/",
-    githubUrl: "https://github.com/YogasWara18/Burger-Cafe-Bar",
-     date: "January 2026",
-  },
-   {
-    title: "indoShop E-Commerce – Full Frontend build with Next.js TypeScript TailwindCss",
-    description:
-      "Indoshop Art Market is an e-commerce platform designed to help Indonesian artisans modernize artworks from every region through an elegant, responsive, and easily accessible digital display; this website is built using modern technologies such as React.js for interactive interfaces, Next.js for SEO optimization and fast rendering, TypeScript to maintain code consistency, TailwindCSS for responsive styling, Swiper.js for dynamic product sliders, and an authentication system that ensures user security and personalization, so that every piece of Indonesian art can be presented professionally and reach the global market.",
-    video: "/Thumbnail-indoShop.mp4",
-    tags: [
-      "Design",
-      "E-Commerce",
-      "Animation",
-      "Development",
-      "Branding",
-      "Responsive",
-      "Next.js",
-      "React",
-      "TypeScript",
-      "TailwindCss",
-      "Swiper.js",
-      "RestAPI",
-      "Vercel"
-    ],
-    liveUrl: "https://indoshop.vercel.app/",
-    githubUrl: "https://github.com/YogasWara18/Indoshop",
-     date: "January 2026",
+    liveUrl: "https://jackdaniels-green.vercel.app/",
+    githubUrl: "https://github.com/YogasWara18/jackDaniels",
+    date: "November 2025",
   },
 ];
 
@@ -150,7 +153,7 @@ export default function ProjectsSection() {
               trigger: sectionRef.current,
               start: "top 75%",
             },
-          }
+          },
         );
       }
 
@@ -177,7 +180,7 @@ export default function ProjectsSection() {
               trigger: card,
               start: "top 80%",
             },
-          }
+          },
         );
 
         const videoContainer = card.querySelector(".video-container");
@@ -198,7 +201,7 @@ export default function ProjectsSection() {
               trigger: card,
               start: "top 80%",
             },
-          }
+          },
         );
 
         gsap.to(video, {
@@ -252,7 +255,7 @@ export default function ProjectsSection() {
               trigger: card,
               start: "top 80%",
             },
-          }
+          },
         );
       });
     }, sectionRef);
