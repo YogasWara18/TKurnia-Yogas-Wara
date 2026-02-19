@@ -10,7 +10,32 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
   {
     title:
-      "indoShop E-Commerce – Full Frontend build with Next.js TypeScript TailwindCss",
+      "Oceanis Grand Palace  – Full Frontend build with React + Vite + JavaScript + TailwindCss",
+    description:
+      "Oceanis Grand Palace is a luxury hotel website designed to deliver a premium experience with an elegant and cinematic atmosphere. It highlights exclusive services such as Dive & Discovery, Night of Elegance, Sunset Wellness, and Luxury Water Sports, alongside world-class facilities including a pristine beachfront, infinity pool oasis, fine dining excellence, exclusive spa retreat, and a grand ballroom for events. Guests can explore a wide range of room options, from the Ocean View Chamber to the Presidential Suite, each presented with detailed capacity, size, and pricing. The site also emphasizes the grandeur of its architecture, exclusive suites, harmony with the ocean, and world-class culinary offerings. Complementing this, the blog and reviews section features refined articles on travel, wellness, gastronomy, and guest experiences that underscore prestige and unforgettable memories. Finally, the contact and location details, based in Medan, North Sumatra, Indonesia, provide clear information for reservations and communication, making the website a seamless gateway to luxury hospitality.",
+    video: "/Thumbnail-Oceanis.mp4",
+    tags: [
+      "Design",
+      "Website Hotel",
+      "Animation",
+      "Development",
+      "Branding",
+      "Responsive",
+      "Vite",
+      "React",
+      "Javascript",
+      "TailwindCss",
+      "Swiper.js",
+      "RestAPI",
+      "Vercel",
+    ],
+    liveUrl: "https://oceanis-grand-palace.vercel.app/",
+    githubUrl: "https://github.com/YogasWara18/Oceanis-Grand-Palace",
+    date: "February 2026",
+  },
+  {
+    title:
+      "indoShop E-Commerce – Full Frontend build with React + Next.js + TypeScript + TailwindCss",
     description:
       "Indoshop Art Market is an e-commerce platform designed to help Indonesian artisans modernize artworks from every region through an elegant, responsive, and easily accessible digital display; this website is built using modern technologies such as React.js for interactive interfaces, Next.js for SEO optimization and fast rendering, TypeScript to maintain code consistency, TailwindCSS for responsive styling, Swiper.js for dynamic product sliders, and an authentication system that ensures user security and personalization, so that every piece of Indonesian art can be presented professionally and reach the global market.",
     video: "/Thumbnail-indoShop.mp4",
