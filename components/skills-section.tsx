@@ -100,19 +100,40 @@ const skills = [
     icon: "/vercel.png",
   },
   {
-    name: "V0",
+    name: "V0 AI",
     color: "border-zinc-800/30 hover:border-zinc-800",
     icon: "/V0.png",
   },
   {
-    name: "Copilot",
+    name: "Copilot AI",
     color: "border-blue-500/30 hover:border-blue-500",
     icon: "/Copilot.png",
   },
   {
-    name: "Dreamina",
+    name: "Dreamina AI",
     color: "border-indigo-500/30 hover:border-indigo-500",
     icon: "/Dreamina.png",
+  },
+  {
+    name: "Gemini AI",
+    color: "border-purple-500/30 hover:border-purple-500",
+    icon: "/GeminiAi.png",
+  },
+
+  {
+    name: "WordPress",
+    color: "border-sky-500/30 hover:border-sky-500",
+    icon: "/Wordpress.png",
+  },
+  {
+    name: "Elementor",
+    color: "border-pink-500/30 hover:border-pink-500",
+    icon: "/Elementor.png",
+  },
+  {
+    name: "Yoast SEO",
+    color: "border-green-500/30 hover:border-green-500",
+    icon: "/YoastSEO.png",
   },
 ];
 

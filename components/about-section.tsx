@@ -29,7 +29,11 @@ export default function AboutSection() {
       });
 
       // Label animation
-      tl.fromTo(labelRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 });
+      tl.fromTo(
+        labelRef.current,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8 },
+      );
 
       // Title lines reveal
       const titleLines = titleRef.current?.querySelectorAll(".title-line");
@@ -38,30 +42,51 @@ export default function AboutSection() {
           Array.from(titleLines),
           { y: 80, clipPath: "inset(100% 0% 0% 0%)" },
           { y: 0, clipPath: "inset(0% 0% 0% 0%)", duration: 1, stagger: 0.12 },
-          "-=0.4"
+          "-=0.4",
         );
       }
 
       // Text animation
-      tl.fromTo(textRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.5");
+      tl.fromTo(
+        textRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8 },
+        "-=0.5",
+      );
 
       // Gallery stagger
       const statItems = statsRef.current?.querySelectorAll(".stat-item");
       if (statItems) {
-        tl.fromTo(Array.from(statItems), { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 }, "-=0.3");
+        tl.fromTo(
+          Array.from(statItems),
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 },
+          "-=0.3",
+        );
       }
 
       // Image reveal
       gsap.fromTo(
         imageRef.current,
         { y: 100, scale: 1.1, clipPath: "inset(100% 0% 0% 0%)" },
-        { y: 0, scale: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 1.2, scrollTrigger: { trigger: imageRef.current, start: "top 85%" } }
+        {
+          y: 0,
+          scale: 1,
+          clipPath: "inset(0% 0% 0% 0%)",
+          duration: 1.2,
+          scrollTrigger: { trigger: imageRef.current, start: "top 85%" },
+        },
       );
 
       // Parallax effect
       gsap.to(imageRef.current, {
         y: -60,
-        scrollTrigger: { trigger: sectionRef.current, start: "top bottom", end: "bottom top", scrub: 1.5 },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.5,
+        },
       });
     }, sectionRef);
 
@@ -97,7 +122,11 @@ export default function AboutSection() {
                   "/UI_UX-Utara.png",
                 ].map((src, i) => (
                   <SwiperSlide key={i}>
-                    <img src={src} alt={`Slide ${i + 1}`} className="w-full h-full object-contain" />
+                    <img
+                      src={src}
+                      alt={`Slide ${i + 1}`}
+                      className="w-full h-full object-contain"
+                    />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -108,7 +137,7 @@ export default function AboutSection() {
           <div>
             <span
               ref={labelRef}
-             className="title-line text-5xl md:text-6xl lg:text-7xl font-bold text-primary/60 italic mb-4 sm:mb-6"
+              className="title-line text-5xl md:text-6xl lg:text-7xl font-bold text-primary/60 italic mb-4 sm:mb-6"
             >
               About Me
             </span>
@@ -119,18 +148,39 @@ export default function AboutSection() {
                   Education & Career Path
                 </h2>
               </div>
-              
             </div>
 
             <p
               ref={textRef}
               className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed mb-8 sm:mb-10"
             >
-             I'm Yogas, a passionate Frontend Web Developer with a strong foundation in modern web technologies. I graduated from the Fullstack Web Development Bootcamp at Purwadhika Digital Technology School and continue to hone my skills through SoloLearn and FreeCodeCamp. My expertise includes building responsive, user-centric applications using React, Next.js, HTML, CSS, JavaScript, TypeScript, and TailwindCSS and Bootstrap. I also integrate backend solutions with Node.js, REST APIs, and PostgreSQL, ensuring scalable and maintainable projects. Creativity is my forte, I love creating smooth animations with GSAP, interactive sliders with Swiper.js, and designing intuitive interfaces using Figma. Version control and collaboration are second nature to me, thanks to Git and GitHub. I thrive on blending technical rigor with aesthetic design, aiming to deliver web experiences that are not only functional but also visually appealing. In addition, I actively study and apply UI/UX principles focusing on user research, wireframing, prototyping, and usability testing to ensure that every project I build is not only technically sound but also provides a seamless and engaging user experience. I am also familiar with leveraging AI tools such as V0, Copilot, and Dreamina to accelerate development, enhance creativity, and explore innovative solutions in both design and coding workflows.
+              I'm Yogas, a passionate Frontend Web Developer with expertise in
+              React, Next.js, TypeScript, TailwindCSS, Bootstrap, and backend
+              integration using Node.js, REST APIs, and PostgreSQL. I craft
+              responsive, user-centric applications enriched with GSAP
+              animations, Swiper.js sliders, and intuitive designs via Figma.{" "}
+              <br /> <br />
+              I graduated from the Fullstack Web Development Bootcamp at
+              Purwadhika and continue sharpening my skills through SoloLearn and
+              FreeCodeCamp. My workflow embraces Git/GitHub collaboration,
+              strong UI/UX principles (research, wireframing, prototyping,
+              usability testing), and premium design aesthetics.
+              <br /> <br />
+              Beyond coding, I leverage WordPress, Elementor, and Yoast SEO to
+              deliver scalable, SEO-optimized websites. I also explore AI tools
+              like V0, Copilot, Dreamina, and Gemini AI to accelerate
+              development and spark creativity. 
+              <br /> <br />
+              My mission is to blend technical
+              rigor with aesthetic design, ensuring every project is not only
+              functional but also visually engaging and globally credible.
             </p>
 
             {/* Gallery images */}
-            <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+            <div
+              ref={statsRef}
+              className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6"
+            >
               {["/image1.png", "/image2.png", "/image3.png"].map((src, i) => (
                 <div key={i} className="stat-item rounded-xl overflow-hidden">
                   <img
