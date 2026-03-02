@@ -183,7 +183,7 @@ export default function SkillsSection() {
         {/* Title */}
         <div ref={titleRef} className="text-center mb-20">
           <div className="overflow-hidden">
-            <span className="title-line inline-block text-xs tracking-[0.3em] uppercase text-muted-foreground font-medium mb-4">
+            <span className="title-line text-5xl md:text-6xl lg:text-7xl font-bold text-primary/60 italic mb-4">
               Tech Stack
             </span>
           </div>

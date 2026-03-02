@@ -77,7 +77,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <body className={`${inter.variable} font-sans antialiased`}>
-        <ScrollReset /> {/* client component jalan di sini */}
+        <ScrollReset /> 
         {children}
         <Analytics />
       </body>

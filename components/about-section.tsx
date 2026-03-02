@@ -108,7 +108,7 @@ export default function AboutSection() {
           <div>
             <span
               ref={labelRef}
-              className="inline-block text-xs tracking-[0.3em] uppercase text-muted-foreground font-medium mb-4 sm:mb-6"
+             className="title-line text-5xl md:text-6xl lg:text-7xl font-bold text-primary/60 italic mb-4 sm:mb-6"
             >
               About Me
             </span>

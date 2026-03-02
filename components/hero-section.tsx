@@ -131,7 +131,7 @@ export default function HeroSection() {
           {/* Left content */}
           <div className="relative z-10">
             <div ref={labelRef} className="mb-6">
-              <span className="inline-block text-xs tracking-[0.3em] uppercase text-gray-400 font-semibold">
+              <span className="title-line text-5xl md:text-6xl lg:text-7xl font-bold text-primary/60 italic">
                 My Portfolio
               </span>
             </div>
@@ -164,7 +164,7 @@ export default function HeroSection() {
               ref={subtitleRef}
               className="text-sm md:text-base text-muted-foreground max-w-md leading-relaxed mb-8"
             >
-             "With over a year of experience, I specialize in building responsive, accessible, and innovative web interfaces. I combine strong Frontend Development skills with modern Web Design aesthetics and expertise in custom WordPress development. Driven by creativity and curiosity, I focus on delivering user-centric solutions without sacrificing technical performance and scalability."
+             "With over a year of experience, I specialize in building responsive, accessible, and innovative web interfaces. I combine strong Frontend Development skills with modern Web Design aesthetics and expertise in custom WordPress development. Driven by creativity and curiosity, I focus on delivering user centric solutions without sacrificing technical performance and scalability."
             </p>
 
             <div
@@ -178,7 +178,7 @@ export default function HeroSection() {
                 View My Work
               </a>
               <a
-                href="https://drive.google.com/file/d/1dsoR6o5D6Qi-UL25S2awiCifSRCOuH4y/view?usp=sharing"
+                href="https://drive.google.com/file/d/15Lx-mFTr7dHeXZJjUBDJ5eMqP-p9nM_L/view?usp=sharing"
                 className="w-full sm:w-auto px-8 py-4 border border-border rounded-full font-medium hover:bg-secondary transition-all duration-500 text-center"
               >
                 View My Resume
