@@ -153,7 +153,7 @@ export default function HeroSection() {
               <div className="overflow-hidden">
                 <h2 className="text-2xl md:text-4xl lg:text-3xl tracking-tight leading-[1.2] text-gray-300 italic font-light">
                   <SplitText
-                    text="FRONTEND WEB DEVELOPER | WEB DESIGN | WORDPRESS"
+                    text="FRONTEND WEB DEVELOPER | WEB DESIGN | WORDPRESS DEVELOPER"
                     className="text-primary/70 italic font-light"
                   />
                 </h2>
