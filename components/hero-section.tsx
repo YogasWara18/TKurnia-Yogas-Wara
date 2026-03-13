@@ -11,7 +11,7 @@ function SplitText({ text, className }: { text: string; className?: string }) {
   const words = text.split(" ");
 
   return (
-    <span className={className}>
+    <span className={`${className} text-center sm:text-left block`}>
       {words.map((word, i) => (
         <span key={i} className="inline-block overflow-hidden">
           <span
@@ -66,13 +66,15 @@ function TypingRole() {
   }, [displayText, isDeleting, loopNum, roles, typingSpeed]);
 
   return (
-    <div className="h-8 md:h-10 flex items-center">
-      <span className="text-lg sm:text-xl md:text-2xl font-light tracking-wide">
-        <span className="bg-gradient-to-r from-lime-500 to-yellow-500 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient">
-          {displayText}
+    <div className="flex justify-center md:justify-start w-full">
+      <div className="inline-flex items-center h-8 md:h-10">
+        <span className="text-lg sm:text-xl md:text-2xl font-light tracking-wide whitespace-nowrap">
+          <span className="bg-gradient-to-r from-lime-500 to-yellow-500 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient">
+            {displayText}
+          </span>
+          <span className="ml-1 inline-block w-0.5 h-5 md:h-6 bg-gradient-to-b from-lime-500 to-yellow-500 animate-pulse align-middle" />
         </span>
-        <span className="ml-1 inline-block w-0.5 h-5 md:h-6 bg-gradient-to-b from-lime-500 to-yellow-500 animate-pulse" />
-      </span>
+      </div>
     </div>
   );
 }
