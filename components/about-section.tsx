@@ -325,7 +325,7 @@ export default function AboutSection() {
               {[
                 { icon: Code, label: "Projects", value: "15+", color: "text-lime-500" },
                 { icon: Users, label: "Clients", value: "10+", color: "text-yellow-500" },
-                { icon: Award, label: "Certs", value: "8", color: "text-lime-500" },
+                { icon: Award, label: "Certificate", value: "8", color: "text-lime-500" },
                 { icon: Briefcase, label: "Tools", value: "20+", color: "text-yellow-500" },
               ].map((stat, i) => (
                 <div

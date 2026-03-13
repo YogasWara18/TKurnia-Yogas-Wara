@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -28,6 +28,52 @@ function SplitText({ text, className }: { text: string; className?: string }) {
         </span>
       ))}
     </span>
+  );
+}
+
+// Typing Animation Component
+function TypingRole() {
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  const roles = ["Frontend Developer", "Web Developer", "WordPress Developer"];
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const i = loopNum % roles.length;
+      const fullText = roles[i];
+
+      setDisplayText(
+        isDeleting
+          ? fullText.substring(0, displayText.length - 1)
+          : fullText.substring(0, displayText.length + 1),
+      );
+
+      setTypingSpeed(isDeleting ? 80 : 150);
+
+      if (!isDeleting && displayText === fullText) {
+        setTimeout(() => setIsDeleting(true), 2000);
+      } else if (isDeleting && displayText === "") {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, loopNum, roles, typingSpeed]);
+
+  return (
+    <div className="h-8 md:h-10 flex items-center">
+      <span className="text-lg sm:text-xl md:text-2xl font-light tracking-wide">
+        <span className="bg-gradient-to-r from-lime-500 to-yellow-500 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient">
+          {displayText}
+        </span>
+        <span className="ml-1 inline-block w-0.5 h-5 md:h-6 bg-gradient-to-b from-lime-500 to-yellow-500 animate-pulse" />
+      </span>
+    </div>
   );
 }
 
@@ -182,7 +228,7 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen flex items-center overflow-hidden bg-background"
+      className="relative pt-20 md:pt-24 lg:pt-28 min-h-screen flex items-center overflow-hidden bg-background"
       style={{ opacity: 0 }}
     >
       {/* Particle Background dengan warna green yellow */}
@@ -194,7 +240,7 @@ export default function HeroSection() {
             style={{
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
-              backgroundColor: i % 2 === 0 ? '#84cc16' : '#eab308', // Lime green dan yellow
+              backgroundColor: i % 2 === 0 ? "#84cc16" : "#eab308",
               opacity: 0.2,
               animation: `float-particle 10s linear infinite`,
               animationDelay: `${Math.random() * 3}s`,
@@ -264,9 +310,9 @@ export default function HeroSection() {
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground">
                 <SplitText text="T. KURNIA YOGAS WARA" />
               </h1>
-              <h2 className="text-lg sm:text-xl md:text-2xl font-light tracking-wide pt-2 bg-gradient-to-r from-lime-500 to-yellow-500 bg-clip-text text-transparent">
-                Frontend Developer | Web Developer | WordPress
-              </h2>
+
+              {/* Typing Animation Role */}
+              <TypingRole />
             </div>
 
             {/* Description - center di mobile */}
@@ -286,12 +332,43 @@ export default function HeroSection() {
             >
               <a
                 href="#projects"
-                className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-lime-500 to-yellow-500 text-background rounded-full font-medium overflow-hidden hover:shadow-lg hover:shadow-lime-500/25 transition-all duration-500 text-center"
+                className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-lime-500 to-yellow-500 text-background rounded-full font-medium overflow-hidden transition-all duration-500 text-center hover:shadow-2xl hover:shadow-lime-500/40 hover:scale-105 active:scale-95"
               >
+                {/* Multiple layer background untuk efek depth */}
+                <span className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-lime-500 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <span className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.3),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                {/* Shine effect yang lebih dramatis */}
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-100%] skew-x-12 group-hover:translate-x-[100%] transition-transform duration-1000 ease-out" />
+
+                {/* Pulse ring effect */}
+                <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-lime-500 to-yellow-500 opacity-0 group-hover:opacity-30 blur-md group-hover:animate-pulse" />
+
+                {/* Bouncing dots di background */}
+                <span
+                  className="absolute top-1/2 left-1/4 w-1 h-1 bg-white/40 rounded-full opacity-0 group-hover:opacity-100 animate-bounce-slow"
+                  style={{ animationDelay: "0s" }}
+                />
+                <span
+                  className="absolute top-1/3 right-1/4 w-1.5 h-1.5 bg-white/30 rounded-full opacity-0 group-hover:opacity-100 animate-bounce-slow"
+                  style={{ animationDelay: "0.2s" }}
+                />
+                <span
+                  className="absolute bottom-1/3 left-1/3 w-1 h-1 bg-white/20 rounded-full opacity-0 group-hover:opacity-100 animate-bounce-slow"
+                  style={{ animationDelay: "0.4s" }}
+                />
+
+                {/* Text container dengan efek */}
                 <span className="relative z-10 flex items-center justify-center gap-2">
-                  View Projects
+                  <span className="relative">
+                    View Projects
+                    {/* Glow effect pada text */}
+                    <span className="absolute -inset-1 bg-white/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </span>
+
+                  {/* Icon dengan multiple animasi */}
                   <svg
-                    className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
+                    className="w-4 h-4 group-hover:translate-x-2 group-hover:-translate-y-1 group-hover:rotate-12 transition-all duration-500 ease-out"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -304,7 +381,16 @@ export default function HeroSection() {
                     />
                   </svg>
                 </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+
+                {/* Sparkle effects di pojok */}
+                <span
+                  className="absolute top-1 left-1 w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping"
+                  style={{ animationDuration: "1s" }}
+                />
+                <span
+                  className="absolute bottom-1 right-1 w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping"
+                  style={{ animationDuration: "1.2s", animationDelay: "0.2s" }}
+                />
               </a>
 
               <a
@@ -315,24 +401,6 @@ export default function HeroSection() {
               >
                 View Resume
               </a>
-            </div>
-
-            {/* Social Links dengan warna green yellow - center di mobile dengan padding kiri konsisten */}
-            <div className="flex items-center justify-center lg:justify-start gap-8 pt-8">
-              {[
-                { label: "GitHub", href: "#", color: "hover:text-lime-500" },
-                { label: "LinkedIn", href: "#", color: "hover:text-yellow-500" },
-                { label: "Twitter", href: "#", color: "hover:text-lime-500" }
-              ].map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  className={`text-sm font-medium text-muted-foreground/60 ${social.color} transition-colors duration-300 relative group`}
-                >
-                  {social.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-lime-500 to-yellow-500 group-hover:w-full transition-all duration-300" />
-                </a>
-              ))}
             </div>
           </div>
 
@@ -418,8 +486,25 @@ export default function HeroSection() {
           }
         }
 
+        @keyframes gradient {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+
         .animate-scroll {
           animation: scroll 2.5s ease-in-out infinite;
+        }
+
+        .animate-gradient {
+          background-size: 200% 200%;
+          animation: gradient 3s ease infinite;
         }
 
         .hero-word {

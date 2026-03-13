@@ -121,7 +121,7 @@ export default function SplashScreen() {
       ref={splashRef}
       className="splash-screen fixed inset-0 z-[9999] flex items-center justify-center bg-background overflow-hidden"
     >
-      {/* Animated particles background */}
+      {/* Animated particles background dengan warna green yellow */}
       <div
         ref={particlesRef}
         className="absolute inset-0 pointer-events-none"
@@ -129,10 +129,12 @@ export default function SplashScreen() {
         {[...Array(40)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1.5 h-1.5 bg-primary/30 rounded-full"
+            className="absolute w-1.5 h-1.5 rounded-full"
             style={{
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
+              backgroundColor: i % 2 === 0 ? '#84cc16' : '#eab308',
+              opacity: 0.3,
               animationDelay: `${Math.random() * 2}s`,
               animation: `float-particle ${3 + Math.random() * 4}s linear infinite`,
             }}
@@ -140,18 +142,18 @@ export default function SplashScreen() {
         ))}
       </div>
 
-      {/* Gradient orbs */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
-      <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-primary/15 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
+      {/* Gradient orbs dengan warna green yellow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-lime-500/10 rounded-full blur-3xl animate-pulse-glow" />
+      <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-yellow-500/20 rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-lime-500/15 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
 
-      {/* Grid overlay */}
+      {/* Grid overlay dengan warna green yellow */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 opacity-20"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(168, 85, 247, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px)
+            linear-gradient(rgba(132, 204, 22, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(234, 179, 8, 0.05) 1px, transparent 1px)
           `,
           backgroundSize: '30px 30px',
         }}
@@ -162,7 +164,7 @@ export default function SplashScreen() {
         {/* Logo container */}
         <div ref={logoRef} className="mb-8">
           <div className="relative group">
-            <div className="absolute inset-0 bg-primary/30 blur-3xl opacity-50 group-hover:opacity-70 transition-opacity duration-1000" />
+            <div className="absolute inset-0 bg-gradient-to-r from-lime-500/30 to-yellow-500/30 blur-3xl opacity-50 group-hover:opacity-70 transition-opacity duration-1000" />
             <Image
               src="/logo.png"
               alt="Logo"
@@ -177,33 +179,33 @@ export default function SplashScreen() {
         {/* Loading text */}
         <div ref={textRef}>
           <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0s" }} />
-            <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
-            <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.4s" }} />
+            <div className="w-2 h-2 bg-lime-500 rounded-full animate-bounce" style={{ animationDelay: "0s" }} />
+            <div className="w-2 h-2 bg-yellow-500 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
+            <div className="w-2 h-2 bg-lime-500 rounded-full animate-bounce" style={{ animationDelay: "0.4s" }} />
           </div>
-          <span className="text-sm tracking-[0.3em] text-primary/70 font-light">
+          <span className="text-sm tracking-[0.3em] text-lime-500/70 font-light">
             LOADING EXPERIENCE
           </span>
         </div>
 
         {/* Decorative lines */}
-        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-px h-20 bg-gradient-to-b from-transparent via-primary/30 to-transparent" />
-        <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-px h-20 bg-gradient-to-t from-transparent via-primary/30 to-transparent" />
+        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-px h-20 bg-gradient-to-b from-transparent via-lime-500/30 to-transparent" />
+        <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-px h-20 bg-gradient-to-t from-transparent via-yellow-500/30 to-transparent" />
       </div>
 
-      {/* Left Curtain dengan efek gradient */}
+      {/* Left Curtain dengan efek gradient green yellow */}
       <div
         ref={leftCurtainRef}
-        className="curtain-left fixed left-0 top-0 h-full w-1/2 bg-gradient-to-r from-background via-background to-primary/5 z-40"
+        className="curtain-left fixed left-0 top-0 h-full w-1/2 bg-gradient-to-r from-background via-background to-lime-500/5 z-40"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-lime-500/10 via-transparent to-transparent" />
         
-        {/* Animated pattern */}
+        {/* Animated pattern dengan green yellow */}
         <div className="absolute inset-0 opacity-30">
           {[...Array(5)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"
+              className="absolute w-full h-px bg-gradient-to-r from-transparent via-lime-500/30 to-transparent"
               style={{
                 top: `${20 + i * 15}%`,
                 transform: `rotate(${i * 5}deg)`,
@@ -214,19 +216,19 @@ export default function SplashScreen() {
         </div>
       </div>
 
-      {/* Right Curtain dengan efek gradient */}
+      {/* Right Curtain dengan efek gradient green yellow */}
       <div
         ref={rightCurtainRef}
-        className="curtain-right fixed right-0 top-0 h-full w-1/2 bg-gradient-to-l from-background via-background to-primary/5 z-40"
+        className="curtain-right fixed right-0 top-0 h-full w-1/2 bg-gradient-to-l from-background via-background to-yellow-500/5 z-40"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-yellow-500/10 via-transparent to-transparent" />
         
-        {/* Animated pattern */}
+        {/* Animated pattern dengan green yellow */}
         <div className="absolute inset-0 opacity-30">
           {[...Array(5)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-full h-px bg-gradient-to-l from-transparent via-primary/30 to-transparent"
+              className="absolute w-full h-px bg-gradient-to-l from-transparent via-yellow-500/30 to-transparent"
               style={{
                 top: `${20 + i * 15}%`,
                 transform: `rotate(${-i * 5}deg)`,
@@ -237,9 +239,9 @@ export default function SplashScreen() {
         </div>
       </div>
 
-      {/* Edge accents */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 border-t-2 border-l-2 border-r-2 border-primary/20 rounded-t-full" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-32 border-b-2 border-l-2 border-r-2 border-primary/20 rounded-b-full" />
+      {/* Edge accents dengan green yellow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 border-t-2 border-l-2 border-r-2 border-lime-500/20 rounded-t-full" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-32 border-b-2 border-l-2 border-r-2 border-yellow-500/20 rounded-b-full" />
 
       <style jsx>{`
         @keyframes float-particle {

@@ -162,9 +162,7 @@ export default function Navbar() {
       <nav
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-          scrolled
-            ? "py-2 md:py-3 border-b border-lime-500/20"
-            : "bg-transparent py-4 md:py-2"
+          scrolled ? "py-2 md:py-3" : "bg-transparent py-4 md:py-5"
         }`}
         style={{
           background: scrolled
@@ -204,70 +202,95 @@ export default function Navbar() {
           />
         )}
 
-        <div className="container flex items-center justify-between px-4 md:px-6">
-          {/* Logo with glow effect */}
-          <a
-            ref={logoRef}
-            href="#"
-            className="relative group p-2 md:p-4" // Padding di semua sisi
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-lime-500/20 to-yellow-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            <Image
-              src="/logo.png"
-              alt="Yogas Wara"
-              width={100}
-              height={40}
-              className="relative w-20 md:w-24 h-auto transition-transform duration-500 group-hover:scale-110"
-            />
-          </a>
+        {/* Container dengan desain menarik - di atas dan ada jarak dengan hero */}
+        <div className="container px-4 md:px-6 mt-2 md:mt-3">
+          <div className="relative rounded-2xl bg-gradient-to-br from-lime-500/5 to-yellow-500/5 backdrop-blur-md border border-lime-500/10 shadow-lg shadow-lime-500/5 px-4 md:px-6 py-3 md:py-4">
+            {/* Inner glow effect */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-lime-500/5 to-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-          {/* Desktop Links */}
-          <div
-            ref={linksRef}
-            className="hidden md:flex items-center gap-6 lg:gap-8"
-          >
-            {navLinks.map((link, index) => (
+            <div className="flex items-center justify-between relative z-10">
+              {/* Logo dengan gambar */}
               <a
-                key={link.href}
-                href={link.href}
-                className="nav-link text-xs lg:text-sm tracking-[0.2em] text-muted-foreground/80 hover:text-lime-500 transition-colors duration-300 font-medium relative group"
+                ref={logoRef}
+                href="#"
+                className="relative group flex items-center"
               >
-                <span className="relative">
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-lime-500 to-yellow-500 group-hover:w-full transition-all duration-500" />
-                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-lime-500/20 to-yellow-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 scale-150" />
+                <div className="relative flex items-center gap-2">
+                  <Image
+                    src="/logo.png"
+                    alt="Yogas Wara"
+                    width={170}
+                    height={170}
+                    className="w-15 h-15 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
               </a>
-            ))}
-          </div>
 
-          {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-4">
-            {/* Contact Button */}
-            <a
-              href="#contact"
-              className="relative group px-5 py-2 bg-gradient-to-r from-lime-500 to-yellow-500 text-background rounded-full text-xs font-medium overflow-hidden hover:shadow-lg hover:shadow-lime-500/25 transition-all duration-500"
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                CONTACT
-                <span className="w-1 h-1 bg-background rounded-full group-hover:scale-150 transition-transform duration-500" />
-              </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-            </a>
-          </div>
+              {/* Desktop Links dengan desain lebih menarik */}
+              <div
+                ref={linksRef}
+                className="hidden md:flex items-center gap-1 lg:gap-2"
+              >
+                {navLinks.map((link, index) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="nav-link relative px-3 lg:px-4 py-2 text-xs lg:text-sm tracking-[0.2em] text-muted-foreground/80 hover:text-lime-500 transition-all duration-300 font-medium rounded-full group overflow-hidden"
+                  >
+                    {/* Background animation */}
+                    <span className="absolute inset-0 rounded-full bg-gradient-to-r from-lime-500 to-yellow-500 opacity-0 group-hover:opacity-10 scale-0 group-hover:scale-100 transition-all duration-500 ease-out" />
 
-          {/* Hamburger Button (Mobile/Tablet) */}
-          <button
-            className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-full border border-lime-500/30 hover:border-lime-500/60 transition-all duration-300 group"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            <div className="absolute inset-0 bg-lime-500/5 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
-            {menuOpen ? (
-              <X className="w-5 h-5 text-lime-500" />
-            ) : (
-              <Menu className="w-5 h-5 text-lime-500" />
-            )}
-          </button>
+                    {/* Shine effect */}
+                    <span className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
+
+                    {/* Glow effect on hover */}
+                    <span className="absolute -inset-1 rounded-full bg-lime-500/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    {/* Text dengan efek */}
+                    <span className="relative z-10 flex items-center justify-center gap-1">
+                      {link.label}
+                      {/* Dot indicator yang muncul di hover */}
+                      <span className="w-1 h-1 rounded-full bg-lime-500 scale-0 group-hover:scale-100 transition-transform duration-300 delay-150" />
+                    </span>
+
+                    {/* Underline effect dengan animasi */}
+                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-lime-500 to-yellow-500 group-hover:w-1/2 transition-all duration-500 ease-out" />
+                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-yellow-500 to-lime-500 group-hover:w-1/2 transition-all duration-500 delay-100 ease-out" />
+                  </a>
+                ))}
+              </div>
+
+              {/* Desktop Actions */}
+              <div className="hidden md:flex items-center gap-3">
+                {/* Contact Button dengan desain premium */}
+                <a
+                  href="#contact"
+                  className="relative group px-5 py-2 bg-gradient-to-r from-lime-500 to-yellow-500 text-background rounded-full text-xs font-medium overflow-hidden hover:shadow-lg hover:shadow-lime-500/25 transition-all duration-500"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    CONTACT
+                    <span className="w-1 h-1 bg-background rounded-full group-hover:scale-150 transition-transform duration-500" />
+                  </span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                </a>
+              </div>
+
+              {/* Hamburger Button (Mobile/Tablet) */}
+              <button
+                className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-lime-500/10 to-yellow-500/10 border border-lime-500/30 hover:border-lime-500/60 transition-all duration-300 group"
+                onClick={() => setMenuOpen(!menuOpen)}
+                aria-label="Toggle menu"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-lime-500/20 to-yellow-500/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
+                {menuOpen ? (
+                  <X className="w-5 h-5 text-lime-500 relative z-10" />
+                ) : (
+                  <Menu className="w-5 h-5 text-lime-500 relative z-10" />
+                )}
+              </button>
+            </div>
+          </div>
         </div>
       </nav>
 
@@ -301,13 +324,16 @@ export default function Navbar() {
           {/* Menu content */}
           <div className="relative z-10 h-full flex flex-col items-center justify-center gap-8 p-8">
             {/* Logo di mobile menu */}
-            <Image
-              src="/logo.png"
-              alt="Yogas Wara"
-              width={120}
-              height={48}
-              className="w-24 h-auto mb-4 opacity-80"
-            />
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-lime-500/20 to-yellow-500/20 blur-xl rounded-full opacity-50 group-hover:opacity-70 transition-opacity duration-700" />
+              <Image
+                src="/logo.png"
+                alt="Yogas Wara"
+                width={100}
+                height={100}
+                className="w-20 h-20 object-contain relative z-10"
+              />
+            </div>
 
             {navLinks.map((link, index) => (
               <a

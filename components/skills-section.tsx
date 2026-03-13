@@ -23,10 +23,12 @@ const skills = [
   { name: "Vercel", icon: "/vercel.png", category: "DevOps" },
   { name: "Figma", icon: "/figma.png", category: "Design" },
   { name: "WordPress", icon: "/Wordpress.png", category: "CMS" },
+  { name: "Elementor Pro", icon: "/Elementor.png", category: "CMS" },
+  { name: "Yoast SEO", icon: "/YoastSEO.png", category: "CMS" },
   { name: "GSAP", icon: "/gsap.png", category: "Animation" },
 ];
 
-const categories = [...new Set(skills.map(s => s.category))];
+const categories = [...new Set(skills.map((s) => s.category))];
 
 export default function SkillsSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -42,46 +44,48 @@ export default function SkillsSection() {
           trigger: sectionRef.current,
           start: "top 70%",
           end: "bottom 20%",
-          toggleActions: "play none none reverse"
+          toggleActions: "play none none reverse",
         },
       });
 
       // Title reveal - sama seperti about section
-      tl.fromTo(titleRef.current,
-        { 
-          y: 40, 
+      tl.fromTo(
+        titleRef.current,
+        {
+          y: 40,
           opacity: 0,
-          filter: "blur(10px)"
+          filter: "blur(10px)",
         },
-        { 
-          y: 0, 
+        {
+          y: 0,
           opacity: 1,
           filter: "blur(0px)",
           duration: 1.2,
-          ease: "power3.out"
-        }
+          ease: "power3.out",
+        },
       );
 
       // Skills stagger dengan efek back.out - sama seperti about section
       const skillItems = skillsRef.current?.querySelectorAll(".skill-item");
       if (skillItems) {
-        tl.fromTo(skillItems,
-          { 
-            y: 30, 
+        tl.fromTo(
+          skillItems,
+          {
+            y: 30,
             opacity: 0,
             scale: 0.95,
-            filter: "blur(5px)"
+            filter: "blur(5px)",
           },
-          { 
-            y: 0, 
+          {
+            y: 0,
             opacity: 1,
             scale: 1,
             filter: "blur(0px)",
             duration: 0.8,
             stagger: 0.05,
-            ease: "back.out(1.7)"
+            ease: "back.out(1.7)",
           },
-          "-=0.4"
+          "-=0.4",
         );
       }
     }, sectionRef);
@@ -121,7 +125,7 @@ export default function SkillsSection() {
             style={{
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
-              backgroundColor: i % 2 === 0 ? '#84cc16' : '#eab308',
+              backgroundColor: i % 2 === 0 ? "#84cc16" : "#eab308",
               opacity: 0.2,
               animation: `float-particle 10s linear infinite`,
               animationDelay: `${Math.random() * 3}s`,
@@ -173,22 +177,24 @@ export default function SkillsSection() {
         <div ref={skillsRef} className="space-y-10 max-w-4xl mx-auto">
           {categories.map((category, index) => (
             <div key={category} className="text-center">
-              <h3 className={`text-lg font-medium mb-5 ${
-                index % 2 === 0 ? 'text-lime-500' : 'text-yellow-500'
-              }`}>
+              <h3
+                className={`text-lg font-medium mb-5 ${
+                  index % 2 === 0 ? "text-lime-500" : "text-yellow-500"
+                }`}
+              >
                 {category}
               </h3>
-              
+
               <div className="flex flex-wrap justify-center gap-3">
                 {skills
-                  .filter(skill => skill.category === category)
+                  .filter((skill) => skill.category === category)
                   .map((skill, skillIndex) => (
                     <div
                       key={skill.name}
                       className={`skill-item group flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-500 cursor-default border ${
                         skillIndex % 2 === 0
-                          ? 'bg-lime-500/5 hover:bg-lime-500/10 border-lime-500/20'
-                          : 'bg-yellow-500/5 hover:bg-yellow-500/10 border-yellow-500/20'
+                          ? "bg-lime-500/5 hover:bg-lime-500/10 border-lime-500/20"
+                          : "bg-yellow-500/5 hover:bg-yellow-500/10 border-yellow-500/20"
                       }`}
                     >
                       <img
@@ -196,9 +202,13 @@ export default function SkillsSection() {
                         alt={skill.name}
                         className="w-5 h-5 object-contain transition-transform duration-300 group-hover:scale-110"
                       />
-                      <span className={`text-sm font-medium ${
-                        skillIndex % 2 === 0 ? 'text-lime-500' : 'text-yellow-500'
-                      }`}>
+                      <span
+                        className={`text-sm font-medium ${
+                          skillIndex % 2 === 0
+                            ? "text-lime-500"
+                            : "text-yellow-500"
+                        }`}
+                      >
                         {skill.name}
                       </span>
                     </div>
@@ -211,26 +221,141 @@ export default function SkillsSection() {
         {/* Quick Stats dengan warna green yellow */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
           {[
-            { label: "Frontend", value: "95%", color: "from-lime-500 to-yellow-500" },
-            { label: "Backend", value: "85%", color: "from-yellow-500 to-lime-500" },
-            { label: "Design", value: "80%", color: "from-lime-500 to-yellow-500" },
-            { label: "Tools", value: "90%", color: "from-yellow-500 to-lime-500" },
-          ].map((stat, i) => (
-            <div key={stat.label} className="text-center group">
-              <div className={`text-2xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
-                {stat.value}
+            {
+              label: "Frontend",
+              value: "95%",
+              color: "from-lime-500 to-yellow-500",
+            },
+            {
+              label: "Backend",
+              value: "85%",
+              color: "from-yellow-500 to-lime-500",
+            },
+            {
+              label: "Design",
+              value: "80%",
+              color: "from-lime-500 to-yellow-500",
+            },
+            {
+              label: "Tools",
+              value: "90%",
+              color: "from-yellow-500 to-lime-500",
+            },
+          ].map((stat, i) => {
+            // Buat ref untuk setiap elemen yang akan dianimasi
+            const valueRef = useRef<HTMLDivElement>(null);
+            const progressRef = useRef<HTMLDivElement>(null);
+            const cardRef = useRef<HTMLDivElement>(null);
+
+            useEffect(() => {
+              // Animasi untuk angka (counting)
+              if (valueRef.current) {
+                const targetValue = parseInt(stat.value);
+                let currentValue = 0;
+
+                gsap.to(
+                  {},
+                  {
+                    duration: 2,
+                    ease: "power2.out",
+                    onUpdate: function () {
+                      currentValue = Math.floor(this.progress() * targetValue);
+                      if (valueRef.current) {
+                        valueRef.current.textContent = currentValue + "%";
+                      }
+                    },
+                    onComplete: () => {
+                      if (valueRef.current) {
+                        valueRef.current.textContent = stat.value;
+                      }
+                    },
+                    scrollTrigger: {
+                      trigger: cardRef.current,
+                      start: "top 85%",
+                      end: "bottom 20%",
+                      toggleActions: "play none none reverse",
+                    },
+                  },
+                );
+              }
+
+              // Animasi untuk progress bar
+              if (progressRef.current) {
+                gsap.fromTo(
+                  progressRef.current,
+                  { width: "0%" },
+                  {
+                    width: stat.value,
+                    duration: 2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                      trigger: cardRef.current,
+                      start: "top 85%",
+                      end: "bottom 20%",
+                      toggleActions: "play none none reverse",
+                    },
+                  },
+                );
+              }
+
+              // Animasi untuk card
+              if (cardRef.current) {
+                gsap.fromTo(
+                  cardRef.current,
+                  {
+                    y: 30,
+                    opacity: 0,
+                    scale: 0.9,
+                    filter: "blur(5px)",
+                  },
+                  {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    filter: "blur(0px)",
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    ease: "back.out(1.2)",
+                    scrollTrigger: {
+                      trigger: cardRef.current,
+                      start: "top 85%",
+                      end: "bottom 20%",
+                      toggleActions: "play none none reverse",
+                    },
+                  },
+                );
+              }
+            }, []);
+
+            return (
+              <div
+                key={stat.label}
+                ref={cardRef}
+                className="text-center group hover:scale-105 transition-transform duration-300"
+              >
+                <div
+                  ref={valueRef}
+                  className={`text-2xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}
+                >
+                  0%
+                </div>
+                <div className="text-xs text-muted-foreground/60 mt-1">
+                  {stat.label}
+                </div>
+                <div className="w-full h-1.5 bg-gradient-to-r from-lime-500/10 to-yellow-500/10 rounded-full mt-2 overflow-hidden">
+                  <div
+                    ref={progressRef}
+                    className={`h-full rounded-full bg-gradient-to-r ${
+                      i % 2 === 0
+                        ? "from-lime-500 to-yellow-500"
+                        : "from-yellow-500 to-lime-500"
+                    }`}
+                    style={{ width: "0%" }}
+                  />
+                </div>
               </div>
-              <div className="text-xs text-muted-foreground/60 mt-1">{stat.label}</div>
-              <div className="w-full h-1.5 bg-gradient-to-r from-lime-500/10 to-yellow-500/10 rounded-full mt-2 overflow-hidden">
-                <div 
-                  className={`h-full rounded-full bg-gradient-to-r ${
-                    i % 2 === 0 ? 'from-lime-500 to-yellow-500' : 'from-yellow-500 to-lime-500'
-                  }`}
-                  style={{ width: stat.value }}
-                />
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Decorative bottom line */}
@@ -256,7 +381,8 @@ export default function SkillsSection() {
         }
 
         @keyframes pulse-glow {
-          0%, 100% {
+          0%,
+          100% {
             opacity: 0.3;
             filter: blur(80px);
           }
@@ -267,7 +393,8 @@ export default function SkillsSection() {
         }
 
         @keyframes float {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(0);
           }
           50% {
