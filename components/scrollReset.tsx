@@ -1,24 +1,51 @@
 "use client";
-import { useLayoutEffect } from "react";
+
+import { useEffect, useRef } from "react";
 
 export default function ScrollReset() {
-  useLayoutEffect(() => {
-    // Hapus hash dari URL jika ada
-    if (window.location.hash) {
-      history.replaceState(null, "", window.location.pathname);
+  const hasResetRef = useRef(false);
+
+  useEffect(() => {
+    // Cegah multiple reset
+    if (hasResetRef.current) return;
+    
+    // Deteksi jika ini adalah initial load atau refresh
+    const isInitialLoad = !sessionStorage.getItem('hasLoaded');
+    
+    if (isInitialLoad) {
+      // Set flag bahwa halaman sudah load
+      sessionStorage.setItem('hasLoaded', 'true');
+      
+      // Reset scroll dengan performa optimal
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'instant'
+        });
+        
+        // Hapus hash dari URL
+        if (window.location.hash && history.replaceState) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+      });
+      
+      hasResetRef.current = true;
     }
 
-    // Matikan scroll restoration bawaan browser
-    if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
+    // Nonaktifkan scroll restoration
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
     }
 
-    // Paksa scroll ke atas saat halaman dimount
-    window.scrollTo(0, 0);
-
-    // Tambahkan handler untuk refresh
-    window.onbeforeunload = () => {
-      window.scrollTo(0, 0);
+    // Cleanup
+    return () => {
+      // Reset flag saat component unmount
+      sessionStorage.removeItem('hasLoaded');
+      
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'auto';
+      }
     };
   }, []);
 

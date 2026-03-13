@@ -1,69 +1,296 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import gsap from "gsap"
-import Image from "next/image"
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import Image from "next/image";
 
 export default function SplashScreen() {
+  const splashRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
+  const leftCurtainRef = useRef<HTMLDivElement>(null);
+  const rightCurtainRef = useRef<HTMLDivElement>(null);
+  const particlesRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    const tl = gsap.timeline()
+    const tl = gsap.timeline({
+      defaults: { ease: "power4.inOut" },
+    });
 
-    // Animate curtain left and right opening
-    tl.to(
-      ".curtain-left",
-      {
-        x: "-100%",
-        duration: 1.2,
-        ease: "power4.inOut",
+    // Initial state
+    gsap.set([leftCurtainRef.current, rightCurtainRef.current], {
+      x: 0,
+    });
+    
+    gsap.set(logoRef.current, {
+      scale: 0.8,
+      opacity: 0,
+      filter: "blur(10px)",
+    });
+
+    gsap.set(textRef.current, {
+      y: 20,
+      opacity: 0,
+      filter: "blur(5px)",
+    });
+
+    // Logo reveal animation
+    tl.to(logoRef.current, {
+      scale: 1,
+      opacity: 1,
+      filter: "blur(0px)",
+      duration: 1.2,
+      ease: "back.out(1.7)",
+    })
+    // Text reveal
+    .to(textRef.current, {
+      y: 0,
+      opacity: 0.7,
+      filter: "blur(0px)",
+      duration: 1,
+      ease: "power3.out",
+    }, "-=0.6")
+    // Hold for a moment
+    .to({}, { duration: 0.8 })
+    // Animate curtains with parallax effect
+    .to(leftCurtainRef.current, {
+      x: "-100%",
+      duration: 1.5,
+      ease: "power4.inOut",
+    }, "+=0.2")
+    .to(rightCurtainRef.current, {
+      x: "100%",
+      duration: 1.5,
+      ease: "power4.inOut",
+    }, "<")
+    // Logo exit animation
+    .to(logoRef.current, {
+      scale: 0.5,
+      opacity: 0,
+      filter: "blur(20px)",
+      duration: 1,
+      ease: "power3.in",
+    }, "-=0.8")
+    .to(textRef.current, {
+      y: -20,
+      opacity: 0,
+      filter: "blur(10px)",
+      duration: 0.8,
+      ease: "power3.in",
+    }, "-=0.6")
+    // Fade out splash screen
+    .to(splashRef.current, {
+      opacity: 0,
+      pointerEvents: "none",
+      duration: 0.8,
+      ease: "power3.out",
+      onComplete: () => {
+        // Enable scroll on body
+        document.body.style.overflow = "auto";
       },
-      0,
-    )
-      .to(
-        ".curtain-right",
-        {
-          x: "100%",
-          duration: 1.2,
-          ease: "power4.inOut",
-        },
-        0,
-      )
-      // Fade out the splash screen after curtains open
-      .to(
-        ".splash-screen",
-        {
-          opacity: 0,
-          pointerEvents: "none",
-          duration: 0.6,
-          ease: "power3.out",
-        },
-        0.8,
-      )
+    }, "-=0.4");
 
-    // Add scroll to body after animation completes
-    return () => {
-      tl.kill()
+    // Particle animation
+    if (particlesRef.current) {
+      const particles = particlesRef.current.children;
+      gsap.to(particles, {
+        y: -100,
+        rotation: 360,
+        opacity: 0,
+        duration: 2,
+        stagger: {
+          amount: 1.5,
+          from: "random",
+        },
+        ease: "power2.out",
+        repeat: -1,
+      });
     }
-  }, [])
+
+    // Disable scroll during splash screen
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      tl.kill();
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   return (
-    <div className="splash-screen fixed inset-0 z-50 flex items-center justify-center bg-background">
-      {/* Logo/Center Content */}
-    <div>
-        <Image
-          src="/logo.png"
-          alt="Logo"
-          width={250}
-          height={250}
-          className="drop-shadow-lg"
-        />
+    <div
+      ref={splashRef}
+      className="splash-screen fixed inset-0 z-[9999] flex items-center justify-center bg-background overflow-hidden"
+    >
+      {/* Animated particles background */}
+      <div
+        ref={particlesRef}
+        className="absolute inset-0 pointer-events-none"
+      >
+        {[...Array(40)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1.5 h-1.5 bg-primary/30 rounded-full"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 2}s`,
+              animation: `float-particle ${3 + Math.random() * 4}s linear infinite`,
+            }}
+          />
+        ))}
       </div>
 
+      {/* Gradient orbs */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
+      <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-primary/15 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
 
-      {/* Left Curtain */}
-      <div className="curtain-left fixed left-0 top-0 h-full w-1/2 bg-background z-40" />
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px)
+          `,
+          backgroundSize: '30px 30px',
+        }}
+      />
 
-      {/* Right Curtain */}
-      <div className="curtain-right fixed right-0 top-0 h-full w-1/2 bg-background z-40" />
+      {/* Main content */}
+      <div className="relative z-10 text-center perspective">
+        {/* Logo container */}
+        <div ref={logoRef} className="mb-8">
+          <div className="relative group">
+            <div className="absolute inset-0 bg-primary/30 blur-3xl opacity-50 group-hover:opacity-70 transition-opacity duration-1000" />
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={280}
+              height={280}
+              className="relative drop-shadow-2xl animate-float-slow"
+              priority
+            />
+          </div>
+        </div>
+
+        {/* Loading text */}
+        <div ref={textRef}>
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0s" }} />
+            <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
+            <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.4s" }} />
+          </div>
+          <span className="text-sm tracking-[0.3em] text-primary/70 font-light">
+            LOADING EXPERIENCE
+          </span>
+        </div>
+
+        {/* Decorative lines */}
+        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-px h-20 bg-gradient-to-b from-transparent via-primary/30 to-transparent" />
+        <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-px h-20 bg-gradient-to-t from-transparent via-primary/30 to-transparent" />
+      </div>
+
+      {/* Left Curtain dengan efek gradient */}
+      <div
+        ref={leftCurtainRef}
+        className="curtain-left fixed left-0 top-0 h-full w-1/2 bg-gradient-to-r from-background via-background to-primary/5 z-40"
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
+        
+        {/* Animated pattern */}
+        <div className="absolute inset-0 opacity-30">
+          {[...Array(5)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"
+              style={{
+                top: `${20 + i * 15}%`,
+                transform: `rotate(${i * 5}deg)`,
+                animation: `slide ${3 + i}s linear infinite`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Right Curtain dengan efek gradient */}
+      <div
+        ref={rightCurtainRef}
+        className="curtain-right fixed right-0 top-0 h-full w-1/2 bg-gradient-to-l from-background via-background to-primary/5 z-40"
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
+        
+        {/* Animated pattern */}
+        <div className="absolute inset-0 opacity-30">
+          {[...Array(5)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-full h-px bg-gradient-to-l from-transparent via-primary/30 to-transparent"
+              style={{
+                top: `${20 + i * 15}%`,
+                transform: `rotate(${-i * 5}deg)`,
+                animation: `slide-reverse ${3 + i}s linear infinite`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Edge accents */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 border-t-2 border-l-2 border-r-2 border-primary/20 rounded-t-full" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-32 border-b-2 border-l-2 border-r-2 border-primary/20 rounded-b-full" />
+
+      <style jsx>{`
+        @keyframes float-particle {
+          0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0.3;
+          }
+          50% {
+            opacity: 0.8;
+          }
+          100% {
+            transform: translateY(-100px) rotate(360deg);
+            opacity: 0;
+          }
+        }
+        
+        @keyframes slide {
+          0% {
+            transform: translateX(-100%) rotate(5deg);
+          }
+          100% {
+            transform: translateX(100%) rotate(5deg);
+          }
+        }
+        
+        @keyframes slide-reverse {
+          0% {
+            transform: translateX(100%) rotate(-5deg);
+          }
+          100% {
+            transform: translateX(-100%) rotate(-5deg);
+          }
+        }
+        
+        @keyframes float-slow {
+          0%, 100% {
+            transform: translateY(0) scale(1);
+          }
+          50% {
+            transform: translateY(-10px) scale(1.02);
+          }
+        }
+        
+        .animate-float-slow {
+          animation: float-slow 6s ease-in-out infinite;
+        }
+        
+        .perspective {
+          perspective: 2000px;
+        }
+      `}</style>
     </div>
-  )
+  );
 }

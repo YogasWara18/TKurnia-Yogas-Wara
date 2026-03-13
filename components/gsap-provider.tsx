@@ -12,16 +12,47 @@ interface GSAPProviderProps {
 
 export default function GSAPProvider({ children }: GSAPProviderProps) {
   useEffect(() => {
-    // Refresh ScrollTrigger after all content is loaded
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh()
-    }, 100)
+    let isMounted = true;
+    let refreshTimer: NodeJS.Timeout;
 
-    return () => {
-      clearTimeout(timer)
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+    // Single refresh dengan debounce
+    const refresh = () => {
+      if (!isMounted) return;
+      
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+      });
+    };
+
+    // Refresh saat semua konten loaded
+    if (document.readyState === 'complete') {
+      refresh();
+    } else {
+      window.addEventListener('load', refresh, { once: true });
     }
-  }, [])
 
-  return <>{children}</>
+    // Debounced resize handler
+    const handleResize = () => {
+      clearTimeout(refreshTimer);
+      refreshTimer = setTimeout(refresh, 150);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Config untuk performa
+    gsap.config({ autoSleep: 60, force3D: true });
+
+    // Cleanup
+    return () => {
+      isMounted = false;
+      clearTimeout(refreshTimer);
+      window.removeEventListener('load', refresh);
+      window.removeEventListener('resize', handleResize);
+      
+      // Kill semua triggers
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
+  return <>{children}</>;
 }
