@@ -13,7 +13,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Data projects (tetap sama)
+// Data projects 
 const webProjects = [
   {
     title:
@@ -162,30 +162,28 @@ const webProjects = [
 
 const systemProjects = [
   {
-    title: "POS System – Full Stack with React + Node.js + PostgreSQL",
+    title: "Dashboard Billing & Invoice Manager",
     description:
-      "A comprehensive Point of Sale system designed for restaurants and retail businesses. Features include inventory management, sales reporting, employee management, and real-time analytics. Built with React for the frontend, Node.js for the backend API, and PostgreSQL for data persistence. The system includes role-based access control, offline capability, and cloud synchronization for multi-branch operations.",
-    video: "/Thumbnail-POS.mp4",
+      "A financial dashboard application for managing invoices and monitoring revenue in real-time. Displays total revenue, invoice status (paid, pending, overdue), revenue trends, and a list of recent invoices with client information, amount, and status. Built with a focus on an intuitive user experience and responsive design.",
+    image: "/Billing-invoice.jpg",
     tags: [
       "System Development",
-      "POS",
+      "Next.js",
       "React",
-      "Node.js",
-      "PostgreSQL",
-      "REST API",
-      "JWT",
-      "Dashboard",
-      "Analytics",
+      "TailwindCSS",
+      "Chart.js",
+      "Zustand",
+      "React Context",
     ],
-    liveUrl: "https://pos-system-demo.vercel.app/",
-    githubUrl: "https://github.com/YogasWara18/pos-system",
+    liveUrl: "https://billing-invoice-taupe.vercel.app/",
+    githubUrl: "https://github.com/YogasWara18/Billing_invoice",
     date: "March 2026",
   },
   {
     title: "Hotel Management System – Full Stack with Next.js + Prisma + MySQL",
     description:
       "Complete hotel management solution handling reservations, room allocation, billing, and guest management. Features include real-time room availability, booking calendar, guest check-in/out, invoice generation, and integration with payment gateways. Built with Next.js, Prisma ORM, and MySQL database, deployed on Vercel with Cloudflare CDN for optimal performance.",
-    video: "/Thumbnail-HMS.mp4",
+    image: "/Thumbnail-HMS.jpg",
     tags: [
       "System Development",
       "Hotel Management",
@@ -203,7 +201,7 @@ const systemProjects = [
     title: "School Management System – Laravel + MySQL + Bootstrap",
     description:
       "Educational platform for managing student records, attendance, grades, and parent-teacher communication. Includes modules for student enrollment, class scheduling, exam management, and report card generation. Built with Laravel PHP framework, MySQL database, and Bootstrap for responsive interface design.",
-    video: "/Thumbnail-School.mp4",
+    image: "/Thumbnail-School.jpg",
     tags: [
       "System Development",
       "Education",
@@ -221,7 +219,7 @@ const systemProjects = [
     title: "Inventory Management System – MERN Stack with Redux",
     description:
       "Advanced inventory tracking system with barcode scanning, low stock alerts, purchase orders, and supplier management. Features real-time stock updates, multi-warehouse support, and detailed inventory reports. Built with MongoDB, Express.js, React with Redux for state management, and Node.js backend.",
-    video: "/Thumbnail-Inventory.mp4",
+    image: "/Thumbnail-Inventory.jpg",
     tags: [
       "System Development",
       "Inventory",
@@ -314,6 +312,18 @@ const wordpressProjects = [
   },
 ];
 
+// Tipe untuk project
+type Project = {
+  title: string;
+  description: string;
+  video?: string;
+  image?: string;
+  tags: string[];
+  liveUrl: string;
+  githubUrl: string;
+  date: string;
+};
+
 function ProjectSection({
   id,
   title,
@@ -324,7 +334,7 @@ function ProjectSection({
   id: string;
   title: string;
   subtitle: string;
-  projects: typeof webProjects;
+  projects: Project[];
   index: number;
 }) {
   const [activeProject, setActiveProject] = useState<number | null>(null);
@@ -424,8 +434,8 @@ function ProjectSection({
           "-=0.8",
         );
 
-        const video = card.querySelector(".project-video");
-        gsap.to(video, {
+        const media = card.querySelector(".project-media");
+        gsap.to(media, {
           y: -60,
           scale: 1.1,
           ease: "none",
@@ -463,7 +473,7 @@ function ProjectSection({
             boxShadow: "0 40px 80px rgba(132, 204, 22, 0.3)",
             scale: 1.02,
           });
-          gsap.to(video, {
+          gsap.to(media, {
             duration: 0.8,
             ease: "power2.out",
             scale: 1.15,
@@ -484,7 +494,7 @@ function ProjectSection({
             boxShadow: "0 0px 0px rgba(132, 204, 22, 0)",
             scale: 1,
           });
-          gsap.to(video, {
+          gsap.to(media, {
             duration: 0.6,
             ease: "power2.out",
             scale: 1,
@@ -613,21 +623,30 @@ function ProjectSection({
               onMouseEnter={() => setActiveProject(projectIndex)}
               onMouseLeave={() => setActiveProject(null)}
             >
-              {/* Video Section - Mobile First */}
+              {/* Media Section - Mobile First */}
               <div
                 className={`relative w-full overflow-hidden rounded-2xl md:rounded-3xl order-1 ${
                   projectIndex % 2 === 1 ? "md:order-2" : ""
                 }`}
               >
                 <div className="video-container relative aspect-video md:aspect-4/3 overflow-hidden bg-black/50 rounded-2xl md:rounded-3xl border border-lime-500/20">
-                  <video
-                    src={project.video || "/placeholder.mp4"}
-                    className="project-video w-full h-full object-cover transition-transform duration-700"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                  />
+                  {/* Conditional rendering: jika ada image, tampilkan image, jika tidak tampilkan video */}
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="project-media w-full h-full object-cover transition-transform duration-700"
+                    />
+                  ) : (
+                    <video
+                      src={project.video || "/placeholder.mp4"}
+                      className="project-media w-full h-full object-cover transition-transform duration-700"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    />
+                  )}
 
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
 
@@ -663,8 +682,6 @@ function ProjectSection({
                     <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 w-6 h-6 md:w-8 md:h-8 border-r-2 border-b-2 border-lime-500/40 rounded-br-lg md:rounded-br-2xl" />
                   </div>
 
-                 
-
                   <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 glass px-2 py-1 md:px-3 md:py-1.5 rounded-full">
                     <span className="text-[10px] md:text-xs font-medium text-yellow-500 flex items-center gap-1">
                       <Calendar className="w-2 h-2 md:w-3 md:h-3" />
@@ -688,7 +705,7 @@ function ProjectSection({
 
                   {/* Title */}
                   <div className="overflow-hidden">
-                    <h3 className="content-animate text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white bg-clip-text text-transparent">
+                    <h3 className="content-animate text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white">
                       {project.title}
                     </h3>
                   </div>
