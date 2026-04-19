@@ -313,21 +313,21 @@ export default function AboutSkillsSection() {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-5 md:py-2 rounded-full bg-gradient-to-r from-lime-500/20 to-yellow-500/20 border border-lime-500/40 backdrop-blur-sm shadow-lg shadow-lime-500/10">
               <Rocket className="w-3 h-3 md:w-4 md:h-4 text-lime-400" />
               <span className="text-[10px] md:text-xs font-bold text-lime-400 tracking-wider">
-                AVAILABLE FOR FREELANCE
+                ABOUT ME 
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black tracking-tighter">
               <span className="bg-gradient-to-r from-lime-400 via-yellow-400 to-cyan-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
-               About Me
+               Who Am I
               </span>
             </h2>
             <div className="relative inline-block mx-auto">
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground/80 max-w-3xl mx-auto leading-relaxed">
-                I'm <span className="text-lime-400 font-bold">Yogas</span> — a
+                I'm <span className="text-lime-400 font-bold">Yogas</span> a
                 creative engineer who transforms
                 <span className="text-yellow-400 font-bold"> complex ideas </span>
                 into
-                <span className="text-cyan-400 font-bold"> high-impact digital experiences.</span>
+                <span className="text-cyan-400 font-bold"> high impact digital experiences.</span>
               </p>
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-lime-500 to-transparent" />
             </div>
@@ -536,22 +536,6 @@ export default function AboutSkillsSection() {
               <div className="absolute -inset-0.5 rounded-xl md:rounded-2xl bg-gradient-to-r from-lime-500 to-yellow-500 opacity-20 blur-xl -z-10" />
               <div className="absolute -bottom-3 -right-3 md:-bottom-4 md:-right-4 w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 border-r-2 border-b-2 border-lime-500/50 rounded-br-xl md:rounded-br-2xl" />
               <div className="absolute -top-3 -left-3 md:-top-4 md:-left-4 w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 border-l-2 border-t-2 border-yellow-500/50 rounded-tl-xl md:rounded-tl-2xl" />
-            </div>
-            <div className="mt-6 md:mt-8 lg:mt-10 p-3 md:p-4 lg:p-5 rounded-xl md:rounded-2xl bg-gradient-to-r from-lime-500/10 to-yellow-500/10 border border-white/10 backdrop-blur-sm group hover:border-lime-500/30 transition-all duration-500">
-              <div className="flex items-start gap-2 md:gap-3">
-                <div className="p-1 rounded-full bg-lime-500/20 group-hover:scale-110 transition-transform duration-300">
-                  <Coffee className="w-3 h-3 md:w-4 md:h-4 text-lime-400" />
-                </div>
-                <div>
-                  <p className="text-xs md:text-sm text-muted-foreground/80 italic">
-                    "Code is poetry in motion. Every project is a new canvas to
-                    create something meaningful."
-                  </p>
-                  <p className="text-[10px] md:text-xs text-lime-400/70 mt-1 font-mono">
-                    — Yogas, 2025
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
