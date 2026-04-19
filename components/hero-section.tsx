@@ -1,14 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-
-// Dynamic import ReactPlayer (tanpa SSR)
-const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 // SplitText dengan style modern splash
 function SplitText({ text, className }: { text: string; className?: string }) {
@@ -93,38 +89,36 @@ export default function HeroSection() {
   const nameFirstRef = useRef<HTMLHeadingElement>(null);
   const nameLastRef = useRef<HTMLHeadingElement>(null);
 
-  // State untuk musik
+  // ========== MUSIK MP3 ==========
+  const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isPlayerReady, setIsPlayerReady] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const [error, setError] = useState(false);
 
-  // Toggle musik
   const toggleAudio = () => {
-    if (!isPlayerReady) {
-      console.log("Player not ready yet");
-      return;
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current.play();
+      setIsPlaying(true);
     }
-    setIsPlaying((prev) => !prev);
     if (!hasInteracted) setHasInteracted(true);
   };
 
-  // Memulai audio setelah interaksi
   const startAudio = () => {
-    if (!hasInteracted && !isPlaying && isPlayerReady) {
-      setIsPlaying(true);
-      setHasInteracted(true);
+    if (!hasInteracted && audioRef.current && !isPlaying) {
+      audioRef.current.play()
+        .then(() => {
+          setIsPlaying(true);
+          setHasInteracted(true);
+        })
+        .catch((err) => console.log("Audio play failed:", err));
     }
   };
 
-  // Handler untuk error
-  const handlePlayerError = (err: any) => {
-    console.error("ReactPlayer error:", err);
-    setError(true);
-  };
-
+  // Interaksi pertama pengguna (klik di mana saja)
   useEffect(() => {
-    // Listener interaksi pertama untuk memulai audio
     const handleFirstInteraction = () => {
       startAudio();
       document.removeEventListener("click", handleFirstInteraction);
@@ -136,11 +130,11 @@ export default function HeroSection() {
       document.removeEventListener("click", handleFirstInteraction);
       document.removeEventListener("touchstart", handleFirstInteraction);
     };
-  }, [isPlayerReady, hasInteracted]);
+  }, [hasInteracted]);
 
+  // ========== GSAP ANIMATIONS ==========
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Initial state
       gsap.set(heroRef.current, { opacity: 0 });
       gsap.set(subtitleRef.current, { y: 40, opacity: 0, filter: "blur(10px)" });
       gsap.set(ctaRef.current?.children || [], { y: 30, opacity: 0, scale: 0.95 });
@@ -166,7 +160,6 @@ export default function HeroSection() {
         .to(".scroll-indicator", { opacity: 0, y: 20, ease: "power2.out", scrollTrigger: { trigger: heroRef.current, start: "top top", end: "bottom 80%", scrub: 1 } }, 0);
     }, heroRef);
 
-    // Particle animation
     if (particlesRef.current) {
       const particles = particlesRef.current.children;
       gsap.to(particles, { y: -150, rotation: 360, opacity: 0, duration: 3, stagger: { amount: 2, from: "random" }, ease: "power2.out", repeat: -1 });
@@ -175,47 +168,20 @@ export default function HeroSection() {
     return () => ctx.revert();
   }, []);
 
-  const handlePlayerReady = () => {
-    console.log("Player ready");
-    setIsPlayerReady(true);
-  };
-
-  // URL musik bebas royalti (Lo-fi hip hop) - pastikan bisa diputar
-  const musicUrl = "https://www.youtube.com/watch?v=d_toKURCt10";
-
   return (
     <section ref={heroRef} className="relative pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36 min-h-screen flex items-center overflow-hidden bg-background" style={{ opacity: 0 }}>
-      {/* YouTube Player Tersembunyi */}
-      <div style={{ display: "none" }}>
-        <ReactPlayer
-          url={musicUrl}
-          playing={isPlaying}
-          loop={true}
-          volume={0.5}
-          width="0"
-          height="0"
-          onReady={handlePlayerReady}
-          onError={handlePlayerError}
-          config={{
-            youtube: {
-              playerVars: {
-                autoplay: 0,
-                controls: 0,
-                modestbranding: 1,
-                rel: 0,
-                showinfo: 0,
-              },
-            },
-          }}
-        />
-      </div>
+      {/* Audio MP3 - Ganti src dengan file musik Anda */}
+      <audio ref={audioRef} loop preload="auto">
+        <source src="/music/InTheEnd.mp3" type="audio/mpeg" />
+        {/* Fallback jika file tidak ditemukan */}
+        Your browser does not support the audio element.
+      </audio>
 
-      {/* Tombol Kontrol Musik di Kiri Bawah */}
+      {/* Tombol Play/Pause Musik (di kiri bawah agar tidak tabrakan dengan upscale) */}
       <button
         onClick={toggleAudio}
         className="fixed bottom-6 left-6 z-50 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-lime-500/40 flex items-center justify-center hover:scale-110 transition-all duration-300 group"
         aria-label="Toggle music"
-        disabled={!isPlayerReady}
       >
         {isPlaying ? (
           <svg className="w-4 h-4 text-lime-400" fill="currentColor" viewBox="0 0 24 24">
@@ -230,13 +196,6 @@ export default function HeroSection() {
           {isPlaying ? "Pause" : "Play"}
         </span>
       </button>
-
-      {/* Pesan error jika musik gagal */}
-      {error && (
-        <div className="fixed bottom-20 left-6 z-50 text-xs text-red-400 bg-black/50 px-2 py-1 rounded">
-          Music unavailable, click to retry
-        </div>
-      )}
 
       {/* Particle Background */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
@@ -287,7 +246,7 @@ export default function HeroSection() {
             </div>
             <TypingRole />
             <p ref={subtitleRef} className="text-sm sm:text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-md mx-auto lg:mx-0">
-              Crafting responsive, accessible, and performant web experiences with modern technologies. Focused on creating interfaces that blend technical excellence with aesthetic precision.
+              I specialize in developing responsive, accessible, and high performance web applications using cutting edge technologies. My approach combines technical excellence with a keen eye for design, ensuring every project delivers a seamless user experience and meets the highest standards of quality.
             </p>
             <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-4">
               <a href="#projects" className="group relative px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-lime-500 to-yellow-500 rounded-full font-semibold text-background shadow-lg hover:shadow-lime-500/30 transition-all duration-300 hover:scale-105 active:scale-95 text-sm sm:text-base">

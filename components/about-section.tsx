@@ -318,7 +318,7 @@ export default function AboutSkillsSection() {
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black tracking-tighter">
               <span className="bg-gradient-to-r from-lime-400 via-yellow-400 to-cyan-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
-                Beyond Code
+               About Me
               </span>
             </h2>
             <div className="relative inline-block mx-auto">
