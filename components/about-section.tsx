@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-flip";
-import { Navigation, Pagination, Autoplay, EffectFlip } from "swiper/modules";
+import { Navigation, Pagination, Autoplay, EffectFlip, FreeMode } from "swiper/modules";
 import {
   Award,
   Code,
@@ -106,14 +106,12 @@ export default function AboutSkillsSection() {
   const floatingShapesRef = useRef<HTMLDivElement>(null);
   const progressCirclesRef = useRef<(SVGCircleElement | null)[]>([]);
 
-  // Inisialisasi array ref untuk progress circles
   useEffect(() => {
     progressCirclesRef.current = progressCirclesRef.current.slice(0, skillsData.length);
   }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Timeline utama
       const tlMain = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -123,7 +121,6 @@ export default function AboutSkillsSection() {
         },
       });
 
-      // Bio animation
       if (bioRef.current) {
         tlMain.fromTo(
           bioRef.current,
@@ -132,7 +129,6 @@ export default function AboutSkillsSection() {
         );
       }
 
-      // Stats cards animation
       const statChildren = statsRef.current?.children;
       if (statChildren && statChildren.length) {
         tlMain.fromTo(
@@ -143,7 +139,6 @@ export default function AboutSkillsSection() {
         );
       }
 
-      // Skills cards animation
       const skillCards = skillsContainerRef.current?.querySelectorAll(".skill-card");
       if (skillCards && skillCards.length) {
         gsap.fromTo(
@@ -166,7 +161,6 @@ export default function AboutSkillsSection() {
         );
       }
 
-      // Certificate carousel reveal
       if (certificateRef.current) {
         gsap.fromTo(
           certificateRef.current,
@@ -186,7 +180,6 @@ export default function AboutSkillsSection() {
         );
       }
 
-      // Floating shapes animation
       if (floatingShapesRef.current) {
         const shapes = floatingShapesRef.current.children;
         if (shapes.length) {
@@ -204,7 +197,6 @@ export default function AboutSkillsSection() {
       }
     }, sectionRef);
 
-    // Particle animation
     if (particlesRef.current) {
       const particles = particlesRef.current.children;
       if (particles.length) {
@@ -221,7 +213,6 @@ export default function AboutSkillsSection() {
       }
     }
 
-    // Radial progress animation
     skillsData.forEach((skill, idx) => {
       const circle = progressCirclesRef.current[idx];
       if (circle) {
@@ -334,15 +325,9 @@ export default function AboutSkillsSection() {
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground/80 max-w-3xl mx-auto leading-relaxed">
                 I'm <span className="text-lime-400 font-bold">Yogas</span> — a
                 creative engineer who transforms
-                <span className="text-yellow-400 font-bold">
-                  {" "}
-                  complex ideas{" "}
-                </span>{" "}
+                <span className="text-yellow-400 font-bold"> complex ideas </span>
                 into
-                <span className="text-cyan-400 font-bold">
-                  {" "}
-                  high-impact digital experiences.
-                </span>
+                <span className="text-cyan-400 font-bold"> high-impact digital experiences.</span>
               </p>
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-lime-500 to-transparent" />
             </div>
@@ -571,7 +556,7 @@ export default function AboutSkillsSection() {
           </div>
         </div>
 
-        {/* Tech Stack marquee - berjalan tanpa henti */}
+        {/* Tech Stack Carousel - berjalan tanpa henti */}
         <div className="mt-16 md:mt-20 lg:mt-24 xl:mt-28 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-5 md:py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
             <Terminal className="w-3 h-3 md:w-4 md:h-4 text-lime-400" />
@@ -579,44 +564,38 @@ export default function AboutSkillsSection() {
               TOOLKIT & TECH STACK
             </span>
           </div>
-          <div className="relative overflow-hidden mt-4 md:mt-6 py-2 md:py-3">
-            <div className="flex gap-2 md:gap-3 animate-marquee whitespace-nowrap">
-              {[...Array(2)].map((_, idx) => (
-                <React.Fragment key={idx}>
-                  {[
-                    "HTML",
-                    "CSS",
-                    "JavaScript",
-                    "TypeScript",
-                    "React",
-                    "Next.js",
-                    "Tailwind CSS",
-                    "Bootstrap",
-                    "Node.js",
-                    "PostgreSQL",
-                    "REST API",
-                    "GIT",
-                    "GITHUB",
-                    "GSAP",
-                    "Framer Motion",
-                    "Figma",
-                    "WordPress",
-                    "Elementor",
-                    "YOAST SEO",
-                    "Vercel",
-                  ].map((tech) => (
-                    <span
-                      key={`${idx}-${tech}`}
-                      className="px-2 py-1 md:px-3 md:py-1.5 text-[10px] md:text-xs rounded-full bg-white/5 border border-white/10 text-muted-foreground/70 hover:border-lime-500/50 hover:text-lime-400 transition-all duration-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </React.Fragment>
+          <div className="relative mt-4 md:mt-6">
+            <Swiper
+              modules={[Autoplay, FreeMode]}
+              spaceBetween={12}
+              slidesPerView="auto"
+              loop={true}
+              autoplay={{
+                delay: 0,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+                stopOnLastSlide: false,
+              }}
+              speed={5000}
+              freeMode={true}
+              className="tech-stack-swiper"
+            >
+              {[
+                "HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js",
+                "Tailwind CSS", "Bootstrap", "Node.js", "PostgreSQL", "REST API",
+                "GIT", "GITHUB", "GSAP", "Framer Motion", "Figma", "WordPress",
+                "Elementor", "YOAST SEO", "Vercel"
+              ].map((tech, idx) => (
+                <SwiperSlide key={idx} className="!w-auto">
+                  <span className="inline-block px-3 py-1.5 md:px-4 md:py-2 text-[10px] md:text-xs rounded-full bg-white/5 border border-white/10 text-muted-foreground/70 hover:border-lime-500/50 hover:text-lime-400 transition-all duration-300 whitespace-nowrap">
+                    {tech}
+                  </span>
+                </SwiperSlide>
               ))}
-            </div>
-            <div className="absolute inset-y-0 left-0 w-8 md:w-12 bg-gradient-to-r from-slate-950 to-transparent pointer-events-none" />
-            <div className="absolute inset-y-0 right-0 w-8 md:w-12 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none" />
+            </Swiper>
+            {/* Efek gradasi di tepi */}
+            <div className="absolute inset-y-0 left-0 w-12 md:w-20 bg-gradient-to-r from-slate-950 to-transparent pointer-events-none z-10" />
+            <div className="absolute inset-y-0 right-0 w-12 md:w-20 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none z-10" />
           </div>
         </div>
       </div>
@@ -627,18 +606,9 @@ export default function AboutSkillsSection() {
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
         .animate-gradient {
           background-size: 200% 200%;
           animation: gradient 4s ease infinite;
-        }
-        .animate-marquee {
-          animation: marquee 20s linear infinite;
-          display: inline-flex;
-          width: max-content;
         }
         .perspective-1000 {
           perspective: 1000px;
