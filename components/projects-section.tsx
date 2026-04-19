@@ -467,51 +467,58 @@ function ProjectSection({
           "-=0.6",
         );
 
-        card.addEventListener("mouseenter", () => {
-          gsap.to(videoContainer, {
-            duration: 0.6,
-            ease: "power2.out",
-            boxShadow: "0 40px 80px rgba(132, 204, 22, 0.3)",
-            scale: 1.02,
+        // Only add hover animations for non-touch devices
+        if (window.matchMedia("(hover: hover)").matches) {
+          card.addEventListener("mouseenter", () => {
+            gsap.to(videoContainer, {
+              duration: 0.6,
+              ease: "power2.out",
+              boxShadow: "0 40px 80px rgba(132, 204, 22, 0.3)",
+              scale: 1.02,
+            });
+            gsap.to(media, {
+              duration: 0.8,
+              ease: "power2.out",
+              scale: 1.15,
+            });
+            gsap.to(card.querySelectorAll(".project-link"), {
+              duration: 0.4,
+              opacity: 1,
+              y: 0,
+              stagger: 0.1,
+              ease: "power2.out",
+            });
           });
-          gsap.to(media, {
-            duration: 0.8,
-            ease: "power2.out",
-            scale: 1.15,
-          });
-          gsap.to(card.querySelectorAll(".project-link"), {
-            duration: 0.4,
-            opacity: 1,
-            y: 0,
-            stagger: 0.1,
-            ease: "power2.out",
-          });
-        });
 
-        card.addEventListener("mouseleave", () => {
-          gsap.to(videoContainer, {
-            duration: 0.6,
-            ease: "power2.out",
-            boxShadow: "0 0px 0px rgba(132, 204, 22, 0)",
-            scale: 1,
+          card.addEventListener("mouseleave", () => {
+            gsap.to(videoContainer, {
+              duration: 0.6,
+              ease: "power2.out",
+              boxShadow: "0 0px 0px rgba(132, 204, 22, 0)",
+              scale: 1,
+            });
+            gsap.to(media, {
+              duration: 0.6,
+              ease: "power2.out",
+              scale: 1,
+            });
+            gsap.to(card.querySelectorAll(".project-link"), {
+              duration: 0.3,
+              opacity: 0,
+              y: 20,
+              stagger: 0.05,
+              ease: "power2.out",
+            });
           });
-          gsap.to(media, {
-            duration: 0.6,
-            ease: "power2.out",
-            scale: 1,
-          });
-          gsap.to(card.querySelectorAll(".project-link"), {
-            duration: 0.3,
-            opacity: 0,
-            y: 20,
-            stagger: 0.05,
-            ease: "power2.out",
-          });
-        });
+        } else {
+          // On touch devices, always show the links
+          const links = card.querySelectorAll(".project-link");
+          gsap.set(links, { opacity: 1, y: 0 });
+        }
       });
     }, sectionRef);
 
-    // Particle animation (20 butir, gaya trend)
+    // Particle animation (reduced for mobile)
     if (particlesRef.current) {
       const particles = particlesRef.current.children;
       gsap.to(particles, {
@@ -533,11 +540,11 @@ function ProjectSection({
     <section
       ref={sectionRef}
       id={id}
-      className="relative min-h-screen py-20 md:py-28 lg:py-32 overflow-hidden bg-gradient-to-br from-slate-950 via-background to-slate-950"
+      className="relative min-h-screen py-12 sm:py-16 md:py-20 lg:py-28 overflow-hidden bg-gradient-to-br from-slate-950 via-slate-950 to-slate-950"
     >
-      {/* Particle Background (20 butir) */}
+      {/* Particle Background - reduced count on mobile */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(12)].map((_, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 rounded-full"
@@ -545,72 +552,69 @@ function ProjectSection({
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
               backgroundColor: i % 2 === 0 ? "#84cc16" : "#eab308",
-              opacity: 0.25,
+              opacity: 0.2,
               willChange: "transform",
             }}
           />
         ))}
       </div>
 
-      {/* Gradient Orbs */}
-      <div className="absolute top-20 left-20 w-[30rem] h-[30rem] bg-lime-500/5 rounded-full blur-3xl animate-pulse-glow" />
-      <div className="absolute bottom-20 right-20 w-[25rem] h-[25rem] bg-yellow-500/10 rounded-full blur-3xl animate-float" />
+      {/* Gradient Orbs - responsive sizes */}
+      <div className="absolute top-20 left-20 w-48 sm:w-64 md:w-96 lg:w-[30rem] h-48 sm:h-64 md:h-96 lg:h-[30rem] bg-lime-500/5 rounded-full blur-3xl animate-pulse-glow" />
+      <div className="absolute bottom-20 right-20 w-40 sm:w-56 md:w-80 lg:w-[25rem] h-40 sm:h-56 md:h-80 lg:h-[25rem] bg-yellow-500/10 rounded-full blur-3xl animate-float" />
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-lime-500/5 rounded-full blur-3xl animate-pulse-glow"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 sm:w-96 md:w-[40rem] h-64 sm:h-96 md:h-[40rem] bg-lime-500/5 rounded-full blur-3xl animate-pulse-glow"
         style={{ animationDelay: "2s" }}
       />
 
-      {/* Grid Overlay */}
+      {/* Grid Overlay - reduced opacity on mobile */}
       <div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-10 sm:opacity-20"
         style={{
           backgroundImage: `
             linear-gradient(rgba(132, 204, 22, 0.03) 1px, transparent 1px),
             linear-gradient(90deg, rgba(234, 179, 8, 0.03) 1px, transparent 1px)
           `,
-          backgroundSize: "40px 40px",
+          backgroundSize: "30px 30px",
         }}
       />
 
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-lime-500/5 via-transparent to-transparent" />
-
-      {/* Light leak effect */}
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-yellow-500/10 to-transparent blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-lime-500/10 to-transparent blur-3xl" />
+      {/* Light leak effects */}
+      <div className="absolute top-0 right-0 w-1/2 h-1/3 bg-gradient-to-br from-yellow-500/10 to-transparent blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-1/2 h-1/3 bg-gradient-to-tr from-lime-500/10 to-transparent blur-3xl" />
 
       <div className="container relative z-10 px-4 sm:px-6 mx-auto">
         {/* Title */}
-        <div ref={titleRef} className="text-center mb-16 md:mb-20">
+        <div ref={titleRef} className="text-center mb-12 sm:mb-16 md:mb-20">
           <div className="overflow-hidden mb-2">
-            <h2 className="title-line text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-lime-500 to-yellow-500 bg-clip-text text-transparent">
+            <h2 className="title-line text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-lime-500 to-yellow-500 bg-clip-text text-transparent">
               {title}
             </h2>
           </div>
           <div className="overflow-hidden">
-            <h2 className="title-line text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white italic">
+            <h2 className="title-line text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white italic">
               {subtitle}
             </h2>
           </div>
-          <div className="w-20 h-1 bg-gradient-to-r from-lime-500 to-yellow-500 rounded-full mx-auto mt-4" />
+          <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-lime-500 to-yellow-500 rounded-full mx-auto mt-4" />
         </div>
 
         {/* Projects */}
-        <div ref={cardsRef} className="space-y-24 md:space-y-32">
+        <div ref={cardsRef} className="space-y-16 sm:space-y-20 md:space-y-24 lg:space-y-32">
           {projects.map((project, projectIndex) => (
             <div
               key={project.title}
-              className="project-card flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center perspective group"
+              className="project-card flex flex-col md:grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center group"
               onMouseEnter={() => setActiveProject(projectIndex)}
               onMouseLeave={() => setActiveProject(null)}
             >
               {/* Media Section */}
               <div
-                className={`relative w-full overflow-hidden rounded-2xl md:rounded-3xl order-1 ${
+                className={`relative w-full overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl order-1 ${
                   projectIndex % 2 === 1 ? "md:order-2" : ""
                 }`}
               >
-                <div className="video-container relative aspect-video md:aspect-4/3 overflow-hidden bg-black/50 rounded-2xl md:rounded-3xl border border-lime-500/20 backdrop-blur-sm">
+                <div className="video-container relative aspect-video md:aspect-4/3 overflow-hidden bg-black/50 rounded-xl sm:rounded-2xl md:rounded-3xl border border-lime-500/20 backdrop-blur-sm">
                   {project.image ? (
                     <img
                       src={project.image}
@@ -630,42 +634,42 @@ function ProjectSection({
 
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
 
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-lime-500/0 to-yellow-500/0 hover:from-lime-500/20 hover:to-yellow-500/20 transition-all duration-700 flex items-center justify-center gap-4 opacity-0 hover:opacity-100">
+                  {/* Hover overlay - always visible on touch devices */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-lime-500/0 to-yellow-500/0 md:hover:from-lime-500/20 md:hover:to-yellow-500/20 transition-all duration-700 flex items-center justify-center gap-3 sm:gap-4 opacity-100 md:opacity-0 md:group-hover:opacity-100">
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="project-link translate-y-5 px-4 md:px-6 py-2 md:py-3 bg-background/80 backdrop-blur-sm text-foreground rounded-full text-sm font-medium hover:scale-110 transition-all duration-300 flex items-center gap-2 border border-lime-500/30"
+                      className="project-link px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 bg-background/80 backdrop-blur-sm text-foreground rounded-full text-xs sm:text-sm font-medium hover:scale-110 transition-all duration-300 flex items-center gap-1 sm:gap-2 border border-lime-500/30"
                     >
-                      <ExternalLink className="w-3 h-3 md:w-4 md:h-4" />
-                      <span className="hidden sm:inline">Live Demo</span>
-                      <span className="sm:hidden">Demo</span>
+                      <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <span className="hidden xs:inline">Live Demo</span>
+                      <span className="xs:hidden">Demo</span>
                     </a>
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="project-link translate-y-5 px-4 md:px-6 py-2 md:py-3 bg-background/80 backdrop-blur-sm text-foreground rounded-full text-sm font-medium hover:scale-110 transition-all duration-300 flex items-center gap-2 border border-yellow-500/30"
+                      className="project-link px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 bg-background/80 backdrop-blur-sm text-foreground rounded-full text-xs sm:text-sm font-medium hover:scale-110 transition-all duration-300 flex items-center gap-1 sm:gap-2 border border-yellow-500/30"
                     >
-                      <Github className="w-3 h-3 md:w-4 md:h-4" />
-                      <span className="hidden sm:inline">Source</span>
-                      <span className="sm:hidden">Code</span>
+                      <Github className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <span className="hidden xs:inline">Source</span>
+                      <span className="xs:hidden">Code</span>
                     </a>
                   </div>
 
-                  {/* Decorative frame */}
-                  <div className="absolute inset-0 border border-lime-500/20 rounded-2xl md:rounded-3xl pointer-events-none">
-                    <div className="absolute top-2 left-2 md:top-4 md:left-4 w-6 h-6 md:w-8 md:h-8 border-l-2 border-t-2 border-lime-500/40 rounded-tl-lg md:rounded-tl-2xl" />
-                    <div className="absolute top-2 right-2 md:top-4 md:right-4 w-6 h-6 md:w-8 md:h-8 border-r-2 border-t-2 border-yellow-500/40 rounded-tr-lg md:rounded-tr-2xl" />
-                    <div className="absolute bottom-2 left-2 md:bottom-4 md:left-4 w-6 h-6 md:w-8 md:h-8 border-l-2 border-b-2 border-yellow-500/40 rounded-bl-lg md:rounded-bl-2xl" />
-                    <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 w-6 h-6 md:w-8 md:h-8 border-r-2 border-b-2 border-lime-500/40 rounded-br-lg md:rounded-br-2xl" />
+                  {/* Decorative frame - scaled for mobile */}
+                  <div className="absolute inset-0 border border-lime-500/20 rounded-xl sm:rounded-2xl md:rounded-3xl pointer-events-none">
+                    <div className="absolute top-1 left-1 sm:top-2 sm:left-2 md:top-4 md:left-4 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 border-l-2 border-t-2 border-lime-500/40 rounded-tl-md sm:rounded-tl-lg md:rounded-tl-2xl" />
+                    <div className="absolute top-1 right-1 sm:top-2 sm:right-2 md:top-4 md:right-4 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 border-r-2 border-t-2 border-yellow-500/40 rounded-tr-md sm:rounded-tr-lg md:rounded-tr-2xl" />
+                    <div className="absolute bottom-1 left-1 sm:bottom-2 sm:left-2 md:bottom-4 md:left-4 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 border-l-2 border-b-2 border-yellow-500/40 rounded-bl-md sm:rounded-bl-lg md:rounded-bl-2xl" />
+                    <div className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 md:bottom-4 md:right-4 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 border-r-2 border-b-2 border-lime-500/40 rounded-br-md sm:rounded-br-lg md:rounded-br-2xl" />
                   </div>
 
                   {/* Date badge */}
-                  <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 glass px-2 py-1 md:px-3 md:py-1.5 rounded-full">
-                    <span className="text-[10px] md:text-xs font-medium text-yellow-500 flex items-center gap-1">
-                      <Calendar className="w-2 h-2 md:w-3 md:h-3" />
+                  <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 md:bottom-4 md:right-4 glass px-1.5 py-0.5 sm:px-2 sm:py-1 md:px-3 md:py-1.5 rounded-full">
+                    <span className="text-[8px] sm:text-[10px] md:text-xs font-medium text-yellow-500 flex items-center gap-1">
+                      <Calendar className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3" />
                       <span>{project.date}</span>
                     </span>
                   </div>
@@ -676,39 +680,39 @@ function ProjectSection({
               <div
                 className={`w-full order-2 ${projectIndex % 2 === 1 ? "md:order-1" : ""}`}
               >
-                <div className="space-y-4 md:space-y-6 text-center md:text-left">
+                <div className="space-y-3 sm:space-y-4 md:space-y-6 text-center md:text-left">
                   {/* Project number */}
                   <div className="overflow-hidden">
-                    <span className="content-animate inline-block text-xs tracking-[0.2em] uppercase text-lime-500/60 font-medium">
+                    <span className="content-animate inline-block text-[10px] sm:text-xs tracking-[0.2em] uppercase text-lime-500/60 font-medium">
                       Project {String(projectIndex + 1).padStart(2, "0")}
                     </span>
                   </div>
 
                   {/* Title */}
                   <div className="overflow-hidden">
-                    <h3 className="content-animate text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white">
+                    <h3 className="content-animate text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight text-white">
                       {project.title}
                     </h3>
                   </div>
 
                   {/* Description */}
                   <div className="relative">
-                    <p className="content-animate text-sm md:text-base text-muted-foreground/80 leading-relaxed bg-gradient-to-br from-lime-500/5 to-yellow-500/5 p-4 md:p-6 rounded-xl md:rounded-2xl border border-lime-500/10">
-                      <span className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-lime-500 to-yellow-500 rounded-l-xl" />
-                      <span className="block pl-3">
-                        {project.description.length > 200
-                          ? `${project.description.substring(0, 200)}...`
+                    <p className="content-animate text-xs sm:text-sm md:text-base text-muted-foreground/80 leading-relaxed bg-gradient-to-br from-lime-500/5 to-yellow-500/5 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl border border-lime-500/10">
+                      <span className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-lime-500 to-yellow-500 rounded-l-lg sm:rounded-l-xl md:rounded-l-2xl" />
+                      <span className="block pl-2 sm:pl-3">
+                        {project.description.length > 150
+                          ? `${project.description.substring(0, 150)}...`
                           : project.description}
                       </span>
                     </p>
                   </div>
 
                   {/* Tags */}
-                  <div className="content-animate flex flex-wrap justify-center md:justify-start gap-1.5 md:gap-2">
-                    {project.tags.slice(0, 6).map((tag, i) => (
+                  <div className="content-animate flex flex-wrap justify-center md:justify-start gap-1 sm:gap-1.5 md:gap-2">
+                    {project.tags.slice(0, 5).map((tag, i) => (
                       <span
                         key={tag}
-                        className={`px-2 md:px-3 py-1 text-[10px] md:text-xs font-medium rounded-full border ${
+                        className={`px-1.5 sm:px-2 md:px-3 py-0.5 sm:py-1 text-[8px] sm:text-[10px] md:text-xs font-medium rounded-full border ${
                           i % 2 === 0
                             ? "bg-lime-500/10 border-lime-500/20 text-lime-500"
                             : "bg-yellow-500/10 border-yellow-500/20 text-yellow-500"
@@ -717,18 +721,23 @@ function ProjectSection({
                         {tag}
                       </span>
                     ))}
+                    {project.tags.length > 5 && (
+                      <span className="px-1.5 sm:px-2 md:px-3 py-0.5 sm:py-1 text-[8px] sm:text-[10px] md:text-xs font-medium rounded-full bg-white/5 border-white/10 text-muted-foreground">
+                        +{project.tags.length - 5}
+                      </span>
+                    )}
                   </div>
 
                   {/* Action buttons */}
-                  <div className="content-animate flex flex-col xs:flex-row items-center justify-center md:justify-start gap-3 pt-4">
+                  <div className="content-animate flex flex-col sm:flex-row items-center justify-center md:justify-start gap-2 sm:gap-3 pt-3 sm:pt-4">
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group relative w-full xs:w-auto px-5 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-lime-500 to-yellow-500 text-background rounded-full text-sm font-medium overflow-hidden hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+                      className="group w-full sm:w-auto px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 bg-gradient-to-r from-lime-500 to-yellow-500 text-background rounded-full text-xs sm:text-sm font-medium overflow-hidden hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
                     >
                       <span className="relative z-10">View Details</span>
-                      <ChevronRight className="relative z-10 w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                      <ChevronRight className="relative z-10 w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-300" />
                       <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
                     </a>
 
@@ -736,9 +745,9 @@ function ProjectSection({
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group w-full xs:w-auto px-5 md:px-6 py-2.5 md:py-3 border border-lime-500/30 text-foreground/80 rounded-full text-sm font-medium hover:bg-lime-500/5 hover:border-lime-500/60 transition-all duration-300 flex items-center justify-center gap-2"
+                      className="group w-full sm:w-auto px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 border border-lime-500/30 text-foreground/80 rounded-full text-xs sm:text-sm font-medium hover:bg-lime-500/5 hover:border-lime-500/60 transition-all duration-300 flex items-center justify-center gap-2"
                     >
-                      <Github className="w-3 h-3 md:w-4 md:h-4 group-hover:rotate-12 transition-transform duration-300" />
+                      <Github className="w-3 h-3 sm:w-4 sm:h-4 group-hover:rotate-12 transition-transform duration-300" />
                       <span>Source Code</span>
                     </a>
                   </div>
@@ -749,23 +758,23 @@ function ProjectSection({
         </div>
 
         {/* View all link */}
-        <div className="text-center mt-16 md:mt-20">
+        <div className="text-center mt-12 sm:mt-16 md:mt-20">
           <a
             href={`#${id}`}
-            className="group inline-flex items-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-br from-lime-500/10 to-yellow-500/10 rounded-full hover:scale-105 transition-all duration-500 border border-lime-500/20"
+            className="group inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 bg-gradient-to-br from-lime-500/10 to-yellow-500/10 rounded-full hover:scale-105 transition-all duration-500 border border-lime-500/20"
           >
-            <span className="text-sm md:text-base text-foreground font-medium">
+            <span className="text-xs sm:text-sm md:text-base text-foreground font-medium">
               View All Projects
             </span>
-            <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-lime-500 group-hover:translate-x-2 transition-transform duration-500" />
+            <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-lime-500 group-hover:translate-x-2 transition-transform duration-500" />
           </a>
         </div>
       </div>
 
       <style jsx>{`
         @keyframes pulse-glow {
-          0%, 100% { opacity: 0.3; filter: blur(80px); }
-          50% { opacity: 0.5; filter: blur(100px); }
+          0%, 100% { opacity: 0.3; filter: blur(60px); }
+          50% { opacity: 0.5; filter: blur(80px); }
         }
         @keyframes float {
           0%, 100% { transform: translateY(0); }
@@ -781,6 +790,19 @@ function ProjectSection({
         @media (min-width: 640px) {
           .glass {
             backdrop-filter: blur(12px);
+          }
+        }
+        /* Hide hover overlays on touch devices by default, but keep visible if needed */
+        @media (hover: hover) {
+          .project-link {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+        }
+        @media (hover: none) {
+          .project-link {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
           }
         }
       `}</style>
