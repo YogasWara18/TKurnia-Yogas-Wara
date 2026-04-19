@@ -5,7 +5,6 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Heart, ArrowUp, Github, Linkedin, Instagram } from "lucide-react";
-
 import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -56,20 +55,18 @@ export default function Footer() {
       }
     }, footerRef);
 
-    // Particle animation
+    // Particle animation (20 butir, gaya trend)
     if (particlesRef.current) {
       const particles = particlesRef.current.children;
       gsap.to(particles, {
-        y: -100,
+        y: -200,
         rotation: 360,
         opacity: 0,
-        duration: 3,
-        stagger: {
-          amount: 2,
-          from: "random",
-        },
-        ease: "power2.out",
+        duration: 5,
+        stagger: { amount: 2, from: "random" },
+        ease: "power1.out",
         repeat: -1,
+        repeatDelay: 1.5,
       });
     }
 
@@ -86,9 +83,9 @@ export default function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="relative py-12 px-6 border-t border-lime-500/10 bg-background overflow-hidden"
+      className="relative py-12 px-6 overflow-hidden bg-gradient-to-br from-slate-950 via-background to-slate-950 border-t border-lime-500/10"
     >
-      {/* Particle Background */}
+      {/* Particle Background (20 butir) */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
         {[...Array(20)].map((_, i) => (
           <div
@@ -98,21 +95,21 @@ export default function Footer() {
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
               backgroundColor: i % 2 === 0 ? "#84cc16" : "#eab308",
-              opacity: 0.15,
-              animation: `float-particle 8s linear infinite`,
-              animationDelay: `${Math.random() * 3}s`,
+              opacity: 0.25,
+              willChange: "transform",
             }}
           />
         ))}
       </div>
 
-      {/* Gradient Orbs */}
+      {/* Gradient Orbs - sama seperti about */}
       <div className="absolute -top-20 -left-20 w-64 h-64 bg-lime-500/5 rounded-full blur-3xl animate-pulse-glow" />
       <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-yellow-500/10 rounded-full blur-3xl animate-float" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30rem] h-[30rem] bg-lime-500/5 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "2s" }} />
 
-      {/* Grid overlay subtle */}
+      {/* Grid Overlay */}
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-20"
         style={{
           backgroundImage: `
             linear-gradient(rgba(132, 204, 22, 0.03) 1px, transparent 1px),
@@ -121,6 +118,13 @@ export default function Footer() {
           backgroundSize: "40px 40px",
         }}
       />
+
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-lime-500/5 via-transparent to-transparent" />
+
+      {/* Light leak effect */}
+      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-yellow-500/10 to-transparent blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-lime-500/10 to-transparent blur-3xl" />
 
       {/* Decorative lines dengan green yellow */}
       <div className="footer-decoration absolute top-0 left-1/4 w-px h-20 bg-gradient-to-b from-transparent via-lime-500/30 to-transparent" />
@@ -160,65 +164,28 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Back to top button dengan green yellow */}
+      {/* Back to top button dengan green yellow (glassmorphism) */}
       <button
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-lime-500/10 to-yellow-500/10 border border-lime-500/30 backdrop-blur-sm flex items-center justify-center group hover:from-lime-500/20 hover:to-yellow-500/20 hover:scale-110 transition-all duration-300 z-50"
+        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-lime-500/10 to-yellow-500/10 backdrop-blur-md border border-lime-500/30 flex items-center justify-center group hover:from-lime-500/20 hover:to-yellow-500/20 hover:scale-110 transition-all duration-300 z-50 shadow-lg hover:shadow-lime-500/20"
         aria-label="Back to top"
       >
         <ArrowUp className="w-4 h-4 md:w-5 md:h-5 text-lime-500 group-hover:-translate-y-1 transition-transform duration-300" />
-
         {/* Pulse ring */}
         <span className="absolute inset-0 rounded-full animate-ping bg-lime-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       </button>
 
       <style jsx>{`
-        @keyframes float-particle {
-          0% {
-            transform: translateY(0) rotate(0deg);
-            opacity: 0;
-          }
-          20% {
-            opacity: 0.15;
-          }
-          80% {
-            opacity: 0.15;
-          }
-          100% {
-            transform: translateY(-100px) rotate(360deg);
-            opacity: 0;
-          }
-        }
-
         @keyframes pulse-glow {
-          0%,
-          100% {
-            opacity: 0.2;
-            filter: blur(60px);
-          }
-          50% {
-            opacity: 0.4;
-            filter: blur(80px);
-          }
+          0%, 100% { opacity: 0.2; filter: blur(60px); }
+          50% { opacity: 0.4; filter: blur(80px); }
         }
-
         @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-15px);
-          }
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-15px); }
         }
-
-        .animate-pulse-glow {
-          animation: pulse-glow 4s ease-in-out infinite;
-        }
-
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
+        .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
       `}</style>
     </footer>
   );

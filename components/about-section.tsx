@@ -341,8 +341,8 @@ export default function AboutSkillsSection() {
             {[
               { icon: Code, label: "Projects", value: "15+", desc: "Completed", color: "lime" },
               { icon: Users, label: "Clients", value: "10+", desc: "Happy", color: "yellow" },
-              { icon: Award, label: "Certs", value: "8", desc: "Global", color: "lime" },
-              { icon: TrendingUp, label: "Experience", value: "3+", desc: "Years", color: "yellow" },
+              { icon: Award, label: "Certs", value: "4", desc: "Global", color: "lime" },
+              { icon: TrendingUp, label: "Experience", value: "2+", desc: "Years", color: "yellow" },
             ].map((stat, i) => (
               <div
                 key={i}

@@ -13,7 +13,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Data projects 
+// Data projects - Web Development
 const webProjects = [
   {
     title:
@@ -160,6 +160,7 @@ const webProjects = [
   },
 ];
 
+// Data projects - System Development
 const systemProjects = [
   {
     title: "Dashboard Billing & Invoice Manager",
@@ -236,6 +237,7 @@ const systemProjects = [
   },
 ];
 
+// Data projects - WordPress
 const wordpressProjects = [
   {
     title: "Luxury Resort WordPress – Custom Theme Development",
@@ -312,7 +314,6 @@ const wordpressProjects = [
   },
 ];
 
-// Tipe untuk project
 type Project = {
   title: string;
   description: string;
@@ -508,37 +509,20 @@ function ProjectSection({
           });
         });
       });
-
-      if (sectionRef.current) {
-        const particles =
-          sectionRef.current.querySelectorAll(".project-particle");
-        gsap.to(particles, {
-          y: -150,
-          rotation: 360,
-          duration: 25,
-          repeat: -1,
-          ease: "none",
-          stagger: {
-            amount: 3,
-            from: "random",
-          },
-        });
-      }
     }, sectionRef);
 
+    // Particle animation (20 butir, gaya trend)
     if (particlesRef.current) {
       const particles = particlesRef.current.children;
       gsap.to(particles, {
-        y: -150,
+        y: -200,
         rotation: 360,
         opacity: 0,
-        duration: 3,
-        stagger: {
-          amount: 2,
-          from: "random",
-        },
-        ease: "power2.out",
+        duration: 5,
+        stagger: { amount: 2, from: "random" },
+        ease: "power1.out",
         repeat: -1,
+        repeatDelay: 1.5,
       });
     }
 
@@ -548,24 +532,21 @@ function ProjectSection({
   return (
     <section
       ref={sectionRef}
-      id="projects"
-      className={`relative min-h-screen py-20 md:py-28 lg:py-32 overflow-hidden ${
-        index % 2 === 0 ? "bg-background" : "bg-background/95"
-      }`}
+      id={id}
+      className="relative min-h-screen py-20 md:py-28 lg:py-32 overflow-hidden bg-gradient-to-br from-slate-950 via-background to-slate-950"
     >
-      {/* Particle Background */}
+      {/* Particle Background (20 butir) */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
-        {[...Array(40)].map((_, i) => (
+        {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className="project-particle absolute w-1 h-1 rounded-full"
+            className="absolute w-1 h-1 rounded-full"
             style={{
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
               backgroundColor: i % 2 === 0 ? "#84cc16" : "#eab308",
-              opacity: 0.2,
-              animation: `float-particle 10s linear infinite`,
-              animationDelay: `${Math.random() * 3}s`,
+              opacity: 0.25,
+              willChange: "transform",
             }}
           />
         ))}
@@ -591,14 +572,14 @@ function ProjectSection({
         }}
       />
 
-      {/* Gradient Overlay */}
+      {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-lime-500/5 via-transparent to-transparent" />
 
-      {/* Light Leak Effect */}
+      {/* Light leak effect */}
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-yellow-500/10 to-transparent blur-3xl" />
       <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-lime-500/10 to-transparent blur-3xl" />
 
-      <div className="container relative z-10 px-4 sm:px-6">
+      <div className="container relative z-10 px-4 sm:px-6 mx-auto">
         {/* Title */}
         <div ref={titleRef} className="text-center mb-16 md:mb-20">
           <div className="overflow-hidden mb-2">
@@ -623,14 +604,13 @@ function ProjectSection({
               onMouseEnter={() => setActiveProject(projectIndex)}
               onMouseLeave={() => setActiveProject(null)}
             >
-              {/* Media Section - Mobile First */}
+              {/* Media Section */}
               <div
                 className={`relative w-full overflow-hidden rounded-2xl md:rounded-3xl order-1 ${
                   projectIndex % 2 === 1 ? "md:order-2" : ""
                 }`}
               >
-                <div className="video-container relative aspect-video md:aspect-4/3 overflow-hidden bg-black/50 rounded-2xl md:rounded-3xl border border-lime-500/20">
-                  {/* Conditional rendering: jika ada image, tampilkan image, jika tidak tampilkan video */}
+                <div className="video-container relative aspect-video md:aspect-4/3 overflow-hidden bg-black/50 rounded-2xl md:rounded-3xl border border-lime-500/20 backdrop-blur-sm">
                   {project.image ? (
                     <img
                       src={project.image}
@@ -682,6 +662,7 @@ function ProjectSection({
                     <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 w-6 h-6 md:w-8 md:h-8 border-r-2 border-b-2 border-lime-500/40 rounded-br-lg md:rounded-br-2xl" />
                   </div>
 
+                  {/* Date badge */}
                   <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 glass px-2 py-1 md:px-3 md:py-1.5 rounded-full">
                     <span className="text-[10px] md:text-xs font-medium text-yellow-500 flex items-center gap-1">
                       <Calendar className="w-2 h-2 md:w-3 md:h-3" />
@@ -782,64 +763,24 @@ function ProjectSection({
       </div>
 
       <style jsx>{`
-        @keyframes float-particle {
-          0% {
-            transform: translateY(0) rotate(0deg);
-            opacity: 0;
-          }
-          20% {
-            opacity: 0.3;
-          }
-          80% {
-            opacity: 0.3;
-          }
-          100% {
-            transform: translateY(-120px) rotate(360deg);
-            opacity: 0;
-          }
-        }
-
         @keyframes pulse-glow {
-          0%,
-          100% {
-            opacity: 0.3;
-            filter: blur(80px);
-          }
-          50% {
-            opacity: 0.5;
-            filter: blur(100px);
-          }
+          0%, 100% { opacity: 0.3; filter: blur(80px); }
+          50% { opacity: 0.5; filter: blur(100px); }
         }
-
         @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
         }
-
-        .animate-pulse-glow {
-          animation: pulse-glow 4s ease-in-out infinite;
-        }
-
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-
+        .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
         .glass {
           background: rgba(0, 0, 0, 0.5);
           backdrop-filter: blur(8px);
-          -webkit-backdrop-filter: blur(8px);
           border: 1px solid rgba(132, 204, 22, 0.2);
         }
-
         @media (min-width: 640px) {
           .glass {
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
           }
         }
       `}</style>

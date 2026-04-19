@@ -79,57 +79,23 @@ export default function ContactSection() {
 
       // Title animation
       tl.fromTo(titleRef.current,
-        { 
-          y: 40, 
-          opacity: 0,
-          filter: "blur(10px)"
-        },
-        { 
-          y: 0, 
-          opacity: 1,
-          filter: "blur(0px)",
-          duration: 1.2,
-          ease: "power3.out"
-        }
+        { y: 40, opacity: 0, filter: "blur(10px)" },
+        { y: 0, opacity: 1, filter: "blur(0px)", duration: 1.2, ease: "power3.out" }
       );
 
       // Subtitle animation
       tl.fromTo(
         subtitleRef.current,
-        { 
-          y: 40, 
-          opacity: 0, 
-          filter: "blur(10px)",
-          scale: 0.95
-        },
-        { 
-          y: 0, 
-          opacity: 1, 
-          filter: "blur(0px)",
-          scale: 1,
-          duration: 1.2, 
-          ease: "back.out(1.2)" 
-        },
+        { y: 40, opacity: 0, filter: "blur(10px)", scale: 0.95 },
+        { y: 0, opacity: 1, filter: "blur(0px)", scale: 1, duration: 1.2, ease: "back.out(1.2)" },
         "-=0.6"
       );
 
       // CTA animation
       tl.fromTo(
         ctaRef.current,
-        { 
-          y: 30, 
-          opacity: 0, 
-          filter: "blur(5px)",
-          scale: 0.9
-        },
-        { 
-          y: 0, 
-          opacity: 1, 
-          filter: "blur(0px)",
-          scale: 1,
-          duration: 1, 
-          ease: "back.out(1.7)" 
-        },
+        { y: 30, opacity: 0, filter: "blur(5px)", scale: 0.9 },
+        { y: 0, opacity: 1, filter: "blur(0px)", scale: 1, duration: 1, ease: "back.out(1.7)" },
         "-=0.4"
       );
 
@@ -138,21 +104,8 @@ export default function ContactSection() {
       if (socialIcons) {
         tl.fromTo(
           Array.from(socialIcons),
-          { 
-            y: 30, 
-            opacity: 0,
-            scale: 0.95,
-            filter: "blur(5px)"
-          },
-          { 
-            y: 0, 
-            opacity: 1,
-            scale: 1,
-            filter: "blur(0px)",
-            duration: 0.8,
-            stagger: 0.1,
-            ease: "back.out(1.7)" 
-          },
+          { y: 30, opacity: 0, scale: 0.95, filter: "blur(5px)" },
+          { y: 0, opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.8, stagger: 0.1, ease: "back.out(1.7)" },
           "-=0.4"
         );
       }
@@ -166,23 +119,20 @@ export default function ContactSection() {
         yoyo: true,
         ease: "sine.inOut"
       });
-
     }, sectionRef);
 
-    // Particle animation
+    // Particle animation dengan GSAP (20 butir, performa lebih baik)
     if (particlesRef.current) {
       const particles = particlesRef.current.children;
       gsap.to(particles, {
-        y: -150,
+        y: -200,
         rotation: 360,
         opacity: 0,
-        duration: 3,
-        stagger: {
-          amount: 2,
-          from: "random",
-        },
-        ease: "power2.out",
+        duration: 5,
+        stagger: { amount: 2, from: "random" },
+        ease: "power1.out",
         repeat: -1,
+        repeatDelay: 1.5,
       });
     }
 
@@ -193,21 +143,20 @@ export default function ContactSection() {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative min-h-screen py-20 md:py-28 lg:py-32 overflow-hidden bg-background"
+      className="relative min-h-screen py-20 md:py-28 lg:py-32 overflow-hidden bg-gradient-to-br from-slate-950 via-background to-slate-950"
     >
-      {/* Particle Background */}
+      {/* Particle Background (20 butir) */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
-        {[...Array(40)].map((_, i) => (
+        {[...Array(20)].map((_, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 rounded-full"
             style={{
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
-              backgroundColor: i % 2 === 0 ? '#84cc16' : '#eab308',
-              opacity: 0.2,
-              animation: `float-particle 10s linear infinite`,
-              animationDelay: `${Math.random() * 3}s`,
+              backgroundColor: i % 2 === 0 ? "#84cc16" : "#eab308",
+              opacity: 0.25,
+              willChange: "transform",
             }}
           />
         ))}
@@ -233,18 +182,18 @@ export default function ContactSection() {
         }}
       />
 
-      {/* Gradient Overlay */}
+      {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-lime-500/5 via-transparent to-transparent" />
 
-      {/* Light Leak Effect */}
+      {/* Light leak effect */}
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-yellow-500/10 to-transparent blur-3xl" />
       <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-lime-500/10 to-transparent blur-3xl" />
 
-      {/* Decorative lines dengan warna green yellow */}
+      {/* Decorative lines */}
       <div className="absolute left-0 top-0 w-24 md:w-32 h-24 md:h-32 border-l-2 border-t-2 border-lime-500/20 rounded-tl-[100px]" />
       <div className="absolute right-0 bottom-0 w-24 md:w-32 h-24 md:h-32 border-r-2 border-b-2 border-yellow-500/20 rounded-br-[100px]" />
 
-      <div className="container relative z-10 px-4 sm:px-6">
+      <div className="container relative z-10 px-4 sm:px-6 mx-auto">
         <div className="max-w-4xl mx-auto text-center">
           {/* Title */}
           <div ref={titleRef} className="mb-8">
@@ -257,9 +206,9 @@ export default function ContactSection() {
             <div className="w-20 h-1 bg-gradient-to-r from-lime-500 to-yellow-500 rounded-full mx-auto mt-4" />
           </div>
 
-          {/* Quote */}
+          {/* Quote dengan glassmorphism */}
           <div ref={subtitleRef} className="relative mb-12">
-            <p className="text-sm sm:text-base md:text-lg text-muted-foreground/80 leading-relaxed bg-gradient-to-br from-lime-500/5 to-yellow-500/5 p-6 md:p-8 rounded-2xl max-w-2xl mx-auto border border-lime-500/10">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground/80 leading-relaxed bg-gradient-to-br from-lime-500/5 to-yellow-500/5 p-6 md:p-8 rounded-2xl max-w-2xl mx-auto border border-lime-500/10 backdrop-blur-sm">
               <span className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-lime-500 to-yellow-500 rounded-l-2xl" />
               <span className="absolute -top-4 -right-4 text-6xl md:text-8xl text-lime-500/10 font-serif">"</span>
               <span className="relative z-10 block">
@@ -269,7 +218,7 @@ export default function ContactSection() {
             </p>
           </div>
 
-          {/* CTA Button dengan gradient green yellow */}
+          {/* CTA Button */}
           <div ref={ctaRef} className="mb-12 md:mb-16">
             <a
               href="https://wa.me/+6281234701212"
@@ -284,7 +233,7 @@ export default function ContactSection() {
             </a>
           </div>
 
-          {/* Social icons dengan warna asli saat hover */}
+          {/* Social icons dengan glassmorphism */}
           <div ref={iconsRef} className="flex flex-wrap items-center justify-center gap-3 md:gap-6">
             {socialLinks.map((social, index) => (
               <a
@@ -294,21 +243,14 @@ export default function ContactSection() {
                 rel="noopener noreferrer"
                 aria-label={social.label}
                 className={`social-icon group relative p-3 md:p-5 rounded-xl md:rounded-2xl border border-lime-500/20 bg-lime-500/5 backdrop-blur-sm transition-all duration-300 hover:scale-110 ${social.hoverColor}`}
-                style={{
-                  animationDelay: `${index * 0.1}s`
-                }}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Background gradient on hover - menggunakan warna asli */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${social.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl md:rounded-2xl`} />
-                
-                {/* Icon */}
                 <img
                   src={social.src}
                   alt={social.label}
                   className="relative z-10 w-6 h-6 md:w-8 md:h-8 object-contain transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"
                 />
-                
-                {/* Tooltip */}
                 <span className="absolute -top-8 md:-top-10 left-1/2 -translate-x-1/2 px-2 md:px-3 py-1 md:py-1.5 bg-background border border-lime-500/30 rounded-full text-[10px] md:text-xs font-medium text-lime-500 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap">
                   {social.label}
                 </span>
@@ -328,7 +270,7 @@ export default function ContactSection() {
           </div>
 
           {/* Availability badge */}
-          <div className="mt-6 md:mt-8 inline-flex items-center gap-2 bg-gradient-to-br from-lime-500/10 to-yellow-500/10 px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-lime-500/20">
+          <div className="mt-6 md:mt-8 inline-flex items-center gap-2 bg-gradient-to-br from-lime-500/10 to-yellow-500/10 px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-lime-500/20 backdrop-blur-sm">
             <span className="relative flex h-2 w-2 md:h-3 md:w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-500 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 bg-lime-500"></span>
@@ -339,50 +281,16 @@ export default function ContactSection() {
       </div>
 
       <style jsx>{`
-        @keyframes float-particle {
-          0% {
-            transform: translateY(0) rotate(0deg);
-            opacity: 0;
-          }
-          20% {
-            opacity: 0.3;
-          }
-          80% {
-            opacity: 0.3;
-          }
-          100% {
-            transform: translateY(-120px) rotate(360deg);
-            opacity: 0;
-          }
-        }
-
         @keyframes pulse-glow {
-          0%, 100% {
-            opacity: 0.3;
-            filter: blur(80px);
-          }
-          50% {
-            opacity: 0.5;
-            filter: blur(100px);
-          }
+          0%, 100% { opacity: 0.3; filter: blur(80px); }
+          50% { opacity: 0.5; filter: blur(100px); }
         }
-
         @keyframes float {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
         }
-
-        .animate-pulse-glow {
-          animation: pulse-glow 4s ease-in-out infinite;
-        }
-
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
+        .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
       `}</style>
     </section>
   );
