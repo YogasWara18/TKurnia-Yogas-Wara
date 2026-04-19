@@ -31,7 +31,7 @@ function SplitText({ text, className }: { text: string; className?: string }) {
   );
 }
 
-// Typing Animation Component
+// Typing Animation Component - selalu di tengah untuk tablet dan mobile
 function TypingRole() {
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -48,7 +48,7 @@ function TypingRole() {
       setDisplayText(
         isDeleting
           ? fullText.substring(0, displayText.length - 1)
-          : fullText.substring(0, displayText.length + 1),
+          : fullText.substring(0, displayText.length + 1)
       );
 
       setTypingSpeed(isDeleting ? 80 : 150);
@@ -66,13 +66,14 @@ function TypingRole() {
   }, [displayText, isDeleting, loopNum, roles, typingSpeed]);
 
   return (
-    <div className="flex justify-center md:justify-start w-full">
+    // Selalu di tengah untuk mobile/tablet (flex justify-center), dan kiri untuk desktop (lg:justify-start)
+    <div className="flex justify-center lg:justify-start w-full">
       <div className="inline-flex items-center h-8 md:h-10">
-        <span className="text-lg sm:text-xl md:text-2xl font-light tracking-wide whitespace-nowrap">
+        <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-light tracking-wide whitespace-nowrap">
           <span className="bg-gradient-to-r from-lime-500 to-yellow-500 bg-clip-text text-transparent bg-[length:200%_100%] animate-gradient">
             {displayText}
           </span>
-          <span className="ml-1 inline-block w-0.5 h-5 md:h-6 bg-gradient-to-b from-lime-500 to-yellow-500 animate-pulse align-middle" />
+          <span className="ml-1 inline-block w-0.5 h-4 md:h-5 lg:h-6 bg-gradient-to-b from-lime-500 to-yellow-500 animate-pulse align-middle" />
         </span>
       </div>
     </div>
@@ -82,12 +83,13 @@ function TypingRole() {
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
   const mobileImageRef = useRef<HTMLDivElement>(null);
+  const nameFirstRef = useRef<HTMLHeadingElement>(null);
+  const nameLastRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -107,6 +109,10 @@ export default function HeroSection() {
         scale: 1.1,
         opacity: 0,
         filter: "blur(20px)",
+      });
+      gsap.set([nameFirstRef.current, nameLastRef.current], {
+        y: 20,
+        opacity: 0,
       });
 
       // Master timeline dengan style splash
@@ -130,7 +136,17 @@ export default function HeroSection() {
         duration: 0.8,
         ease: "power2.out",
       })
-
+        // Name reveal
+        .to(nameFirstRef.current, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+        }, 0.2)
+        .to(nameLastRef.current, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+        }, 0.3)
         // Subtitle reveal
         .to(
           subtitleRef.current,
@@ -141,9 +157,8 @@ export default function HeroSection() {
             duration: 1.2,
             ease: "power3.out",
           },
-          0.4,
+          0.4
         )
-
         // CTA buttons
         .to(
           ctaRef.current?.children || [],
@@ -155,9 +170,8 @@ export default function HeroSection() {
             stagger: 0.15,
             ease: "back.out(1.7)",
           },
-          0.8,
+          0.8
         )
-
         // Image reveal untuk desktop dan mobile
         .to(
           [imageRef.current, mobileImageRef.current],
@@ -168,9 +182,8 @@ export default function HeroSection() {
             duration: 1.8,
             ease: "power4.out",
           },
-          0.2,
+          0.2
         )
-
         // Parallax untuk desktop image
         .to(
           imageRef.current,
@@ -184,9 +197,8 @@ export default function HeroSection() {
               scrub: 1.5,
             },
           },
-          0,
+          0
         )
-
         // Scroll indicator fade
         .to(
           ".scroll-indicator",
@@ -201,7 +213,7 @@ export default function HeroSection() {
               scrub: 1,
             },
           },
-          0,
+          0
         );
     }, heroRef);
 
@@ -230,10 +242,10 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative pt-20 md:pt-24 lg:pt-28 min-h-screen flex items-center overflow-hidden bg-background"
+      className="relative pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36 min-h-screen flex items-center overflow-hidden bg-background"
       style={{ opacity: 0 }}
     >
-      {/* Particle Background dengan warna green yellow */}
+      {/* Particle Background */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
         {[...Array(40)].map((_, i) => (
           <div
@@ -251,7 +263,7 @@ export default function HeroSection() {
         ))}
       </div>
 
-      {/* Gradient Orbs dengan warna green yellow */}
+      {/* Gradient Orbs */}
       <div className="absolute top-20 left-20 w-[30rem] h-[30rem] bg-lime-500/5 rounded-full blur-3xl animate-pulse-glow" />
       <div className="absolute bottom-20 right-20 w-[25rem] h-[25rem] bg-yellow-500/10 rounded-full blur-3xl animate-float" />
       <div
@@ -259,7 +271,7 @@ export default function HeroSection() {
         style={{ animationDelay: "2s" }}
       />
 
-      {/* Grid Overlay dengan warna green yellow subtle */}
+      {/* Grid Overlay */}
       <div
         className="absolute inset-0 opacity-20"
         style={{
@@ -271,24 +283,24 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Subtle gradient overlay dengan green yellow */}
+      {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-lime-500/5 via-transparent to-transparent" />
 
-      {/* Light leak effect dengan green yellow */}
+      {/* Light leak effect */}
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-yellow-500/10 to-transparent blur-3xl" />
       <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-lime-500/10 to-transparent blur-3xl" />
 
-      <div className="container relative z-10">
+      <div className="container relative z-10 px-4 sm:px-6 md:px-8 mx-auto">
         <div
           ref={contentRef}
-          className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-24 items-center min-h-screen py-20"
+          className="flex flex-col lg:grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-20 xl:gap-24 items-center min-h-screen py-12 sm:py-16 md:py-20"
         >
-          {/* Mobile Image - Tampil di atas untuk mobile */}
+          {/* Mobile/Tablet Image - Tampil di atas untuk semua layar < lg */}
           <div
             ref={mobileImageRef}
-            className="relative block lg:hidden w-full max-w-sm mx-auto mb-8"
+            className="relative block lg:hidden w-full max-w-[280px] sm:max-w-sm md:max-w-md mx-auto mb-6 sm:mb-8 md:mb-10"
           >
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-lime-500/20">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-lime-500/20 shadow-xl">
               <img
                 src="/hero.jpg"
                 alt="Portrait"
@@ -296,108 +308,62 @@ export default function HeroSection() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
             </div>
-
-            {/* Decorative elements untuk mobile dengan green yellow */}
-            <div className="absolute -bottom-3 -left-3 w-12 h-12 border border-lime-500/20 rounded-lg" />
-            <div className="absolute -top-3 -right-3 w-12 h-12 border border-yellow-500/20 rounded-lg" />
+            <div className="absolute -bottom-3 -left-3 w-10 h-10 sm:w-12 sm:h-12 border border-lime-500/20 rounded-lg" />
+            <div className="absolute -top-3 -right-3 w-10 h-10 sm:w-12 sm:h-12 border border-yellow-500/20 rounded-lg" />
           </div>
 
-          {/* Left Content - Center alignment di mobile dengan padding kiri */}
-          <div className="text-center lg:text-left space-y-8 max-w-xl mx-auto lg:mx-0 lg:pl-12 xl:pl-16">
-            {/* Title - center di mobile */}
-            <div ref={titleRef} className="space-y-3">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground">
-                <SplitText text="Hello, I'm" />
+          {/* Left Content - Teks selalu di tengah untuk tablet/mobile, kiri untuk desktop */}
+          <div className="text-center lg:text-left space-y-4 sm:space-y-5 md:space-y-6 max-w-2xl mx-auto lg:mx-0 px-2 sm:px-4 lg:px-0">
+            <div>
+              <h1
+                ref={nameFirstRef}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold tracking-tight text-foreground"
+              >
+                Hello, I'm
               </h1>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground">
-                <SplitText text="T. KURNIA YOGAS WARA" />
+              <h1
+                ref={nameLastRef}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold tracking-tight mt-1 sm:mt-2 bg-gradient-to-r from-lime-400 via-yellow-400 to-lime-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient"
+              >
+                T. Kurnia Yogas Wara
               </h1>
-
-              {/* Typing Animation Role */}
-              <TypingRole />
             </div>
 
-            {/* Description - center di mobile */}
+            {/* TypingRole - sudah diatur tengah untuk mobile/tablet */}
+            <TypingRole />
+
             <p
               ref={subtitleRef}
-              className="text-sm sm:text-base text-muted-foreground/80 leading-relaxed max-w-lg mx-auto lg:mx-0"
+              className="text-sm sm:text-base md:text-lg text-muted-foreground/80 leading-relaxed max-w-md mx-auto lg:mx-0"
             >
               Crafting responsive, accessible, and performant web experiences
               with modern technologies. Focused on creating interfaces that
               blend technical excellence with aesthetic precision.
             </p>
 
-            {/* CTA Buttons - center di mobile dengan padding kiri konsisten */}
             <div
               ref={ctaRef}
-              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4"
+              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-4"
             >
               <a
                 href="#projects"
-                className="group relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-lime-500 to-yellow-500 text-background rounded-full font-medium overflow-hidden transition-all duration-500 text-center hover:shadow-2xl hover:shadow-lime-500/40 hover:scale-105 active:scale-95"
+                className="group relative px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-lime-500 to-yellow-500 rounded-full font-semibold text-background shadow-lg hover:shadow-lime-500/30 transition-all duration-300 hover:scale-105 active:scale-95 text-sm sm:text-base"
               >
-                {/* Multiple layer background untuk efek depth */}
-                <span className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-lime-500 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <span className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.3),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-                {/* Shine effect yang lebih dramatis */}
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-100%] skew-x-12 group-hover:translate-x-[100%] transition-transform duration-1000 ease-out" />
-
-                {/* Pulse ring effect */}
-                <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-lime-500 to-yellow-500 opacity-0 group-hover:opacity-30 blur-md group-hover:animate-pulse" />
-
-                {/* Bouncing dots di background */}
-                <span
-                  className="absolute top-1/2 left-1/4 w-1 h-1 bg-white/40 rounded-full opacity-0 group-hover:opacity-100 animate-bounce-slow"
-                  style={{ animationDelay: "0s" }}
-                />
-                <span
-                  className="absolute top-1/3 right-1/4 w-1.5 h-1.5 bg-white/30 rounded-full opacity-0 group-hover:opacity-100 animate-bounce-slow"
-                  style={{ animationDelay: "0.2s" }}
-                />
-                <span
-                  className="absolute bottom-1/3 left-1/3 w-1 h-1 bg-white/20 rounded-full opacity-0 group-hover:opacity-100 animate-bounce-slow"
-                  style={{ animationDelay: "0.4s" }}
-                />
-
-                {/* Text container dengan efek */}
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  <span className="relative">
-                    View Projects
-                    {/* Glow effect pada text */}
-                    <span className="absolute -inset-1 bg-white/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  </span>
-
-                  {/* Icon dengan multiple animasi */}
+                <span className="flex items-center gap-2">
+                  View Projects
                   <svg
-                    className="w-4 h-4 group-hover:translate-x-2 group-hover:-translate-y-1 group-hover:rotate-12 transition-all duration-500 ease-out"
+                    className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </span>
-
-                {/* Sparkle effects di pojok */}
-                <span
-                  className="absolute top-1 left-1 w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping"
-                  style={{ animationDuration: "1s" }}
-                />
-                <span
-                  className="absolute bottom-1 right-1 w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping"
-                  style={{ animationDuration: "1.2s", animationDelay: "0.2s" }}
-                />
               </a>
-
               <a
                 href="https://drive.google.com/file/d/15Lx-mFTr7dHeXZJjUBDJ5eMqP-p9nM_L/view?usp=sharing"
-                className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border border-lime-500/30 text-foreground/80 rounded-full font-medium hover:bg-lime-500/5 hover:border-lime-500/60 transition-all duration-500 text-center"
+                className="px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 border border-lime-500/40 rounded-full font-semibold text-foreground/80 hover:bg-lime-500/5 hover:border-lime-500 transition-all duration-300 text-sm sm:text-base"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -406,10 +372,10 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Desktop Right Image - Hidden di mobile */}
+          {/* Desktop Right Image */}
           <div ref={imageRef} className="relative hidden lg:block">
-            <div className="relative aspect-[4/5] max-w-xl ml-auto">
-              <div className="relative w-full h-full overflow-hidden rounded-2xl border border-lime-500/20">
+            <div className="relative aspect-[4/5] max-w-md xl:max-w-lg 2xl:max-w-xl ml-auto">
+              <div className="relative w-full h-full overflow-hidden rounded-2xl border border-lime-500/20 shadow-2xl">
                 <img
                   src="/hero.jpg"
                   alt="Portrait"
@@ -417,28 +383,24 @@ export default function HeroSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
               </div>
-
-              {/* Decorative elements dengan green yellow */}
-              <div className="absolute -bottom-4 -left-4 w-20 h-20 border border-lime-500/20 rounded-lg" />
-              <div className="absolute -top-4 -right-4 w-20 h-20 border border-yellow-500/20 rounded-lg" />
-
-              {/* Edge accents dengan green yellow */}
-              <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-lime-500/20 rounded-tl-2xl" />
-              <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-yellow-500/20 rounded-br-2xl" />
+              <div className="absolute -bottom-4 -left-4 w-16 sm:w-20 h-16 sm:h-20 border border-lime-500/20 rounded-lg" />
+              <div className="absolute -top-4 -right-4 w-16 sm:w-20 h-16 sm:h-20 border border-yellow-500/20 rounded-lg" />
+              <div className="absolute top-0 left-0 w-10 h-10 sm:w-12 sm:h-12 border-t-2 border-l-2 border-lime-500/20 rounded-tl-2xl" />
+              <div className="absolute bottom-0 right-0 w-10 h-10 sm:w-12 sm:h-12 border-b-2 border-r-2 border-yellow-500/20 rounded-br-2xl" />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator dengan green yellow */}
-      <div className="scroll-indicator absolute bottom-10 left-1/2 -translate-x-1/2">
-        <div className="flex flex-col items-center gap-3">
-          <span className="text-xs tracking-[0.3em] text-lime-500/40 font-light">
+      {/* Scroll Indicator - selalu di tengah horizontal */}
+      <div className="scroll-indicator absolute bottom-5 sm:bottom-6 md:bottom-8 lg:bottom-10 left-1/2 -translate-x-1/2">
+        <div className="flex flex-col items-center gap-2 sm:gap-3">
+          <span className="text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] text-lime-500/40 font-light">
             SCROLL
           </span>
           <div className="relative">
-            <div className="w-4 h-7 border border-lime-500/20 rounded-full flex justify-center">
-              <div className="w-1 h-2 bg-gradient-to-b from-lime-500 to-yellow-500 rounded-full animate-scroll" />
+            <div className="w-3 h-5 sm:w-4 sm:h-6 md:h-7 border border-lime-500/20 rounded-full flex justify-center">
+              <div className="w-0.5 h-1 sm:w-1 sm:h-1.5 md:h-2 bg-gradient-to-b from-lime-500 to-yellow-500 rounded-full animate-scroll mt-1" />
             </div>
             <div className="absolute -inset-1 bg-lime-500/10 rounded-full blur-md opacity-50" />
           </div>
@@ -477,8 +439,7 @@ export default function HeroSection() {
         }
 
         @keyframes scroll {
-          0%,
-          100% {
+          0%, 100% {
             transform: translateY(4px);
             opacity: 1;
           }
