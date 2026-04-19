@@ -1,15 +1,18 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Dynamic import ReactPlayer (tanpa SSR)
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+
 // SplitText dengan style modern splash
 function SplitText({ text, className }: { text: string; className?: string }) {
   const words = text.split(" ");
-
   return (
     <span className={`${className} text-center sm:text-left block`}>
       {words.map((word, i) => (
@@ -90,6 +93,51 @@ export default function HeroSection() {
   const nameFirstRef = useRef<HTMLHeadingElement>(null);
   const nameLastRef = useRef<HTMLHeadingElement>(null);
 
+  // State untuk musik
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlayerReady, setIsPlayerReady] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const [error, setError] = useState(false);
+
+  // Toggle musik
+  const toggleAudio = () => {
+    if (!isPlayerReady) {
+      console.log("Player not ready yet");
+      return;
+    }
+    setIsPlaying((prev) => !prev);
+    if (!hasInteracted) setHasInteracted(true);
+  };
+
+  // Memulai audio setelah interaksi
+  const startAudio = () => {
+    if (!hasInteracted && !isPlaying && isPlayerReady) {
+      setIsPlaying(true);
+      setHasInteracted(true);
+    }
+  };
+
+  // Handler untuk error
+  const handlePlayerError = (err: any) => {
+    console.error("ReactPlayer error:", err);
+    setError(true);
+  };
+
+  useEffect(() => {
+    // Listener interaksi pertama untuk memulai audio
+    const handleFirstInteraction = () => {
+      startAudio();
+      document.removeEventListener("click", handleFirstInteraction);
+      document.removeEventListener("touchstart", handleFirstInteraction);
+    };
+    document.addEventListener("click", handleFirstInteraction);
+    document.addEventListener("touchstart", handleFirstInteraction);
+    return () => {
+      document.removeEventListener("click", handleFirstInteraction);
+      document.removeEventListener("touchstart", handleFirstInteraction);
+    };
+  }, [isPlayerReady, hasInteracted]);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Initial state
@@ -127,9 +175,70 @@ export default function HeroSection() {
     return () => ctx.revert();
   }, []);
 
+  const handlePlayerReady = () => {
+    console.log("Player ready");
+    setIsPlayerReady(true);
+  };
+
+  // URL musik bebas royalti (Lo-fi hip hop) - pastikan bisa diputar
+  const musicUrl = "https://www.youtube.com/watch?v=d_toKURCt10";
+
   return (
     <section ref={heroRef} className="relative pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36 min-h-screen flex items-center overflow-hidden bg-background" style={{ opacity: 0 }}>
-      {/* Particle Background (lebih sedikit agar performa) */}
+      {/* YouTube Player Tersembunyi */}
+      <div style={{ display: "none" }}>
+        <ReactPlayer
+          url={musicUrl}
+          playing={isPlaying}
+          loop={true}
+          volume={0.5}
+          width="0"
+          height="0"
+          onReady={handlePlayerReady}
+          onError={handlePlayerError}
+          config={{
+            youtube: {
+              playerVars: {
+                autoplay: 0,
+                controls: 0,
+                modestbranding: 1,
+                rel: 0,
+                showinfo: 0,
+              },
+            },
+          }}
+        />
+      </div>
+
+      {/* Tombol Kontrol Musik di Kiri Bawah */}
+      <button
+        onClick={toggleAudio}
+        className="fixed bottom-6 left-6 z-50 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-lime-500/40 flex items-center justify-center hover:scale-110 transition-all duration-300 group"
+        aria-label="Toggle music"
+        disabled={!isPlayerReady}
+      >
+        {isPlaying ? (
+          <svg className="w-4 h-4 text-lime-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+          </svg>
+        ) : (
+          <svg className="w-4 h-4 text-lime-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M3 9v6h4l5 5V4L7 9H3z" />
+          </svg>
+        )}
+        <span className="absolute -top-8 left-0 text-[10px] text-lime-400/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+          {isPlaying ? "Pause" : "Play"}
+        </span>
+      </button>
+
+      {/* Pesan error jika musik gagal */}
+      {error && (
+        <div className="fixed bottom-20 left-6 z-50 text-xs text-red-400 bg-black/50 px-2 py-1 rounded">
+          Music unavailable, click to retry
+        </div>
+      )}
+
+      {/* Particle Background */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
         {[...Array(20)].map((_, i) => (
           <div key={i} className="absolute w-1 h-1 rounded-full" style={{
