@@ -1,20 +1,25 @@
 import type React from "react";
 import type { Metadata, Viewport } from "next";
+import Script from "next/script"; // Gunakan Script dari Next.js untuk structured data
 
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
-
 import { Inter } from "next/font/google";
+
 import ScrollReset from "../components/scrollReset";
+// @ts-ignore
+import "./globals.css";
+
+
+
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap", // Optimasi font loading
+  display: "swap",
 });
 
-// Viewport configuration untuk responsive dan mobile
+// Viewport configuration
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -26,7 +31,6 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  // Basic metadata
   metadataBase: new URL("https://t-kurnia-yogas-wara.vercel.app"),
   title: {
     default: "T. Kurnia Yogas Wara | Frontend Developer & UI/UX Enthusiast",
@@ -56,8 +60,6 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-
-  // Robots dan indexing
   robots: {
     index: true,
     follow: true,
@@ -69,8 +71,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-
-  // Canonical URL
   alternates: {
     canonical: "https://t-kurnia-yogas-wara.vercel.app",
     languages: {
@@ -78,8 +78,6 @@ export const metadata: Metadata = {
       "id-ID": "https://t-kurnia-yogas-wara.vercel.app/id",
     },
   },
-
-  // Open Graph untuk social media
   openGraph: {
     title: "T. Kurnia Yogas Wara | Frontend Developer",
     description:
@@ -106,8 +104,6 @@ export const metadata: Metadata = {
     type: "website",
     countryName: "Indonesia",
   },
-
-  // Twitter Card
   twitter: {
     card: "summary_large_image",
     title: "T. Kurnia Yogas Wara | Frontend Developer",
@@ -117,8 +113,6 @@ export const metadata: Metadata = {
     creator: "@yogaswara",
     site: "@yogaswara",
   },
-
-  // Icons dan favicon
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -132,55 +126,49 @@ export const metadata: Metadata = {
     ],
     shortcut: "/favicon.ico",
   },
-
-  // Manifest untuk PWA
   manifest: "/manifest.json",
-
-  // App links
   appleWebApp: {
     title: "Yogas Portfolio",
     statusBarStyle: "black-translucent",
     startupImage: ["/apple-splash-2048-2732.png"],
   },
-
-  // Verification untuk search console
   verification: {
-    google: "google-site-verification-code", // Ganti dengan code actual
+    google: "google-site-verification-code",
     yandex: "yandex-verification-code",
     yahoo: "yahoo-verification-code",
     other: {
       "facebook-domain-verification": ["facebook-verification-code"],
     },
   },
-
-  // Category
   category: "technology",
-  
-  // Classification
   classification: "Portfolio Website",
 };
 
-// JSON-LD Structured Data
-function JsonLd() {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "T. Kurnia Yogas Wara",
-    "url": "https://t-kurnia-yogas-wara.vercel.app",
-    "image": "https://t-kurnia-yogas-wara.vercel.app/hero.jpg",
-    "sameAs": [
+    name: "T. Kurnia Yogas Wara",
+    url: "https://t-kurnia-yogas-wara.vercel.app",
+    image: "https://t-kurnia-yogas-wara.vercel.app/hero.jpg",
+    sameAs: [
       "https://github.com/YogasWara18",
       "https://linkedin.com/in/t-kurnia-yogas-wara-604b64338",
       "https://instagram.com/yogaswara04/",
       "https://web.facebook.com/Yogasswar",
     ],
-    "jobTitle": "Frontend Developer",
-    "worksFor": {
+    jobTitle: "Frontend Developer",
+    worksFor: {
       "@type": "Organization",
-      "name": "Freelance"
+      name: "Freelance",
     },
-    "description": "Creative Frontend Web Developer specializing in modern, interactive web experiences with React, Next.js, GSAP, and TailwindCSS.",
-    "knowsAbout": [
+    description:
+      "Creative Frontend Web Developer specializing in modern, interactive web experiences with React, Next.js, GSAP, and TailwindCSS.",
+    knowsAbout: [
       "React",
       "Next.js",
       "TypeScript",
@@ -188,33 +176,20 @@ function JsonLd() {
       "GSAP",
       "TailwindCSS",
       "WordPress",
-      "UI/UX Design"
+      "UI/UX Design",
     ],
-    "alumniOf": {
+    alumniOf: {
       "@type": "CollegeOrUniversity",
-      "name": "Purwadhika Bootcamp"
+      name: "Purwadhika Bootcamp",
     },
-    "address": {
+    address: {
       "@type": "PostalAddress",
-      "addressLocality": "Medan",
-      "addressRegion": "North Sumatra",
-      "addressCountry": "Indonesia"
-    }
+      addressLocality: "Medan",
+      addressRegion: "North Sumatra",
+      addressCountry: "Indonesia",
+    },
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-    />
-  );
-}
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
   return (
     <html lang="en" className="dark scroll-smooth">
       <head>
@@ -233,13 +208,13 @@ export default function RootLayout({
         
         {/* RSS Feed */}
         <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
-        
-        {/* Structured Data */}
-        <JsonLd />
       </head>
       <body className={`${inter.variable} font-sans antialiased overflow-x-hidden`}>
         {/* Skip to content link untuk accessibility */}
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-background focus:text-foreground focus:rounded-lg">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-background focus:text-foreground focus:rounded-lg"
+        >
           Skip to content
         </a>
         
@@ -247,13 +222,19 @@ export default function RootLayout({
         <ScrollReset />
         
         {/* Main content dengan id untuk skip link */}
-        <main id="main-content">
-          {children}
-        </main>
+        <main id="main-content">{children}</main>
         
         {/* Vercel Analytics & Speed Insights */}
         <Analytics />
         <SpeedInsights />
+
+        {/* JSON-LD Structured Data menggunakan Script component */}
+        <Script
+          id="structured-data"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
       </body>
     </html>
   );
