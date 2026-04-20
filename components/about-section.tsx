@@ -109,6 +109,7 @@ export default function AboutSkillsSection() {
   return (
     <section
       ref={sectionRef}
+      id="about"
       className="relative min-h-screen py-12 sm:py-16 md:py-20 lg:py-24 overflow-x-hidden bg-gradient-to-br from-slate-950 via-slate-950 to-slate-950"
     >
       {/* Particles */}
@@ -180,20 +181,20 @@ export default function AboutSkillsSection() {
               bg-gradient-to-r from-lime-500/20 to-yellow-500/20
               border border-lime-500/40 backdrop-blur-sm shadow-lg shadow-lime-500/10">
               <Rocket className="w-3.5 h-3.5 text-lime-400" />
-              <span className="text-[10px] sm:text-xs font-bold text-lime-400 tracking-wider">ABOUT ME</span>
+              <span className="text-[10px] sm:text-xs font-bold text-lime-400 tracking-wider">Crafting Digital Experiences</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter">
               <span className="bg-gradient-to-r from-lime-400 via-yellow-400 to-cyan-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
-                Who Am I
+                My Journey
               </span>
             </h2>
 
             <div className="relative">
               <p className="text-sm sm:text-base md:text-lg text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed">
-                I'm <span className="text-lime-400 font-bold">Yogas</span> — a creative engineer who transforms
-                <span className="text-yellow-400 font-bold"> complex ideas </span> into
-                <span className="text-cyan-400 font-bold"> high-impact digital experiences.</span>
+                I'm <span className="text-lime-400 font-bold">Yogas</span>  a Frontend Developer who blends technical precision with creative strategy to craft seamless digital experiences.
+                <span className="text-yellow-400 font-bold"> From dynamic UI animations to accessible design systems </span> I ensure every project balances innovation
+                <span className="text-cyan-400 font-bold"> functionality, and storytelling.</span>
               </p>
               <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-lime-500 to-transparent" />
             </div>
@@ -308,7 +309,7 @@ export default function AboutSkillsSection() {
     <div className="p-2 rounded-xl bg-gradient-to-br from-yellow-500/20 to-cyan-500/20 border border-yellow-500/40">
       <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
     </div>
-    <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-foreground">Verified Credentials</h3>
+    <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-foreground">Verified Certificate </h3>
   </div>
 
   <div ref={certificateRef} className="relative perspective-1000 w-full">

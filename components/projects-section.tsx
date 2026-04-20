@@ -539,7 +539,7 @@ function ProjectSection({
   return (
     <section
       ref={sectionRef}
-      id={id}
+      id="projects"
       className="relative min-h-screen py-12 sm:py-16 md:py-20 lg:py-28 overflow-hidden bg-gradient-to-br from-slate-950 via-slate-950 to-slate-950"
     >
       {/* Particle Background - reduced count on mobile */}
