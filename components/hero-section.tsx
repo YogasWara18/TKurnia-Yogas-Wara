@@ -180,21 +180,28 @@ export default function HeroSection() {
       {/* Tombol Play/Pause Musik (di kiri bawah agar tidak tabrakan dengan upscale) */}
       <button
         onClick={toggleAudio}
-        className="fixed bottom-6 left-6 z-50 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-lime-500/40 flex items-center justify-center hover:scale-110 transition-all duration-300 group"
+        className="fixed bottom-6 left-6 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-lime-500/10 to-yellow-500/10 backdrop-blur-md border border-lime-500/30 flex items-center justify-center group hover:from-lime-500/20 hover:to-yellow-500/20 hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-lime-500/20"
         aria-label="Toggle music"
       >
         {isPlaying ? (
-          <svg className="w-4 h-4 text-lime-400" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-          </svg>
+          // Icon pause (two vertical bars) + equalizer animation
+          <div className="relative flex items-center justify-center gap-[2px]">
+            <div className="w-[2px] h-3 bg-lime-400 rounded-full animate-equalizer" style={{ animationDelay: "0s" }} />
+            <div className="w-[2px] h-4 bg-lime-400 rounded-full animate-equalizer" style={{ animationDelay: "0.2s" }} />
+            <div className="w-[2px] h-2 bg-lime-400 rounded-full animate-equalizer" style={{ animationDelay: "0.4s" }} />
+          </div>
         ) : (
-          <svg className="w-4 h-4 text-lime-400" fill="currentColor" viewBox="0 0 24 24">
+          // Icon play (triangle)
+          <svg className="w-3 h-3 md:w-4 md:h-4 text-lime-400 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M3 9v6h4l5 5V4L7 9H3z" />
           </svg>
         )}
-        <span className="absolute -top-8 left-0 text-[10px] text-lime-400/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+        {/* Tooltip label */}
+        <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] text-lime-400/70 bg-black/50 px-2 py-0.5 rounded-full whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
           {isPlaying ? "Pause" : "Play"}
         </span>
+        {/* Ping effect saat hover */}
+        <span className="absolute inset-0 rounded-full animate-ping bg-lime-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       </button>
 
       {/* Particle Background */}

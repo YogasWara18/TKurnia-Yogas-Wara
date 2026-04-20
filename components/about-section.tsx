@@ -145,23 +145,17 @@ export default function AboutSkillsSection() {
         ))}
       </div>
 
-      {/* Orbs */}
+      {/* Orbs - semua className dalam satu baris */}
       <div
-        className="absolute top-1/4 -left-32 sm:-left-48 md:-left-64 lg:-left-80
-          w-[220px] sm:w-[320px] md:w-[400px] lg:w-[500px]
-          h-[220px] sm:h-[320px] md:h-[400px] lg:h-[500px]
-          bg-lime-500/10 rounded-full blur-3xl mix-blend-screen animate-pulse"
+        className="absolute top-1/4 -left-32 sm:-left-48 md:-left-64 lg:-left-80 w-[220px] sm:w-[320px] md:w-[400px] lg:w-[500px] h-[220px] sm:h-[320px] md:h-[400px] lg:h-[500px] bg-lime-500/10 rounded-full blur-3xl mix-blend-screen animate-pulse"
         style={{ animationDuration: "8s" }}
       />
       <div
-        className="absolute bottom-1/4 -right-32 sm:-right-48 md:-right-64 lg:-right-80
-          w-[220px] sm:w-[320px] md:w-[400px] lg:w-[500px]
-          h-[220px] sm:h-[320px] md:h-[400px] lg:h-[500px]
-          bg-yellow-500/10 rounded-full blur-3xl mix-blend-screen animate-pulse"
+        className="absolute bottom-1/4 -right-32 sm:-right-48 md:-right-64 lg:-right-80 w-[220px] sm:w-[320px] md:w-[400px] lg:w-[500px] h-[220px] sm:h-[320px] md:h-[400px] lg:h-[500px] bg-yellow-500/10 rounded-full blur-3xl mix-blend-screen animate-pulse"
         style={{ animationDuration: "10s", animationDelay: "1s" }}
       />
 
-      {/* Grid overlay */}
+      {/* Grid overlay - aman karena menggunakan template literal untuk backgroundImage */}
       <div
         className="absolute inset-0 opacity-[0.04]"
         style={{
@@ -177,9 +171,7 @@ export default function AboutSkillsSection() {
         {/* BIO SECTION */}
         <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-14 md:mb-16 lg:mb-20">
           <div ref={bioRef} className="space-y-4 sm:space-y-5">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full
-              bg-gradient-to-r from-lime-500/20 to-yellow-500/20
-              border border-lime-500/40 backdrop-blur-sm shadow-lg shadow-lime-500/10">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-lime-500/20 to-yellow-500/20 border border-lime-500/40 backdrop-blur-sm shadow-lg shadow-lime-500/10">
               <Rocket className="w-3.5 h-3.5 text-lime-400" />
               <span className="text-[10px] sm:text-xs font-bold text-lime-400 tracking-wider">Crafting Digital Experiences</span>
             </div>
@@ -192,8 +184,8 @@ export default function AboutSkillsSection() {
 
             <div className="relative">
               <p className="text-sm sm:text-base md:text-lg text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed">
-                I'm <span className="text-lime-400 font-bold">Yogas</span>  a Frontend Developer who blends technical precision with creative strategy to craft seamless digital experiences.
-                <span className="text-yellow-400 font-bold"> From dynamic UI animations to accessible design systems </span> I ensure every project balances innovation
+                I'm <span className="text-lime-400 font-bold">Yogas</span> a Frontend Developer who blends technical precision with creative strategy to craft seamless digital experiences.
+                <span className="text-yellow-400 font-bold"> From dynamic UI animations to accessible design systems, </span> I ensure every project balances innovation,
                 <span className="text-cyan-400 font-bold"> functionality, and storytelling.</span>
               </p>
               <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-lime-500 to-transparent" />
@@ -203,24 +195,18 @@ export default function AboutSkillsSection() {
           {/* Stats Grid */}
           <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-10 sm:mt-12">
             {[
-              { icon: Code,       label: "Projects",   value: "15+", desc: "Completed", color: "lime"   },
-              { icon: Users,      label: "Clients",    value: "10+", desc: "Happy",     color: "yellow" },
-              { icon: Award,      label: "Certs",      value: "4",   desc: "Global",    color: "lime"   },
-              { icon: TrendingUp, label: "Experience", value: "2+",  desc: "Years",     color: "yellow" },
+              { icon: Code, label: "Projects", value: "15+", desc: "Completed", color: "lime" },
+              { icon: Users, label: "Clients", value: "10+", desc: "Happy", color: "yellow" },
+              { icon: Award, label: "Certs", value: "4", desc: "Global", color: "lime" },
+              { icon: TrendingUp, label: "Experience", value: "2+", desc: "Years", color: "yellow" },
             ].map((stat, i) => (
               <div
                 key={i}
-                className="group relative overflow-hidden rounded-xl md:rounded-2xl
-                  bg-gradient-to-br from-white/5 to-white/0
-                  backdrop-blur-md border border-white/10 p-4 sm:p-5 text-center
-                  transition-all duration-500
-                  hover:scale-105 hover:border-lime-500/40 hover:shadow-xl hover:shadow-lime-500/20"
+                className="group relative overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-md border border-white/10 p-4 sm:p-5 text-center transition-all duration-500 hover:scale-105 hover:border-lime-500/40 hover:shadow-xl hover:shadow-lime-500/20"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-lime-500/0 via-lime-500/10 to-yellow-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <stat.icon
-                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8
-                    ${stat.color === "lime" ? "text-lime-400" : "text-yellow-400"}
-                    mx-auto mb-2 group-hover:scale-110 transition-transform duration-300`}
+                  className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 ${stat.color === "lime" ? "text-lime-400" : "text-yellow-400"} mx-auto mb-2 group-hover:scale-110 transition-transform duration-300`}
                 />
                 <div className="text-2xl sm:text-3xl md:text-4xl font-black text-foreground">{stat.value}</div>
                 <div className="text-xs sm:text-sm font-semibold text-muted-foreground/80 mt-1">{stat.label}</div>
@@ -249,13 +235,7 @@ export default function AboutSkillsSection() {
                 return (
                   <div
                     key={skill.name}
-                    className="skill-card group relative p-3 sm:p-4
-                      rounded-xl md:rounded-2xl
-                      bg-gradient-to-br from-white/5 to-white/0
-                      backdrop-blur-md border border-white/10
-                      hover:border-lime-500/50
-                      transition-all duration-500
-                      hover:shadow-xl hover:shadow-lime-500/10 overflow-hidden"
+                    className="skill-card group relative p-3 sm:p-4 rounded-xl md:rounded-2xl bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-md border border-white/10 hover:border-lime-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-lime-500/10 overflow-hidden"
                   >
                     <div className="flex items-center gap-3 sm:gap-4">
                       <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex-shrink-0">
@@ -303,86 +283,69 @@ export default function AboutSkillsSection() {
           </div>
 
           {/* Certificates */}
-         {/* Certificates */}
-<div>
-  <div className="flex items-center gap-2.5 mb-6 sm:mb-7 md:mb-8">
-    <div className="p-2 rounded-xl bg-gradient-to-br from-yellow-500/20 to-cyan-500/20 border border-yellow-500/40">
-      <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
-    </div>
-    <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-foreground">Verified Certificate </h3>
-  </div>
-
-  <div ref={certificateRef} className="relative perspective-1000 w-full">
-    {/* Wrapper dengan tinggi eksplisit agar Swiper flip tidak collapse */}
-    <div className="w-full h-[220px] sm:h-[280px] md:h-[340px] lg:h-[360px]">
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay, EffectFlip]}
-        effect="flip"
-        flipEffect={{ slideShadows: false, limitRotation: true }}
-        spaceBetween={0}
-        slidesPerView={1}
-        loop={true}
-        autoplay={{ delay: 4000, disableOnInteraction: false }}
-        pagination={{ clickable: true, dynamicBullets: true }}
-        navigation={{
-          prevEl: ".swiper-button-prev-custom",
-          nextEl: ".swiper-button-next-custom",
-        }}
-        style={{ width: "100%", height: "100%" }}
-        className="rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
-      >
-        {certificates.map((src, i) => (
-          <SwiperSlide
-            key={i}
-            style={{ width: "100%", height: "100%" }}
-          >
-            <div className="relative w-full h-full rounded-lg md:rounded-xl overflow-hidden border-2 border-lime-500/30 bg-black/60">
-              <img
-                src={src}
-                alt={`Certificate ${i + 1}`}
-                className="w-full h-full object-contain"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-2 left-2 right-2 flex justify-between items-center">
-                <span className="text-[10px] sm:text-xs font-mono text-white/70 bg-black/50 px-2 py-0.5 rounded-full">
-                  Verified
-                </span>
-                <span className="text-[10px] sm:text-xs font-mono text-lime-400 bg-black/50 px-2 py-0.5 rounded-full">
-                  #{i + 1}
-                </span>
+          <div>
+            <div className="flex items-center gap-2.5 mb-6 sm:mb-7 md:mb-8">
+              <div className="p-2 rounded-xl bg-gradient-to-br from-yellow-500/20 to-cyan-500/20 border border-yellow-500/40">
+                <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
               </div>
+              <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-foreground">Verified Certificate</h3>
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
 
-    {/* Nav buttons */}
-    <button className="swiper-button-prev-custom absolute left-2 top-1/2 -translate-y-1/2 z-10
-      w-8 h-8 sm:w-9 sm:h-9 rounded-full
-      bg-black/60 backdrop-blur-sm border border-lime-500/50
-      flex items-center justify-center
-      hover:bg-lime-500/30 hover:scale-110 transition-all duration-300 focus:outline-none">
-      <svg className="w-4 h-4 text-lime-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-      </svg>
-    </button>
-    <button className="swiper-button-next-custom absolute right-2 top-1/2 -translate-y-1/2 z-10
-      w-8 h-8 sm:w-9 sm:h-9 rounded-full
-      bg-black/60 backdrop-blur-sm border border-yellow-500/50
-      flex items-center justify-center
-      hover:bg-yellow-500/30 hover:scale-110 transition-all duration-300 focus:outline-none">
-      <svg className="w-4 h-4 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-      </svg>
-    </button>
+            <div ref={certificateRef} className="relative perspective-1000 w-full">
+              <div className="w-full h-[220px] sm:h-[280px] md:h-[340px] lg:h-[360px]">
+                <Swiper
+                  modules={[Navigation, Pagination, Autoplay, EffectFlip]}
+                  effect="flip"
+                  flipEffect={{ slideShadows: false, limitRotation: true }}
+                  spaceBetween={0}
+                  slidesPerView={1}
+                  loop={true}
+                  autoplay={{ delay: 4000, disableOnInteraction: false }}
+                  pagination={{ clickable: true, dynamicBullets: true }}
+                  navigation={{
+                    prevEl: ".swiper-button-prev-custom",
+                    nextEl: ".swiper-button-next-custom",
+                  }}
+                  style={{ width: "100%", height: "100%" }}
+                  className="rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+                >
+                  {certificates.map((src, i) => (
+                    <SwiperSlide key={i} style={{ width: "100%", height: "100%" }}>
+                      <div className="relative w-full h-full rounded-lg md:rounded-xl overflow-hidden border-2 border-lime-500/30 bg-black/60">
+                        <img
+                          src={src}
+                          alt={`Certificate ${i + 1}`}
+                          className="w-full h-full object-contain"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                        <div className="absolute bottom-2 left-2 right-2 flex justify-between items-center">
+                          <span className="text-[10px] sm:text-xs font-mono text-white/70 bg-black/50 px-2 py-0.5 rounded-full">Verified</span>
+                          <span className="text-[10px] sm:text-xs font-mono text-lime-400 bg-black/50 px-2 py-0.5 rounded-full">#{i + 1}</span>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
 
-    <div className="absolute -inset-0.5 rounded-xl md:rounded-2xl bg-gradient-to-r from-lime-500 to-yellow-500 opacity-20 blur-xl -z-10" />
-    <div className="absolute -bottom-2 -right-2 w-10 h-10 sm:w-12 sm:h-12 border-r-2 border-b-2 border-lime-500/50 rounded-br-xl" />
-    <div className="absolute -top-2 -left-2 w-10 h-10 sm:w-12 sm:h-12 border-l-2 border-t-2 border-yellow-500/50 rounded-tl-xl" />
-  </div>
-</div>
+              {/* Nav buttons */}
+              <button className="swiper-button-prev-custom absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/60 backdrop-blur-sm border border-lime-500/50 flex items-center justify-center hover:bg-lime-500/30 hover:scale-110 transition-all duration-300 focus:outline-none">
+                <svg className="w-4 h-4 text-lime-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button className="swiper-button-next-custom absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/60 backdrop-blur-sm border border-yellow-500/50 flex items-center justify-center hover:bg-yellow-500/30 hover:scale-110 transition-all duration-300 focus:outline-none">
+                <svg className="w-4 h-4 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              <div className="absolute -inset-0.5 rounded-xl md:rounded-2xl bg-gradient-to-r from-lime-500 to-yellow-500 opacity-20 blur-xl -z-10" />
+              <div className="absolute -bottom-2 -right-2 w-10 h-10 sm:w-12 sm:h-12 border-r-2 border-b-2 border-lime-500/50 rounded-br-xl" />
+              <div className="absolute -top-2 -left-2 w-10 h-10 sm:w-12 sm:h-12 border-l-2 border-t-2 border-yellow-500/50 rounded-tl-xl" />
+            </div>
+          </div>
         </div>
 
         {/* TECH STACK CAROUSEL */}
@@ -410,11 +373,7 @@ export default function AboutSkillsSection() {
                 "WordPress", "Elementor", "YOAST SEO", "Vercel",
               ].map((tech, idx) => (
                 <SwiperSlide key={idx} className="!w-auto">
-                  <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5
-                    text-[10px] sm:text-xs rounded-full
-                    bg-white/5 border border-white/10 text-muted-foreground/70
-                    hover:border-lime-500/50 hover:text-lime-400
-                    transition-all duration-300 whitespace-nowrap">
+                  <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 text-[10px] sm:text-xs rounded-full bg-white/5 border border-white/10 text-muted-foreground/70 hover:border-lime-500/50 hover:text-lime-400 transition-all duration-300 whitespace-nowrap">
                     {tech}
                   </span>
                 </SwiperSlide>
