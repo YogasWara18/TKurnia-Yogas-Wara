@@ -8,53 +8,53 @@ import { ArrowUpRight, Mail, Send } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
 const socialLinks = [
-  { 
-    src: "/icons/Email.png", 
-    label: "Email", 
-    href: "https://mail.google.com/mail/?view=cm&fs=1&to=teukukurniayogaswara@gmail.com", 
+  {
+    src: "/icons/Email.png",
+    label: "Email",
+    href: "https://mail.google.com/mail/?view=cm&fs=1&to=teukukurniayogaswara@gmail.com",
     borderColor: "#EA4335",
     bgGradient: "from-[#EA4335]/20 to-transparent",
-    hoverColor: "hover:border-[#EA4335] hover:shadow-[#EA4335]/25"
+    hoverColor: "hover:border-[#EA4335] hover:shadow-[#EA4335]/25",
   },
-  { 
-    src: "/icons/Whatsap.png", 
-    label: "WhatsApp", 
-    href: "https://wa.me/+6281234701212", 
+  {
+    src: "/icons/Whatsap.png",
+    label: "WhatsApp",
+    href: "https://wa.me/+6281234701212",
     borderColor: "#25D366",
     bgGradient: "from-[#25D366]/20 to-transparent",
-    hoverColor: "hover:border-[#25D366] hover:shadow-[#25D366]/25"
+    hoverColor: "hover:border-[#25D366] hover:shadow-[#25D366]/25",
   },
-  { 
-    src: "/icons/Linkedin.png", 
-    label: "LinkedIn", 
-    href: "https://linkedin.com/in/t-kurnia-yogas-wara-604b64338", 
+  {
+    src: "/icons/Linkedin.png",
+    label: "LinkedIn",
+    href: "https://linkedin.com/in/t-kurnia-yogas-wara-604b64338",
     borderColor: "#0077B5",
     bgGradient: "from-[#0077B5]/20 to-transparent",
-    hoverColor: "hover:border-[#0077B5] hover:shadow-[#0077B5]/25"
+    hoverColor: "hover:border-[#0077B5] hover:shadow-[#0077B5]/25",
   },
-  { 
-    src: "/icons/Github.png", 
-    label: "GitHub", 
-    href: "https://github.com/YogasWara18", 
+  {
+    src: "/icons/Github.png",
+    label: "GitHub",
+    href: "https://github.com/YogasWara18",
     borderColor: "#333333",
     bgGradient: "from-[#333333]/20 to-transparent",
-    hoverColor: "hover:border-[#333333] hover:shadow-[#333333]/25"
+    hoverColor: "hover:border-[#333333] hover:shadow-[#333333]/25",
   },
-  { 
-    src: "/icons/Instagram.png", 
-    label: "Instagram", 
-    href: "https://instagram.com/yogaswara04/", 
+  {
+    src: "/icons/Instagram.png",
+    label: "Instagram",
+    href: "https://instagram.com/yogaswara04/",
     borderColor: "#E1306C",
     bgGradient: "from-[#E1306C]/20 to-transparent",
-    hoverColor: "hover:border-[#E1306C] hover:shadow-[#E1306C]/25"
+    hoverColor: "hover:border-[#E1306C] hover:shadow-[#E1306C]/25",
   },
-  { 
-    src: "/icons/Facebook.png", 
-    label: "Facebook", 
-    href: "https://web.facebook.com/Yogasswar", 
+  {
+    src: "/icons/Facebook.png",
+    label: "Facebook",
+    href: "https://web.facebook.com/Yogasswar",
     borderColor: "#1877F2",
     bgGradient: "from-[#1877F2]/20 to-transparent",
-    hoverColor: "hover:border-[#1877F2] hover:shadow-[#1877F2]/25"
+    hoverColor: "hover:border-[#1877F2] hover:shadow-[#1877F2]/25",
   },
 ];
 
@@ -78,25 +78,46 @@ export default function ContactSection() {
       });
 
       // Title animation
-      tl.fromTo(titleRef.current,
+      tl.fromTo(
+        titleRef.current,
         { y: 40, opacity: 0, filter: "blur(10px)" },
-        { y: 0, opacity: 1, filter: "blur(0px)", duration: 1.2, ease: "power3.out" }
+        {
+          y: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 1.2,
+          ease: "power3.out",
+        },
       );
 
       // Subtitle animation
       tl.fromTo(
         subtitleRef.current,
         { y: 40, opacity: 0, filter: "blur(10px)", scale: 0.95 },
-        { y: 0, opacity: 1, filter: "blur(0px)", scale: 1, duration: 1.2, ease: "back.out(1.2)" },
-        "-=0.6"
+        {
+          y: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          scale: 1,
+          duration: 1.2,
+          ease: "back.out(1.2)",
+        },
+        "-=0.6",
       );
 
       // CTA animation
       tl.fromTo(
         ctaRef.current,
         { y: 30, opacity: 0, filter: "blur(5px)", scale: 0.9 },
-        { y: 0, opacity: 1, filter: "blur(0px)", scale: 1, duration: 1, ease: "back.out(1.7)" },
-        "-=0.4"
+        {
+          y: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          scale: 1,
+          duration: 1,
+          ease: "back.out(1.7)",
+        },
+        "-=0.4",
       );
 
       // Social icons animation
@@ -105,8 +126,16 @@ export default function ContactSection() {
         tl.fromTo(
           Array.from(socialIcons),
           { y: 30, opacity: 0, scale: 0.95, filter: "blur(5px)" },
-          { y: 0, opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.8, stagger: 0.1, ease: "back.out(1.7)" },
-          "-=0.4"
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "back.out(1.7)",
+          },
+          "-=0.4",
         );
       }
 
@@ -117,7 +146,7 @@ export default function ContactSection() {
         duration: 8,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut"
+        ease: "sine.inOut",
       });
     }, sectionRef);
 
@@ -142,8 +171,8 @@ export default function ContactSection() {
   return (
     <section
       ref={sectionRef}
-      id="contact"
-      className="relative min-h-screen py-20 md:py-28 lg:py-32 overflow-hidden bg-gradient-to-br from-slate-950 via-background to-slate-950"
+      id="projects"
+      className="relative min-h-screen py-12 sm:py-16 md:py-20 lg:py-28 overflow-hidden bg-background"
     >
       {/* Particle Background (20 butir) */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
@@ -210,11 +239,16 @@ export default function ContactSection() {
           <div ref={subtitleRef} className="relative mb-12">
             <p className="text-sm sm:text-base md:text-lg text-muted-foreground/80 leading-relaxed bg-gradient-to-br from-lime-500/5 to-yellow-500/5 p-6 md:p-8 rounded-2xl max-w-2xl mx-auto border border-lime-500/10 backdrop-blur-sm">
               <span className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-lime-500 to-yellow-500 rounded-l-2xl" />
-              <span className="absolute -top-4 -right-4 text-6xl md:text-8xl text-lime-500/10 font-serif">"</span>
-              <span className="relative z-10 block">
-                I'm open to collaborations, projects, or just a friendly chat. Let's connect through the channels below.
+              <span className="absolute -top-4 -right-4 text-6xl md:text-8xl text-lime-500/10 font-serif">
+                "
               </span>
-              <span className="absolute -bottom-6 md:-bottom-10 -left-4 text-6xl md:text-8xl text-yellow-500/10 font-serif rotate-180">"</span>
+              <span className="relative z-10 block">
+                I'm open to collaborations, projects, or just a friendly chat.
+                Let's connect through the channels below.
+              </span>
+              <span className="absolute -bottom-6 md:-bottom-10 -left-4 text-6xl md:text-8xl text-yellow-500/10 font-serif rotate-180">
+                "
+              </span>
             </p>
           </div>
 
@@ -234,7 +268,10 @@ export default function ContactSection() {
           </div>
 
           {/* Social icons dengan glassmorphism */}
-          <div ref={iconsRef} className="flex flex-wrap items-center justify-center gap-3 md:gap-6">
+          <div
+            ref={iconsRef}
+            className="flex flex-wrap items-center justify-center gap-3 md:gap-6"
+          >
             {socialLinks.map((social, index) => (
               <a
                 key={social.label}
@@ -245,7 +282,9 @@ export default function ContactSection() {
                 className={`social-icon group relative p-3 md:p-5 rounded-xl md:rounded-2xl border border-lime-500/20 bg-lime-500/5 backdrop-blur-sm transition-all duration-300 hover:scale-110 ${social.hoverColor}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${social.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl md:rounded-2xl`} />
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${social.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl md:rounded-2xl`}
+                />
                 <img
                   src={social.src}
                   alt={social.label}
@@ -265,7 +304,9 @@ export default function ContactSection() {
               className="group flex items-center gap-2 hover:text-lime-500 transition-colors duration-300"
             >
               <Mail className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
-              <span className="text-sm md:text-base">teukukurniayogaswara@gmail.com</span>
+              <span className="text-sm md:text-base">
+                teukukurniayogaswara@gmail.com
+              </span>
             </a>
           </div>
 
@@ -275,22 +316,40 @@ export default function ContactSection() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-500 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 bg-lime-500"></span>
             </span>
-            <span className="text-xs md:text-sm font-medium text-lime-500">Available for freelance work</span>
+            <span className="text-xs md:text-sm font-medium text-lime-500">
+              Available for freelance work
+            </span>
           </div>
         </div>
       </div>
 
       <style jsx>{`
         @keyframes pulse-glow {
-          0%, 100% { opacity: 0.3; filter: blur(80px); }
-          50% { opacity: 0.5; filter: blur(100px); }
+          0%,
+          100% {
+            opacity: 0.3;
+            filter: blur(80px);
+          }
+          50% {
+            opacity: 0.5;
+            filter: blur(100px);
+          }
         }
         @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-20px); }
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
         }
-        .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
-        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-pulse-glow {
+          animation: pulse-glow 4s ease-in-out infinite;
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
       `}</style>
     </section>
   );

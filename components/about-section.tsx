@@ -107,11 +107,11 @@ export default function AboutSkillsSection() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="about"
-      className="relative min-h-screen py-12 sm:py-16 md:py-20 lg:py-24 overflow-x-hidden bg-gradient-to-br from-slate-950 via-slate-950 to-slate-950"
-    >
+   <section
+  ref={sectionRef}
+  id="about"
+  className="relative min-h-screen py-12 sm:py-16 md:py-20 lg:py-24 overflow-x-hidden bg-background"
+>
       {/* Particles */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
         {[...Array(10)].map((_, i) => (

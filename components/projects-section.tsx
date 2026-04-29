@@ -540,7 +540,7 @@ function ProjectSection({
     <section
       ref={sectionRef}
       id="projects"
-      className="relative min-h-screen py-12 sm:py-16 md:py-20 lg:py-28 overflow-hidden bg-gradient-to-br from-slate-950 via-slate-950 to-slate-950"
+      className="relative min-h-screen py-12 sm:py-16 md:py-20 lg:py-28 overflow-hidden bg-background"
     >
       {/* Particle Background - reduced count on mobile */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
@@ -600,7 +600,10 @@ function ProjectSection({
         </div>
 
         {/* Projects */}
-        <div ref={cardsRef} className="space-y-16 sm:space-y-20 md:space-y-24 lg:space-y-32">
+        <div
+          ref={cardsRef}
+          className="space-y-16 sm:space-y-20 md:space-y-24 lg:space-y-32"
+        >
           {projects.map((project, projectIndex) => (
             <div
               key={project.title}
@@ -773,15 +776,31 @@ function ProjectSection({
 
       <style jsx>{`
         @keyframes pulse-glow {
-          0%, 100% { opacity: 0.3; filter: blur(60px); }
-          50% { opacity: 0.5; filter: blur(80px); }
+          0%,
+          100% {
+            opacity: 0.3;
+            filter: blur(60px);
+          }
+          50% {
+            opacity: 0.5;
+            filter: blur(80px);
+          }
         }
         @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-20px); }
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
         }
-        .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
-        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-pulse-glow {
+          animation: pulse-glow 4s ease-in-out infinite;
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
         .glass {
           background: rgba(0, 0, 0, 0.5);
           backdrop-filter: blur(8px);

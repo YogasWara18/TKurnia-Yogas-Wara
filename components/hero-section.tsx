@@ -172,7 +172,7 @@ export default function HeroSection() {
     <section ref={heroRef} className="relative pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36 min-h-screen flex items-center overflow-hidden bg-background" style={{ opacity: 0 }}>
       {/* Audio MP3 - Ganti src dengan file musik Anda */}
       <audio ref={audioRef} loop preload="auto">
-        <source src="/music/InTheEnd.mp3" type="audio/mpeg" />
+        <source src="/music/Crawling.mp3" type="audio/mpeg" />
         {/* Fallback jika file tidak ditemukan */}
         Your browser does not support the audio element.
       </audio>
