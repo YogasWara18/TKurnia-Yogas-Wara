@@ -259,7 +259,7 @@ export default function HeroSection() {
               <a href="#projects" className="group relative px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-gradient-to-r from-lime-500 to-yellow-500 rounded-full font-semibold text-background shadow-lg hover:shadow-lime-500/30 transition-all duration-300 hover:scale-105 active:scale-95 text-sm sm:text-base">
                 <span className="flex items-center gap-2">View Projects<svg className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg></span>
               </a>
-              <a href="https://drive.google.com/file/d/15Lx-mFTr7dHeXZJjUBDJ5eMqP-p9nM_L/view?usp=sharing" className="px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 border border-lime-500/40 rounded-full font-semibold text-foreground/80 hover:bg-lime-500/5 hover:border-lime-500 transition-all duration-300 text-sm sm:text-base" target="_blank" rel="noopener noreferrer">View Resume</a>
+              <a href="https://drive.google.com/file/d/14hS9_cu4vw5ge4fYVdt3fLRIedhr5_c0/view?usp=sharing" className="px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 border border-lime-500/40 rounded-full font-semibold text-foreground/80 hover:bg-lime-500/5 hover:border-lime-500 transition-all duration-300 text-sm sm:text-base" target="_blank" rel="noopener noreferrer">View Resume</a>
             </div>
           </div>
 
