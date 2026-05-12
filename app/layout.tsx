@@ -1,6 +1,6 @@
 import type React from "react";
 import type { Metadata, Viewport } from "next";
-import Script from "next/script"; // Gunakan Script dari Next.js untuk structured data
+import Script from "next/script";
 
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -9,9 +9,6 @@ import { Inter } from "next/font/google";
 import ScrollReset from "../components/scrollReset";
 // @ts-ignore
 import "./globals.css";
-
-
-
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,11 +27,14 @@ export const viewport: Viewport = {
   ],
 };
 
+// Base URL yang benar (tanpa tanda hubung)
+const baseUrl = "https://tkurniayogaswara.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://t-kurnia-yogas-wara.vercel.app"),
+  metadataBase: new URL(baseUrl),
   title: {
-    default: "T. Kurnia Yogas Wara | Frontend Developer & UI/UX Enthusiast",
-    template: "%s | T. Kurnia Yogas Wara",
+    default: "T. Kurnia Yogas Wara | Frontend Developer & Wordpress Developer",
+    template: "T. Kurnia Yogas Wara",
   },
   description:
     "Creative Frontend Web Developer specializing in modern, interactive web experiences with React, Next.js, GSAP, and TailwindCSS. Explore my portfolio of responsive and performant web applications.",
@@ -72,17 +72,17 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://t-kurnia-yogas-wara.vercel.app",
+    canonical: `${baseUrl}/`,
     languages: {
-      "en-US": "https://t-kurnia-yogas-wara.vercel.app/en",
-      "id-ID": "https://t-kurnia-yogas-wara.vercel.app/id",
+      "en-US": `${baseUrl}/en`,
+      "id-ID": `${baseUrl}/id`,
     },
   },
   openGraph: {
     title: "T. Kurnia Yogas Wara | Frontend Developer",
     description:
       "Modern portfolio showcasing premium UI, smooth animations, and innovative web projects built with cutting-edge technologies.",
-    url: "https://t-kurnia-yogas-wara.vercel.app",
+    url: `${baseUrl}/`,
     siteName: "T. Kurnia Yogas Wara Portfolio",
     images: [
       {
@@ -133,15 +133,16 @@ export const metadata: Metadata = {
     startupImage: ["/apple-splash-2048-2732.png"],
   },
   verification: {
-    google: "google-site-verification-code",
-    yandex: "yandex-verification-code",
-    yahoo: "yahoo-verification-code",
+    google: "google-site-verification-code", // Ganti dengan kode verifikasi asli
+    yandex: "yandex-verification-code",     // Ganti jika menggunakan Yandex
     other: {
       "facebook-domain-verification": ["facebook-verification-code"],
     },
   },
   category: "technology",
   classification: "Portfolio Website",
+  // tambahan: referrer policy untuk keamanan & SEO
+  referrer: "strict-origin-when-cross-origin",
 };
 
 export default function RootLayout({
@@ -153,8 +154,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "T. Kurnia Yogas Wara",
-    url: "https://t-kurnia-yogas-wara.vercel.app",
-    image: "https://t-kurnia-yogas-wara.vercel.app/hero.jpg",
+    url: baseUrl,
+    image: `${baseUrl}/hero.jpg`,
     sameAs: [
       "https://github.com/YogasWara18",
       "https://linkedin.com/in/t-kurnia-yogas-wara-604b64338",
@@ -196,16 +197,14 @@ export default function RootLayout({
         {/* Preconnect untuk domain eksternal */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+
         {/* Preload critical assets */}
         <link rel="preload" as="image" href="/hero.jpg" />
-        
+
         {/* DNS Prefetch */}
         <link rel="dns-prefetch" href="https://vercel.live" />
-        
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://t-kurnia-yogas-wara.vercel.app" />
-        
+
+        {/* Canonical URL sudah diatur di metadata, tapi bisa ditambahkan secara eksplisit jika perlu */}
         {/* RSS Feed */}
         <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
       </head>
@@ -217,13 +216,13 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        
+
         {/* Scroll reset component */}
         <ScrollReset />
-        
+
         {/* Main content dengan id untuk skip link */}
         <main id="main-content">{children}</main>
-        
+
         {/* Vercel Analytics & Speed Insights */}
         <Analytics />
         <SpeedInsights />
