@@ -37,7 +37,7 @@ const skillsData = [
   { name: "GSAP", icon: "/gsap.png", level: 87, color: "#88CE02", description: "ScrollTrigger, Timeline" },
   { name: "Node.js", icon: "/nodejs.png", level: 82, color: "#339933", description: "Express, REST API" },
   { name: "WordPress", icon: "/Wordpress.png", level: 85, color: "#21759B", description: "Themes, Plugins, ACF" },
-  { name: "Elementor", icon: "/elementor.png", level: 88, color: "#92003B", description: "Page Builder, Theme Builder" },
+  { name: "Elementor", icon: "/Elementor.png", level: 88, color: "#92003B", description: "Page Builder, Theme Builder" },
   { name: "Yoast SEO", icon: "/YoastSEO.png", level: 80, color: "#A4286A", description: "On-page SEO, Sitemaps, Analysis" },
   { name: "WooCommerce", icon: "/WooCommerce.png", level: 78, color: "#7F54B3", description: "E‑commerce, Products, Payments" },
 ];
