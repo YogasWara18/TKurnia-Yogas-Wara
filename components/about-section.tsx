@@ -37,7 +37,9 @@ const skillsData = [
   { name: "GSAP", icon: "/gsap.png", level: 87, color: "#88CE02", description: "ScrollTrigger, Timeline" },
   { name: "Node.js", icon: "/nodejs.png", level: 82, color: "#339933", description: "Express, REST API" },
   { name: "WordPress", icon: "/Wordpress.png", level: 85, color: "#21759B", description: "Themes, Plugins, ACF" },
-  { name: "Figma", icon: "/figma.png", level: 80, color: "#F24E1E", description: "Design, Prototyping" },
+  { name: "Elementor", icon: "/elementor.png", level: 88, color: "#92003B", description: "Page Builder, Theme Builder" },
+  { name: "Yoast SEO", icon: "/YoastSEO.png", level: 80, color: "#A4286A", description: "On-page SEO, Sitemaps, Analysis" },
+  { name: "WooCommerce", icon: "/WooCommerce.png", level: 78, color: "#7F54B3", description: "E‑commerce, Products, Payments" },
 ];
 
 const certificates = ["/CertificatePWD.jpg", "/HTML-Sololearn.jpg", "/CSS-Sololearn.jpg", "/JavaScript-Sololearn.jpg"];
@@ -112,7 +114,7 @@ export default function AboutSkillsSection() {
   id="about"
   className="relative min-h-screen py-12 sm:py-16 md:py-20 lg:py-24 overflow-x-hidden bg-background"
 >
-      {/* Particles */}
+      {/* Particles & floating shapes (sama seperti sebelumnya) */}
       <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
         {[...Array(10)].map((_, i) => (
           <div
@@ -128,7 +130,6 @@ export default function AboutSkillsSection() {
         ))}
       </div>
 
-      {/* Floating shapes — tablet & desktop only */}
       <div ref={floatingShapesRef} className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
         {[...Array(4)].map((_, i) => (
           <div
@@ -145,7 +146,6 @@ export default function AboutSkillsSection() {
         ))}
       </div>
 
-      {/* Orbs - semua className dalam satu baris */}
       <div
         className="absolute top-1/4 -left-32 sm:-left-48 md:-left-64 lg:-left-80 w-[220px] sm:w-[320px] md:w-[400px] lg:w-[500px] h-[220px] sm:h-[320px] md:h-[400px] lg:h-[500px] bg-lime-500/10 rounded-full blur-3xl mix-blend-screen animate-pulse"
         style={{ animationDuration: "8s" }}
@@ -155,7 +155,6 @@ export default function AboutSkillsSection() {
         style={{ animationDuration: "10s", animationDelay: "1s" }}
       />
 
-      {/* Grid overlay - aman karena menggunakan template literal untuk backgroundImage */}
       <div
         className="absolute inset-0 opacity-[0.04]"
         style={{
@@ -168,7 +167,7 @@ export default function AboutSkillsSection() {
 
       <div className="container relative z-10 px-4 sm:px-6 md:px-8 mx-auto max-w-6xl">
 
-        {/* BIO SECTION */}
+        {/* BIO SECTION (sama) */}
         <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-14 md:mb-16 lg:mb-20">
           <div ref={bioRef} className="space-y-4 sm:space-y-5">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-lime-500/20 to-yellow-500/20 border border-lime-500/40 backdrop-blur-sm shadow-lg shadow-lime-500/10">
@@ -192,7 +191,6 @@ export default function AboutSkillsSection() {
             </div>
           </div>
 
-          {/* Stats Grid */}
           <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-10 sm:mt-12">
             {[
               { icon: Code, label: "Projects", value: "15+", desc: "Completed", color: "lime" },
@@ -219,7 +217,7 @@ export default function AboutSkillsSection() {
         {/* SKILLS + CERTIFICATES */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-start">
 
-          {/* Skills */}
+          {/* Skills - semua card dapat efek yang sama */}
           <div>
             <div className="flex items-center gap-2.5 mb-6 sm:mb-7 md:mb-8">
               <div className="p-2 rounded-xl bg-gradient-to-br from-lime-500/20 to-yellow-500/20 border border-lime-500/40">
@@ -282,7 +280,7 @@ export default function AboutSkillsSection() {
             </div>
           </div>
 
-          {/* Certificates */}
+          {/* Certificates (tidak berubah) */}
           <div>
             <div className="flex items-center gap-2.5 mb-6 sm:mb-7 md:mb-8">
               <div className="p-2 rounded-xl bg-gradient-to-br from-yellow-500/20 to-cyan-500/20 border border-yellow-500/40">
@@ -329,7 +327,6 @@ export default function AboutSkillsSection() {
                 </Swiper>
               </div>
 
-              {/* Nav buttons */}
               <button className="swiper-button-prev-custom absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/60 backdrop-blur-sm border border-lime-500/50 flex items-center justify-center hover:bg-lime-500/30 hover:scale-110 transition-all duration-300 focus:outline-none">
                 <svg className="w-4 h-4 text-lime-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
@@ -348,7 +345,7 @@ export default function AboutSkillsSection() {
           </div>
         </div>
 
-        {/* TECH STACK CAROUSEL */}
+        {/* TECH STACK CAROUSEL (sudah berisi Elementor, Yoast SEO, WooCommerce) */}
         <div className="mt-14 sm:mt-16 md:mt-20 text-center w-full">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
             <Terminal className="w-3.5 h-3.5 text-lime-400" />
@@ -369,8 +366,8 @@ export default function AboutSkillsSection() {
               {[
                 "HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js",
                 "Tailwind CSS", "Bootstrap", "Node.js", "PostgreSQL", "REST API",
-                "GIT", "GITHUB", "GSAP", "Framer Motion", "Figma",
-                "WordPress", "Elementor", "YOAST SEO", "Vercel",
+                "GIT", "GITHUB", "GSAP", "Framer Motion",
+                "WordPress", "Elementor", "YOAST SEO", "WooCommerce", "Vercel",
               ].map((tech, idx) => (
                 <SwiperSlide key={idx} className="!w-auto">
                   <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 text-[10px] sm:text-xs rounded-full bg-white/5 border border-white/10 text-muted-foreground/70 hover:border-lime-500/50 hover:text-lime-400 transition-all duration-300 whitespace-nowrap">
