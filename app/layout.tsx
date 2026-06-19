@@ -81,7 +81,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "T. Kurnia Yogas Wara | Frontend Developer",
     description:
-      "Modern portfolio showcasing premium UI, smooth animations, and innovative web projects built with cutting-edge technologies.",
+      "Frontend Developer creating premium user interfaces, dynamic animations, and innovative web solutions with modern frameworks like React, Next.js, and TailwindCSS.",
     url: `${baseUrl}/`,
     siteName: "T. Kurnia Yogas Wara Portfolio",
     images: [
